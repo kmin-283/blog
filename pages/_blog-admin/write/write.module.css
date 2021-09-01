@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    width: 50%;
+    max-width: 50%;
+    max-height: 100vh;
+}
+
+.preview {
+    background-color: rgba(237, 241, 242, 0.5);
+    width: 50%;
+    max-width: 50%;
+    max-height: 100vh;
+}
+
+.tags {
+    display: flex;
+    padding: 0 20px;
+}
+
+.tagItem {
+    margin: 0 5px;
+    padding: 0 3px;
+    border: 1px solid purple;
+    border-radius: 10px;
+}
