@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from "react";
+import Link from "next/link";
 import styles from "./write.module.css";
 import marked from "marked";
 
@@ -38,6 +39,13 @@ const Write = () => {
           </ol>
         </section>
         <textarea value={markdown} onChange={handleMarkdown} />
+        <section className={styles.control}>
+          <Link aria-label="leave the write page" href="/_blog-admin">
+            <a>나가기</a>
+          </Link>
+          <button>임시저장</button>
+          <button>출간</button>
+        </section>
       </section>
       <section className={styles.preview}>
         <h2>{title ? title : "제목을 입력해주십시오"}</h2>

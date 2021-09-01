@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { useSession } from "next-auth/client";
+import { getSession } from "next-auth/client";
 import Login from "@/components/login/login";
 import Statistics from "@/components/statistics/statistics";
 import PostsComp from "@/components/posts/posts";
 import styles from "./_blog-admin.module.css";
+import { NextPageContext } from "next";
+import { Session } from "next-auth";
 
-const Admin = () => {
-  const [session] = useSession();
+const Admin = ({ session }: { session: Session }) => {
   const [section, setSection] = useState("stats");
+
+  if (!session) {
+    return <Login />;
+  }
 
   return (
     <>
-      {!session && <Login />}
       {session && (
         <main className={styles.main} data-type="https://schema.org/WebPage">
           <nav className={styles.navigation}>
@@ -49,3 +53,12 @@ const Admin = () => {
   );
 };
 export default Admin;
+
+export const getServerSideProps = async (context: NextPageContext) => {
+  const session = await getSession(context);
+  return {
+    props: {
+      session,
+    },
+  };
+};
