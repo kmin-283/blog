@@ -43,7 +43,6 @@ const Admin = ({ session }: { session: Session }) => {
             </ul>
           </nav>
           <section>
-            <h1>{`현재 메뉴는 ${section}입니다.`}</h1>
             {section === "stats" && <Statistics />}
             {section === "posts" && <PostsComp />}
           </section>
