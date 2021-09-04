@@ -40,8 +40,8 @@ const Write = ({ session }: { session: Session }) => {
         "Content-Type": "application/json",
       },
     });
+    setLoading(false);
     if (res.ok) {
-      setLoading(false);
       await router.push("/_blog-admin");
     } else {
       const data = res.json();
