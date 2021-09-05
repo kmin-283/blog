@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connect } from "mongoose";
 import fs from "fs";
 import PostModel from "../../../models/post";
+import connectDB from "../../../utils/mongodb";
 
 export const writeHelper = async (
   req: NextApiRequest,
@@ -10,10 +10,7 @@ export const writeHelper = async (
   const { title, tags, markdown } = req.body;
   try {
     fs.writeFileSync(`./mds/${title}.md`, markdown, "utf8");
-    // await connect(`mongodb://localhost:27017/posts`);
-    await connect(
-      `mongodb://root:mongodb@localhost:27017/posts?authSource=admin`
-    );
+    await connectDB();
     const doc = new PostModel({
       title,
       tags,
