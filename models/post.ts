@@ -1,17 +1,15 @@
-import { model, Schema, SchemaTypes } from "mongoose";
+import { model, Schema } from "mongoose";
 
-interface Post {
+export interface IPost {
   title: string;
   tags: string[];
   file: string;
 }
 
-const postSchema = new Schema<Post>({
-  title: { type: SchemaTypes.String, required: true },
-  tags: [SchemaTypes.String],
-  file: SchemaTypes.String,
+const postSchema = new Schema<IPost>({
+  title: { type: String, required: true },
+  tags: [String],
+  file: { type: String, required: true },
 });
 
-const PostModel = model<Post>("Post", postSchema);
-
-export default PostModel;
+export default model<IPost>("Post", postSchema);

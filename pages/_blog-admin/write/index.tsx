@@ -33,7 +33,7 @@ const Write = ({ session }: { session: Session }) => {
 
   const writePost = async () => {
     setLoading(true);
-    const res = await fetch("/api/write", {
+    const response = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({ title, tags, markdown }),
       headers: {
@@ -41,10 +41,10 @@ const Write = ({ session }: { session: Session }) => {
       },
     });
     setLoading(false);
-    if (res.ok) {
+    if (response.ok) {
       await router.push("/_blog-admin");
     } else {
-      const data = res.json();
+      const data = response.json();
       // logger가 에러가 발생한 로그를 수집할 수 있도록 하자
       // 에러가 발생했다면 data에 에러 메시지가 담겨있을거임
       console.error(data);
