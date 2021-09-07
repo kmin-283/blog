@@ -15,3 +15,7 @@
 .item {
     cursor: pointer;
 }
+
+.content {
+    width: 100%;
+}

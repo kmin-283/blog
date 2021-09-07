@@ -42,7 +42,7 @@ const Admin = ({ session }: { session: Session }) => {
               </li>
             </ul>
           </nav>
-          <section>
+          <section className={styles.content}>
             {section === "stats" && <Statistics />}
             {section === "posts" && <PostsComp />}
           </section>

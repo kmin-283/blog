@@ -1,0 +1,17 @@
+.postContainer {
+    background-color: aquamarine;
+    width: 100%;
+}
+
+.post {
+    display: flex;
+    width: 100%;
+}
+
+.metaData {
+    width: 100%;
+}
+
+.mainEntity {
+    display: flex;
+}

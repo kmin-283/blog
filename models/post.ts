@@ -1,9 +1,11 @@
 import mongoose, { model, Schema } from "mongoose";
 
 export interface IPost {
+  _id: string;
   title: string;
   tags: string[];
   file: string;
+  updatedAt: Date;
 }
 
 const postSchema = new Schema<IPost>(
