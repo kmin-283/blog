@@ -19,7 +19,6 @@ const PostsComp = () => {
     };
     getPosts();
   }, []);
-
   const deletePost = (_id: string, title: string) => async () => {
     const response = await fetch("/api/posts", {
       method: "DELETE",
