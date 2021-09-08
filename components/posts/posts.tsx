@@ -4,26 +4,28 @@ import { IPost } from "../../models/post";
 import { BsTrash, BsThreeDots } from "react-icons/bs";
 import { RiEdit2Fill } from "react-icons/ri";
 import styles from "./posts.module.css";
+import { useRouter } from "next/router";
 
 const PostsComp = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
+  const router = useRouter();
+
   useEffect(() => {
     const getPosts = async () => {
       const response = await fetch("/api/posts", {
         method: "GET",
       });
       if (response.ok) {
-        const { data } = await response.json();
-        setPosts(data as IPost[]);
+        return await response.json();
       }
     };
-    getPosts();
+    getPosts().then(({ data }) => setPosts(data as IPost[]));
   }, []);
+
   const deletePost = (_id: string, title: string) => async () => {
-    const response = await fetch("/api/posts", {
+    const response = await fetch(`/api/posts/${_id}`, {
       method: "DELETE",
       body: JSON.stringify({
-        _id,
         title,
       }),
       headers: {
@@ -35,7 +37,15 @@ const PostsComp = () => {
       setPosts(data as IPost[]);
     }
   };
-  const modifyPost = (_id: string) => async () => {};
+
+  const modifyPost = (_id: string) => async () => {
+    await router.push({
+      pathname: "/_blog-admin/write",
+      query: {
+        _id,
+      },
+    });
+  };
 
   return (
     <>
