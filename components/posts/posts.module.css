@@ -1,4 +1,61 @@
-.postContainer {
+.base {
+    width: 100%;
+    background-color: var(--admin-background-color);
+    overflow: auto;
+}
+
+.contentContainer {
+    margin: 0 4rem;
+}
+
+.postTypeFilter {
+    border: 1px solid var(--border-line-color);
+    margin-bottom: 2rem;
+}
+
+.sectionNavigationList {
+    display: flex;
+}
+
+.sectionNavigationList li {
+    background-color: coral;
+    margin: 0.2em;
+    padding: 0.4em;
+}
+
+.postSection {
+    border: 1px solid var(--border-line-color);
+}
+
+@supports (position: sticky) or (position: -webkit-sticky) {
+    .sectionHeader {
+        display: flex;
+        position: -webkit-sticky;
+        position: sticky;
+        top: -1px;
+        align-items: center;
+        background-color: var(--admin-background-color);
+        padding: 0.875rem;
+        border-bottom: 1px solid var(--border-line-color);
+    }
+}
+
+.sectionHeaderLabel {
+    width: 90%;
+}
+
+.sectionHeaderAction {
+    background-color: rgb(96, 56, 255);
+    padding: 0.4rem 0.5rem;
+    border-radius: 5px;
+}
+
+.sectionHeaderAction a {
+    color: white;
+    font-weight: 200;
+}
+
+.postList {
     background-color: aquamarine;
     width: 100%;
 }
