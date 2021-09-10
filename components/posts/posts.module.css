@@ -47,11 +47,16 @@
 .sectionHeaderAction {
     background-color: rgb(96, 56, 255);
     padding: 0.4rem 0.5rem;
-    border-radius: 5px;
+    transition: 0.5s;
 }
 
 .sectionHeaderAction a {
     color: white;
+    font-weight: 200;
+}
+
+.sectionHeaderAction:hover {
+    transform: scale(1.1);
     font-weight: 200;
 }
 
@@ -75,7 +80,7 @@
 }
 
 .thumbnail {
-
+    padding-right: 0.625rem;
 }
 
 .title {
@@ -83,7 +88,14 @@
 }
 
 .time {
-    
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    padding-top: 0.625rem;
+}
+
+.time span {
+    padding-left: 0.5rem;
 }
 
 .menu {

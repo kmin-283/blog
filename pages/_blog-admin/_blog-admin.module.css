@@ -4,14 +4,48 @@
 }
 
 .navigation {
-    background-color: #0070f3;
-    height: 100%;
+    background-color: rgb(91, 32, 225);
+    width: 25%;
 }
 
 .navigation ul {
     padding: 0;
 }
 
-.item {
+.navItem {
+    position: relative;
+    padding: 0.625rem;
     cursor: pointer;
+    color: white;
+}
+
+.navItem a {
+    color: white;
+}
+
+.navItem:hover:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    height: 100%;
+    width: 4px;
+    background-color: var(--hover-highlight-color);
+}
+
+.navItem:hover, .navItem:hover a {
+    background-color: rgb(112, 63, 255);
+    color: var(--hover-highlight-color);
+}
+
+.current:after {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 0.875rem solid transparent;
+    border-bottom: 0.875rem solid transparent;
+    border-right: 0.875rem solid white;
 }

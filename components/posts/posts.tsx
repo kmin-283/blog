@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { IPost } from "../../models/post";
 import { BsTrash, BsThreeDots } from "react-icons/bs";
+import { AiOutlineClockCircle } from "react-icons/ai";
 import { RiEdit2Fill } from "react-icons/ri";
 import styles from "./posts.module.css";
 import { useRouter } from "next/router";
@@ -78,6 +79,7 @@ const PostsComp = () => {
               const time = convertToKRDate(post.updatedAt.toString());
               return (
                 <li className={styles.post} key={post._id}>
+                  {/* TODO Link 태그로 감싸서 해당포스트의 새로운 창을 띄워주기 */}
                   <section className={styles.detail}>
                     <div className={styles.info}>
                       {/*TODO img를 next/image로 변경하기 */}
@@ -88,8 +90,9 @@ const PostsComp = () => {
                       />
                       <h2 className={styles.title}>{post.title}</h2>
                     </div>
-                    <time dateTime={time} className={styles.time}>
-                      {time}
+                    <time className={styles.time} dateTime={time}>
+                      <AiOutlineClockCircle />
+                      <span>{time}</span>
                     </time>
                   </section>
                   {/*TODO button들을 dropdown메뉴로 변경하기 */}

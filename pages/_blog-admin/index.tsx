@@ -21,24 +21,28 @@ const Admin = ({ session }: { session: Session }) => {
         <main className={styles.main} data-type="https://schema.org/WebPage">
           <nav className={styles.navigation}>
             <ul>
-              <li>
+              <li className={styles.navItem}>
                 <Link aria-label="go to main page" href="/">
-                  <a>메인 페이지</a>
+                  <a>블로그로 이동</a>
                 </Link>
               </li>
               <li
-                className={styles.item}
+                className={styles.navItem}
                 title="show stats"
                 onClick={() => setSection("stats")}
               >
-                통계
+                <div className={section === "stats" ? styles.current : ""}>
+                  통계
+                </div>
               </li>
               <li
-                className={styles.item}
+                className={styles.navItem}
                 title="show posts"
                 onClick={() => setSection("posts")}
               >
-                글
+                <div className={section === "posts" ? styles.current : ""}>
+                  글
+                </div>
               </li>
             </ul>
           </nav>
