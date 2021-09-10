@@ -5,6 +5,7 @@ import { BsTrash, BsThreeDots } from "react-icons/bs";
 import { RiEdit2Fill } from "react-icons/ri";
 import styles from "./posts.module.css";
 import { useRouter } from "next/router";
+import { convertToKRDate } from "../../utils/time";
 
 const PostsComp = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
@@ -74,31 +75,37 @@ const PostsComp = () => {
           </div>
           <ul className={styles.postList}>
             {posts.map((post) => {
+              const time = convertToKRDate(post.updatedAt.toString());
               return (
-                <li className={styles.post} key={post._id} data-mainentity="">
-                  <div className={styles.metaData}>
-                    <div className={styles.mainEntity}>
+                <li className={styles.post} key={post._id}>
+                  <section className={styles.detail}>
+                    <div className={styles.info}>
                       {/*TODO img를 next/image로 변경하기 */}
                       <img
+                        className={styles.thumbnail}
                         src="https://source.unsplash.com/random/100x100"
                         alt="randomImage"
                       />
-                      <h2 data-name="">{post.title}</h2>
+                      <h2 className={styles.title}>{post.title}</h2>
                     </div>
-                    {post.updatedAt}
-                  </div>
+                    <time dateTime={time} className={styles.time}>
+                      {time}
+                    </time>
+                  </section>
                   {/*TODO button들을 dropdown메뉴로 변경하기 */}
                   {/*<button>*/}
                   {/*  <BsThreeDots fontSize="1.2rem" />*/}
                   {/*</button>*/}
-                  <button onClick={deletePost(post._id, post.title)}>
-                    <BsTrash fontSize="1.2rem" />
-                    삭제하기
-                  </button>
-                  <button onClick={modifyPost(post._id)}>
-                    <RiEdit2Fill fontSize="1.2rem" />
-                    수정하기
-                  </button>
+                  <section className={styles.menu}>
+                    <button onClick={deletePost(post._id, post.title)}>
+                      <BsTrash fontSize="1.2rem" />
+                      삭제하기
+                    </button>
+                    <button onClick={modifyPost(post._id)}>
+                      <RiEdit2Fill fontSize="1.2rem" />
+                      수정하기
+                    </button>
+                  </section>
                 </li>
               );
             })}
