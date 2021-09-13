@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { IPost } from "../../models/post";
-import { BsTrash, BsThreeDots } from "react-icons/bs";
+import { BsTrash } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { RiEdit2Fill } from "react-icons/ri";
 import styles from "./posts.module.css";
 import { useRouter } from "next/router";
 import { convertToKRDate } from "../../utils/time";
+import Dropdown from "@/components/dropdown/dropdownMenu/dropdown";
+import DropdownItem from "@/components/dropdown/dropdownItem/dropdownItem";
 
-const PostsComp = () => {
+const PostSection = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const router = useRouter();
 
@@ -88,27 +90,32 @@ const PostsComp = () => {
                         src="https://source.unsplash.com/random/100x100"
                         alt="randomImage"
                       />
-                      <h2 className={styles.title}>{post.title}</h2>
+                      <div>
+                        <h2 className={styles.title}>{post.title}</h2>
+                        <ul className={styles.tagList}>
+                          {post.tags.slice(0, 5).map((tag) => (
+                            <li key={`${post._id}-${tag}`}>{tag}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                     <time className={styles.time} dateTime={time}>
                       <AiOutlineClockCircle />
                       <span>{time}</span>
                     </time>
                   </section>
-                  {/*TODO button들을 dropdown메뉴로 변경하기 */}
-                  {/*<button>*/}
-                  {/*  <BsThreeDots fontSize="1.2rem" />*/}
-                  {/*</button>*/}
-                  <section className={styles.menu}>
-                    <button onClick={deletePost(post._id, post.title)}>
-                      <BsTrash fontSize="1.2rem" />
-                      삭제하기
-                    </button>
-                    <button onClick={modifyPost(post._id)}>
-                      <RiEdit2Fill fontSize="1.2rem" />
-                      수정하기
-                    </button>
-                  </section>
+                  <Dropdown>
+                    <DropdownItem
+                      onClick={deletePost(post._id, post.title)}
+                      role={"삭제하기"}
+                      icon={<BsTrash size="1.2rem" />}
+                    />
+                    <DropdownItem
+                      onClick={modifyPost(post._id)}
+                      role={"수정하기"}
+                      icon={<RiEdit2Fill size="1.2rem" />}
+                    />
+                  </Dropdown>
                 </li>
               );
             })}
@@ -119,4 +126,4 @@ const PostsComp = () => {
   );
 };
 
-export default PostsComp;
+export default PostSection;

@@ -1,0 +1,19 @@
+.dropdown {
+    position: relative;
+    display: flex;
+    align-self: center;
+}
+
+.dropdownIcon {
+    cursor: pointer;
+}
+
+.dropdownContent {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-line-color);
+    top: 2rem;
+    right: 0;
+    width: 10rem;
+}

@@ -3,10 +3,10 @@ import Link from "next/link";
 import { getSession } from "next-auth/client";
 import Login from "@/components/login/login";
 import Statistics from "@/components/statistics/statistics";
-import PostsComp from "@/components/posts/posts";
 import styles from "./_blog-admin.module.css";
 import { NextPageContext } from "next";
 import { Session } from "next-auth";
+import PostSection from "@/components/posts/posts";
 
 const Admin = ({ session }: { session: Session }) => {
   const [section, setSection] = useState("stats");
@@ -47,7 +47,7 @@ const Admin = ({ session }: { session: Session }) => {
             </ul>
           </nav>
           {section === "stats" && <Statistics />}
-          {section === "posts" && <PostsComp />}
+          {section === "posts" && <PostSection />}
         </main>
       )}
     </>
