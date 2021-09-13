@@ -8,22 +8,8 @@
     margin: 0 4rem;
 }
 
-.postTypeFilter {
-    border: 1px solid var(--border-line-color);
-    margin-bottom: 2rem;
-}
-
-.sectionNavigationList {
-    display: flex;
-}
-
-.sectionNavigationList li {
-    background-color: coral;
-    margin: 0.2em;
-    padding: 0.4em;
-}
-
 .postSection {
+    background-color: white;
     border: 1px solid var(--border-line-color);
 }
 
@@ -34,7 +20,7 @@
         position: sticky;
         top: -1px;
         align-items: center;
-        background-color: var(--admin-background-color);
+        background-color: white;
         padding: 0.875rem;
         border-bottom: 1px solid var(--border-line-color);
         z-index: 9999;

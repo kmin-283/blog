@@ -23,14 +23,14 @@ const Dropdown: FC = ({ children }) => {
   };
 
   return (
-    <div className={styles.dropdown} ref={ref}>
+    <section className={styles.dropdown} ref={ref}>
       <BsThreeDots
         className={styles.dropdownIcon}
         onClick={showDropdown}
-        size="2rem"
+        size={"2em"}
       />
       {show && <div className={styles.dropdownContent}>{children}</div>}
-    </div>
+    </section>
   );
 };
 export default Dropdown;

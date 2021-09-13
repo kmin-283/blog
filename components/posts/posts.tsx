@@ -9,9 +9,13 @@ import { useRouter } from "next/router";
 import { convertToKRDate } from "../../utils/time";
 import Dropdown from "@/components/dropdown/dropdownMenu/dropdown";
 import DropdownItem from "@/components/dropdown/dropdownItem/dropdownItem";
+import Tabs from "@/components/tabs/tabMenu/tabs";
+
+export type TabType = "publish" | "draft";
 
 const PostSection = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [tab, setTab] = useState<TabType>("publish");
   const router = useRouter();
 
   useEffect(() => {
@@ -58,13 +62,7 @@ const PostSection = () => {
           <h1>글</h1>
           <p>블로그에 글을 발행하거나 관리합니다.</p>
         </header>
-        <section className={styles.postTypeFilter}>
-          <ul className={styles.sectionNavigationList}>
-            {/* TODO 임시저장 포스트와 실제 게제된 포스트 구분해서 보여주기*/}
-            <li>발행된 글 보기</li>
-            <li>임시 저장 글 보기</li>
-          </ul>
-        </section>
+        <Tabs tab={tab} onClick={setTab} />
         <section className={styles.postSection}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionHeaderLabel}>

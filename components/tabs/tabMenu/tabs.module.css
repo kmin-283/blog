@@ -1,0 +1,10 @@
+.postTypeFilter {
+    border: 1px solid var(--border-line-color);
+    margin-bottom: 2rem;
+}
+
+.sectionNavigationList {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
