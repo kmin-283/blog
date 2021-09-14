@@ -7,6 +7,7 @@ import { NextPageContext } from "next";
 import { getSession } from "next-auth/client";
 import { Session } from "next-auth";
 import Login from "@/components/login/login";
+import { AiOutlineSave, AiOutlineUpload } from "react-icons/ai";
 
 const Write = ({ session }: { session: Session }) => {
   const router = useRouter();
@@ -39,6 +40,8 @@ const Write = ({ session }: { session: Session }) => {
   };
 
   const handleTags = (event: KeyboardEvent & ChangeEvent<HTMLInputElement>) => {
+    // TODO tag validation check
+    // TODO 비어있거나 중복이 있어선 안됨
     if (event.key === "Enter") {
       const nextValue = event.target.value;
       setTags((prevState) => [...prevState, nextValue]);
@@ -90,6 +93,12 @@ const Write = ({ session }: { session: Session }) => {
     }
   };
 
+  const deleteTag = (index: number) => () => {
+    const newTags = [...tags];
+    newTags.splice(index, 1);
+    setTags(newTags);
+  };
+
   if (!session) {
     return <Login />;
   }
@@ -103,28 +112,64 @@ const Write = ({ session }: { session: Session }) => {
     <main className={styles.wrapper}>
       <section className={styles.editor}>
         <input
+          type="text"
+          className={styles.title}
           value={title}
           placeholder="제목을 입력하세요"
+          spellCheck={false}
           onChange={handleTitle}
         />
-        <input placeholder="태그를 입력하세요" onKeyUp={handleTags} />
+        <input
+          type="text"
+          className={styles.tag}
+          placeholder="태그를 입력하세요"
+          spellCheck={false}
+          onKeyUp={handleTags}
+        />
         <section>
           <ol className={styles.tags}>
             {tags.map((tag, index) => (
-              <li className={styles.tagItem} key={index}>
+              <li
+                className={styles.tagItem}
+                key={index}
+                onClick={deleteTag(index)}
+              >
                 {tag}
               </li>
             ))}
           </ol>
+          <span className={styles.description}>
+            태그를 누르면 해당 태그가 삭제됩니다
+          </span>
         </section>
-        <textarea value={markdown} onChange={handleMarkdown} />
-        <section className={styles.control}>
+        <textarea
+          className={styles.mainText}
+          value={markdown}
+          spellCheck={false}
+          placeholder="본문을 작성하세요..."
+          onChange={handleMarkdown}
+        />
+        <section className={styles.actions}>
           <Link aria-label="leave the write page" href="/_blog-admin">
             <a>나가기</a>
           </Link>
-          <button>임시저장</button>
-          {_id && <button onClick={modifyPost}>수정</button>}
-          {!_id && <button onClick={writePost}>출간</button>}
+          <div className={styles.saveAction}>
+            <button className={styles.draft}>
+              <AiOutlineSave />
+              <span>임시저장</span>
+            </button>
+            {_id && (
+              <button className={styles.save} onClick={modifyPost}>
+                수정
+              </button>
+            )}
+            {!_id && (
+              <button className={styles.save} onClick={writePost}>
+                <AiOutlineUpload />
+                <span>출간</span>
+              </button>
+            )}
+          </div>
         </section>
       </section>
       <section className={styles.preview}>
