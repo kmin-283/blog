@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import styles from "./tabs.module.css";
 import { TabType } from "@/components/posts/posts";
 import TabItem from "@/components/tabs/tabItem/tabItem";
 
 interface TabsProps {
   tab: TabType;
-  onClick: React.Dispatch<React.SetStateAction<TabType>>;
+  onClick: Dispatch<SetStateAction<TabType>>;
 }
 
 const Tabs = ({ tab, onClick }: TabsProps) => {

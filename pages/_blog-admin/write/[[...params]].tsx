@@ -8,6 +8,7 @@ import { getSession } from "next-auth/client";
 import { Session } from "next-auth";
 import Login from "@/components/login/login";
 import { AiOutlineSave, AiOutlineUpload } from "react-icons/ai";
+import Toolbar from "@/components/toolbar/toolbar";
 
 const Write = ({ session }: { session: Session }) => {
   const router = useRouter();
@@ -138,10 +139,12 @@ const Write = ({ session }: { session: Session }) => {
               </li>
             ))}
           </ol>
+          {/* TODO 태그가 삭제됩니다 요거 화면 차지 안하도록 변경하기 */}
           <span className={styles.description}>
             태그를 누르면 해당 태그가 삭제됩니다
           </span>
         </section>
+        <Toolbar setMarkdown={setMarkdown} />
         <textarea
           className={styles.mainText}
           value={markdown}

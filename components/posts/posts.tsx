@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { IPost } from "../../models/post";
 import { BsTrash } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
@@ -82,10 +83,11 @@ const PostSection = () => {
                   {/* TODO Link 태그로 감싸서 해당포스트의 새로운 창을 띄워주기 */}
                   <section className={styles.detail}>
                     <div className={styles.info}>
-                      {/*TODO img를 next/image로 변경하기 */}
-                      <img
+                      <Image
                         className={styles.thumbnail}
-                        src="https://source.unsplash.com/random/100x100"
+                        src={"/photos/published/1.jpg"}
+                        width={100}
+                        height={100}
                         alt="randomImage"
                       />
                       <div>
@@ -106,12 +108,12 @@ const PostSection = () => {
                     <DropdownItem
                       onClick={deletePost(post._id, post.title)}
                       role={"삭제하기"}
-                      icon={<BsTrash size="1.2rem" />}
+                      icon={<BsTrash size="1.2em" />}
                     />
                     <DropdownItem
                       onClick={modifyPost(post._id)}
                       role={"수정하기"}
-                      icon={<RiEdit2Fill size="1.2rem" />}
+                      icon={<RiEdit2Fill size="1.2em" />}
                     />
                   </Dropdown>
                 </li>

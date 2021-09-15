@@ -10,6 +10,8 @@ body {
     --border-line-color: rgba(128, 128, 128, 0.5);
     --admin-background-color: rgb(243, 243, 243);
     --hover-highlight-color: rgb(26, 172, 176);
+    --icon-inactive-color: rgb(169, 169, 169);
+    --icon-active-background-color: rgba(196, 196, 196, 0.3);
 }
 
 a {
