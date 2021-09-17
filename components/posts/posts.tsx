@@ -85,12 +85,12 @@ const PostSection = () => {
                     <div className={styles.info}>
                       <Image
                         className={styles.thumbnail}
-                        src={"/photos/published/1.jpg"}
+                        src={"/images/1.jpg"}
                         width={100}
                         height={100}
                         alt="randomImage"
                       />
-                      <div>
+                      <div className={styles.text}>
                         <h2 className={styles.title}>{post.title}</h2>
                         <ul className={styles.tagList}>
                           {post.tags.slice(0, 5).map((tag) => (

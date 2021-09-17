@@ -100,6 +100,32 @@ const Write = ({ session }: { session: Session }) => {
     setTags(newTags);
   };
 
+  const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    const files = event.target.files;
+    if (files) {
+      const formData = new FormData();
+      formData.append("file", files[0], files[0].name);
+      {
+        /*TODO file upload 한 후 응답으로 받은  url로 markdown 구성 */
+      }
+      const response = await fetch("/api/images", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      if (response.ok) {
+        const { path } = data;
+        setMarkdown((prevState) => prevState + `![](${path})`);
+      } else {
+        {
+          /*TODO log를 남길 수 있게 추가하기*/
+        }
+        console.log(data);
+      }
+    }
+  };
+
   if (!session) {
     return <Login />;
   }
@@ -144,7 +170,7 @@ const Write = ({ session }: { session: Session }) => {
             태그를 누르면 해당 태그가 삭제됩니다
           </span>
         </section>
-        <Toolbar setMarkdown={setMarkdown} />
+        <Toolbar uploadImage={uploadImage} />
         <textarea
           className={styles.mainText}
           value={markdown}

@@ -1,23 +1,12 @@
-import React, { ChangeEvent, SetStateAction, Dispatch } from "react";
+import React, { ChangeEvent } from "react";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import styles from "./toolbar.module.css";
 
 interface ToolbarProps {
-  setMarkdown: Dispatch<SetStateAction<string>>;
+  uploadImage: (event: ChangeEvent<HTMLInputElement>) => Promise<void>;
 }
 
-const Toolbar = ({ setMarkdown }: ToolbarProps) => {
-  const fileSelect = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    if (event.target.files) {
-      const file = event.target.files[0];
-      {
-        /*TODO file upload 한 후 응답으로 받은  url로 markdown 구성 */
-      }
-      // setMarkdown((prevState) => prevState + `![](${url})`);
-    }
-  };
-
+const Toolbar = ({ uploadImage }: ToolbarProps) => {
   return (
     <section className={styles.toolbar}>
       <ul className={styles.toolList}>
@@ -29,10 +18,9 @@ const Toolbar = ({ setMarkdown }: ToolbarProps) => {
             id="upload"
             className={styles.toolUploader}
             type="file"
-            onChange={fileSelect}
+            onChange={uploadImage}
           />
         </li>
-        <li className={styles.tool}>asdf</li>
       </ul>
     </section>
   );
