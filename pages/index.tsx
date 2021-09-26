@@ -1,10 +1,16 @@
 import { ReactElement } from "react";
 import Head from "next/head";
+import { GetServerSidePropsResult } from "next";
 import { NextPageWithLayout } from "./_app";
 import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
+import { IPost } from "../models/post";
 
-const Home: NextPageWithLayout = () => {
+export interface HomeProps {
+  posts: IPost[];
+}
+
+const Home: NextPageWithLayout<HomeProps> = ({ posts }) => {
   return (
     <div>
       <Head>
@@ -13,7 +19,11 @@ const Home: NextPageWithLayout = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>hello world</h1>
+        <ul>
+          {posts.map((post) => {
+            return <li key={post._id}>{post.title}</li>;
+          })}
+        </ul>
       </main>
     </div>
   );
@@ -30,3 +40,24 @@ Home.getLayout = function getLayout(page: ReactElement) {
 };
 
 export default Home;
+
+export const getServerSideProps = async (): Promise<
+  GetServerSidePropsResult<HomeProps>
+> => {
+  const response = await fetch("http://localhost:3000/api/posts", {
+    method: "GET",
+  });
+  if (response.ok) {
+    const posts = await response.json();
+    return {
+      props: {
+        posts: posts.data,
+      },
+    };
+  }
+  return {
+    props: {
+      posts: [],
+    },
+  };
+};
