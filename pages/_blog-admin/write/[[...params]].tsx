@@ -94,6 +94,8 @@ const Write = ({ session }: { session: Session }) => {
     }
   };
 
+  const draftPost = async () => {};
+
   const deleteTag = (index: number) => () => {
     const newTags = [...tags];
     newTags.splice(index, 1);
@@ -183,13 +185,14 @@ const Write = ({ session }: { session: Session }) => {
             <a>나가기</a>
           </Link>
           <div className={styles.saveAction}>
-            <button className={styles.draft}>
+            <button className={styles.draft} onClick={draftPost}>
               <AiOutlineSave />
               <span>임시저장</span>
             </button>
             {_id && (
               <button className={styles.save} onClick={modifyPost}>
-                수정
+                <AiOutlineSave />
+                <span>수정</span>
               </button>
             )}
             {!_id && (
