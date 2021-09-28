@@ -4,7 +4,9 @@ import { GetServerSidePropsResult } from "next";
 import { NextPageWithLayout } from "./_app";
 import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
+import PostCard from "@/components/PostCard/postCard";
 import { IPost } from "../models/post";
+import styles from "./index.module.css";
 
 export interface HomeProps {
   posts: IPost[];
@@ -19,11 +21,11 @@ const Home: NextPageWithLayout<HomeProps> = ({ posts }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ul>
+        <div className={styles.posts}>
           {posts.map((post) => {
-            return <li key={post._id}>{post.title}</li>;
+            return <PostCard key={post._id} post={post} />;
           })}
-        </ul>
+        </div>
       </main>
     </div>
   );
