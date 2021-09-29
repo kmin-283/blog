@@ -31,7 +31,7 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
     case "PUT":
       try {
         const { prevTitle, title, tags, markdown } = req.body;
-        const file = `./mds/${title}.md`;
+        const file = `./mds/${title.replace(/\s/g, "-")}.md`;
         const post = await Post.findByIdAndUpdate(
           id,
           {
