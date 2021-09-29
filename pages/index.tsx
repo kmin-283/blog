@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import Head from "next/head";
-import { GetServerSidePropsResult } from "next";
+import { GetStaticPropsResult } from "next";
 import { NextPageWithLayout } from "./_app";
 import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
@@ -43,8 +43,8 @@ Home.getLayout = function getLayout(page: ReactElement) {
 
 export default Home;
 
-export const getServerSideProps = async (): Promise<
-  GetServerSidePropsResult<HomeProps>
+export const getStaticProps = async (): Promise<
+  GetStaticPropsResult<HomeProps>
 > => {
   const response = await fetch("http://localhost:3000/api/posts", {
     method: "GET",
