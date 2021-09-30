@@ -1,4 +1,4 @@
-import React, { ReactElement, FC } from "react";
+import React, { ReactElement } from "react";
 import { readdirSync, readFileSync } from "fs";
 import path from "path";
 import { GetStaticPaths, GetStaticPropsContext } from "next";
@@ -8,6 +8,7 @@ import marked from "marked";
 import styles from "./[title].module.css";
 import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
+import { NextPageWithLayout } from "./_app";
 
 interface PostPageProps {
   postName: string;
@@ -15,7 +16,11 @@ interface PostPageProps {
   markdown: string;
 }
 
-const PostPage: FC<PostPageProps> = ({ postName, tags, markdown }) => {
+const PostPage: NextPageWithLayout<PostPageProps> = ({
+  postName,
+  tags,
+  markdown,
+}) => {
   return (
     <article className={styles.post}>
       <h1>{postName}</h1>
