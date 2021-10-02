@@ -2,6 +2,7 @@ import connectDB from "../../../utils/mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import Post from "../../../models/post";
 import fs from "fs";
+import { getThumbnail } from "../../../utils/imageUpload";
 
 connectDB().then();
 
@@ -20,10 +21,7 @@ const PostCR = async (req: NextApiRequest, res: NextApiResponse) => {
       try {
         const { title, tags, markdown } = req.body;
         const imageTag = (markdown as string).match(/!\[(\w+)?\]\((.*)?\)/);
-        let thumbnail = "";
-        if (imageTag && imageTag.length > 0) {
-          thumbnail = imageTag[0].match(/\(.*\)/)![0].slice(1, -1);
-        }
+        const thumbnail = getThumbnail(markdown);
         await Post.create({
           title,
           tags,

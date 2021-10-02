@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import { IPost } from "../../models/post";
 import Link from "next/link";
 import Image from "next/image";
+import Tags from "@/components/tags/tags";
+import { convertToKRDate } from "../../utils/time";
 import styles from "./postCard.module.css";
 
 interface PostCardProps {
@@ -9,6 +11,7 @@ interface PostCardProps {
 }
 
 const PostCard: FC<PostCardProps> = ({ post }) => {
+  const time = convertToKRDate(post.updatedAt.toString());
   return (
     <div className={styles.postCard}>
       <Link href={`/${post.title.replace(/\s/g, "-")}`}>
@@ -24,10 +27,14 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
             </h2>
             <hr className={styles.divider} />
             <span className={styles.description} property={"description"}>
-              excerpt가 들어갈 자리입니다.excerpt가 들어갈 자리입니다. excerpt가
-              들어갈 자리입니다. excerpt가 들어갈 자리입니다.excerpt가 들어갈
-              자리입니다.
+              excerpt를 위한 공간
             </span>
+            <div className={styles.subInfo}>
+              <Tags tags={post.tags} howMany={3} />
+              <time className={styles.time} dateTime={time}>
+                {time}
+              </time>
+            </div>
           </div>
         </a>
       </Link>

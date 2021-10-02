@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import connectDB from "../../../utils/mongodb";
 import Post, { IPost } from "../../../models/post";
 import { readFileSync, renameSync, writeFileSync } from "fs";
+import { getThumbnail } from "../../../utils/imageUpload";
 
 connectDB().then();
 
@@ -31,6 +32,7 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
     case "PUT":
       try {
         const { prevTitle, title, tags, markdown } = req.body;
+        const thumbnail = getThumbnail(markdown);
         const file = `./mds/${title.replace(/\s/g, "-")}.md`;
         const post = await Post.findByIdAndUpdate(
           id,
@@ -38,6 +40,7 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
             title,
             tags,
             file,
+            thumbnail,
           },
           {
             new: true,
