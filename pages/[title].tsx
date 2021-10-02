@@ -9,6 +9,7 @@ import styles from "./[title].module.css";
 import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
 import { NextPageWithLayout } from "./_app";
+import Tags from "@/components/tags/tags";
 
 interface PostPageProps {
   postName: string;
@@ -24,11 +25,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
   return (
     <article className={styles.post}>
       <h1>{postName}</h1>
-      <ul className={styles.tags}>
-        {tags.map((tag, index) => (
-          <li key={`${tag}-${index}`}>{tag}</li>
-        ))}
-      </ul>
+      <Tags tags={tags} howMany={5} />
       <section
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: marked(markdown) }}

@@ -11,6 +11,7 @@ import { convertToKRDate } from "../../utils/time";
 import Dropdown from "@/components/dropdown/dropdownMenu/dropdown";
 import DropdownItem from "@/components/dropdown/dropdownItem/dropdownItem";
 import Tabs from "@/components/tabs/tabMenu/tabs";
+import Tags from "@/components/tags/tags";
 
 export type TabType = "publish" | "draft";
 
@@ -92,11 +93,7 @@ const PostSection = () => {
                       />
                       <div className={styles.text}>
                         <h2 className={styles.title}>{post.title}</h2>
-                        <ul className={styles.tagList}>
-                          {post.tags.slice(0, 5).map((tag) => (
-                            <li key={`${post._id}-${tag}`}>{tag}</li>
-                          ))}
-                        </ul>
+                        <Tags tags={post.tags} howMany={5} />
                       </div>
                     </div>
                     <time className={styles.time} dateTime={time}>

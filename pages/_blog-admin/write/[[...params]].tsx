@@ -9,6 +9,7 @@ import { Session } from "next-auth";
 import Login from "@/components/login/login";
 import { AiOutlineSave, AiOutlineUpload } from "react-icons/ai";
 import Toolbar from "@/components/toolbar/toolbar";
+import Tags from "@/components/tags/tags";
 
 const Write = ({ session }: { session: Session }) => {
   const router = useRouter();
@@ -37,7 +38,7 @@ const Write = ({ session }: { session: Session }) => {
   }, [_id]);
 
   const handleTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    if (title.length < 50) {
+    if (title.length < 30) {
       setTitle(event.target.value);
     }
   };
@@ -45,7 +46,7 @@ const Write = ({ session }: { session: Session }) => {
   const handleTags = (event: KeyboardEvent & ChangeEvent<HTMLInputElement>) => {
     // TODO tag validation check
     // TODO 비어있거나 중복이 있어선 안됨
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && tags.length < 5) {
       const nextValue = event.target.value;
       setTags((prevState) => [...prevState, nextValue]);
       event.target.value = "";
@@ -98,7 +99,7 @@ const Write = ({ session }: { session: Session }) => {
 
   const draftPost = async () => {};
 
-  const deleteTag = (index: number) => () => {
+  const deleteTag = (index: number) => {
     const newTags = [...tags];
     newTags.splice(index, 1);
     setTags(newTags);
@@ -152,23 +153,13 @@ const Write = ({ session }: { session: Session }) => {
         />
         <input
           type="text"
-          className={styles.tag}
+          className={styles.tagInput}
           placeholder="태그를 입력하세요"
           spellCheck={false}
           onKeyUp={handleTags}
         />
         <section>
-          <ol className={styles.tags}>
-            {tags.map((tag, index) => (
-              <li
-                className={styles.tagItem}
-                key={index}
-                onClick={deleteTag(index)}
-              >
-                {tag}
-              </li>
-            ))}
-          </ol>
+          <Tags tags={tags} howMany={5} deleteTag={deleteTag} />
           {/* TODO 태그가 삭제됩니다 요거 화면 차지 안하도록 변경하기 */}
           <span className={styles.description}>
             태그를 누르면 해당 태그가 삭제됩니다
