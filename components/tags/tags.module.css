@@ -1,13 +1,12 @@
 .tags {
     display: flex;
-    padding: 1rem 0 0.5rem 0;
+    padding: 0;
     margin: 0;
     flex-wrap: wrap;
 }
 
 .tag {
-    padding: 0.25rem;
-    margin: 0.25rem 0.25rem 0.25rem 0;
-    border: 1px solid var(--tag-border-color);
-    color: var(--main-theme-color);
+    padding: 0.25rem 0.25rem 0.25rem 0;
+    color: rgb(76, 150, 255);
+    font-weight: 600;
 }
