@@ -20,15 +20,15 @@ const PostCR = async (req: NextApiRequest, res: NextApiResponse) => {
     case "POST":
       try {
         const { title, tags, markdown } = req.body;
-        const imageTag = (markdown as string).match(/!\[(\w+)?\]\((.*)?\)/);
         const thumbnail = getThumbnail(markdown);
+        const file = `./mds/${title.replace(/\s/g, "-")}.md`;
         await Post.create({
           title,
           tags,
-          file: `./mds/${title}.md`,
+          file,
           thumbnail,
         });
-        fs.writeFileSync(`./mds/${title}.md`, markdown, "utf8");
+        fs.writeFileSync(file, markdown, "utf8");
         return res.status(201).json({ success: true });
       } catch (error) {
         return res.status(400).json({ success: false, error });

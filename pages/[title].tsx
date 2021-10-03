@@ -73,7 +73,8 @@ export const getStaticProps = async (
   connectDB().then();
   const { title } = context.params;
   const markdown = readFileSync(path.join("mds", `${title}.md`), "utf8");
-  const { title: postName, tags } = await Post.findOne({ title });
+  const trimmedTitle = title.replace(/\-/g,' ');
+  const { title: postName, tags } = await Post.findOne({ trimmedTitle });
 
   return {
     props: {
