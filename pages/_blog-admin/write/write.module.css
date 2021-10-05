@@ -4,16 +4,6 @@
     height: 100vh;
 }
 
-
-.title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    padding: 0 0 1rem 0;
-    margin: 0;
-    border: none;
-    outline: none;
-}
-
 .editor {
     display: flex;
     flex-direction: column;
@@ -23,16 +13,26 @@
     padding: 1rem 1rem 0 1rem;
 }
 
-.tagInput {
-    font-size: 1.25rem;
-    margin: 0;
+.editor input {
     border: none;
     outline: none;
 }
 
+.title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    padding: 0 0 1rem 0;
+    margin: 0;
+}
+
+.tagInput {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
 .description {
-    font-size: 0.875rem;
-    color: rgb(182, 182, 182);
+    font-size: 1.25rem;
+    margin: 0;
 }
 
 .mainText {

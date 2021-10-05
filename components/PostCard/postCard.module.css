@@ -31,7 +31,6 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: flex-start;
-    /*align-items: center;*/
     background-color: white;
     padding: 0.5rem;
     height: 70%;
@@ -40,6 +39,7 @@
 
 .title {
     font-size: 1.25rem;
+    line-height: 1.5rem;
     margin: 1rem 0 0.5rem 0;
 }
 
@@ -51,6 +51,7 @@
 .description {
     flex-grow: 2;
     font-size: 0.875rem;
+    text-overflow: ellipsis;
 }
 
 .subInfo {

@@ -18,6 +18,7 @@ const Write = ({ session }: { session: Session }) => {
   const [prevTitle, setPrevTitle] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
+  const [description, setDescription] = useState<string>("");
   const [markdown, setMarkdown] = useState<string>("");
 
   useEffect(() => {
@@ -28,19 +29,18 @@ const Write = ({ session }: { session: Session }) => {
       }
     };
     if (_id) {
-      getPost().then(({ data: { title, tags, markdown } }) => {
+      getPost().then(({ data: { title, tags, description, markdown } }) => {
         setTitle(title);
         setPrevTitle(title);
         setTags(tags);
+        setDescription(description);
         setMarkdown(markdown);
       });
     }
   }, [_id]);
 
   const handleTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    if (title.length < 30) {
-      setTitle(event.target.value);
-    }
+    setTitle(event.target.value.slice(0, 65));
   };
 
   const handleTags = (event: KeyboardEvent & ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +53,10 @@ const Write = ({ session }: { session: Session }) => {
     }
   };
 
+  const handleDescription = (event: ChangeEvent<HTMLInputElement>) => {
+    setDescription(event.target.value.slice(0, 95));
+  };
+
   const handleMarkdown = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMarkdown(event.target.value);
   };
@@ -61,7 +65,7 @@ const Write = ({ session }: { session: Session }) => {
     setLoading(true);
     const response = await fetch("/api/posts", {
       method: "POST",
-      body: JSON.stringify({ title, tags, markdown }),
+      body: JSON.stringify({ title, tags, description, markdown }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -81,7 +85,7 @@ const Write = ({ session }: { session: Session }) => {
     setLoading(true);
     const response = await fetch(`/api/write/${_id}`, {
       method: "PUT",
-      body: JSON.stringify({ prevTitle, title, tags, markdown }),
+      body: JSON.stringify({ prevTitle, title, tags, description, markdown }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -156,7 +160,7 @@ const Write = ({ session }: { session: Session }) => {
           className={styles.tagInput}
           placeholder="태그를 입력하세요"
           spellCheck={false}
-          onKeyUp={handleTags}
+          onKeyDown={handleTags}
         />
         <section>
           <Tags tags={tags} howMany={5} deleteTag={deleteTag} />
@@ -166,6 +170,13 @@ const Write = ({ session }: { session: Session }) => {
           </span>
         </section>
         <Toolbar uploadImage={uploadImage} />
+        <input
+          type="text"
+          className={styles.description}
+          value={description}
+          placeholder="이번 포스트의 핵심 한 문장을 입력하세요"
+          onChange={handleDescription}
+        />
         <textarea
           className={styles.mainText}
           value={markdown}
@@ -199,6 +210,7 @@ const Write = ({ session }: { session: Session }) => {
       </section>
       <section className={styles.preview}>
         <h2>{title ? title : "제목을 입력해주십시오"}</h2>
+        <strong>{description}</strong>
         <section dangerouslySetInnerHTML={{ __html: marked(markdown) }} />
       </section>
     </main>

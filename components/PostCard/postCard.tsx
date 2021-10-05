@@ -27,10 +27,9 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
             </h2>
             <hr className={styles.divider} />
             <span className={styles.description} property={"description"}>
-              excerpt를 위한 공간
+              {post.description}
             </span>
             <div className={styles.subInfo}>
-              <Tags tags={post.tags} howMany={3} />
               <time className={styles.time} dateTime={time}>
                 {time}
               </time>

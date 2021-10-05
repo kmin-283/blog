@@ -21,17 +21,20 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
             .status(400)
             .json({ success: false, error: "Post doesn't exist" });
         }
-        const { title, tags, file } = post;
+        const { title, tags, description, file } = post;
         const markdown = readFileSync(file, "utf8");
         return res
           .status(200)
-          .json({ success: true, data: { title, tags, markdown } });
+          .json({
+            success: true,
+            data: { title, tags, description, markdown },
+          });
       } catch (error) {
         return res.status(400).json({ success: false, error });
       }
     case "PUT":
       try {
-        const { prevTitle, title, tags, markdown } = req.body;
+        const { prevTitle, title, tags, description, markdown } = req.body;
         const thumbnail = getThumbnail(markdown);
         const file = `./mds/${title.replace(/\s/g, "-")}.md`;
         const post = await Post.findByIdAndUpdate(
@@ -40,6 +43,7 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
             title,
             tags,
             file,
+            description,
             thumbnail,
           },
           {

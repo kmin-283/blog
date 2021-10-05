@@ -19,12 +19,13 @@ const PostCR = async (req: NextApiRequest, res: NextApiResponse) => {
       }
     case "POST":
       try {
-        const { title, tags, markdown } = req.body;
+        const { title, tags, description, markdown } = req.body;
         const thumbnail = getThumbnail(markdown);
         const file = `./mds/${title.replace(/\s/g, "-")}.md`;
         await Post.create({
           title,
           tags,
+          description,
           file,
           thumbnail,
         });
