@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { readdirSync, readFileSync } from "fs";
 import path from "path";
 import { GetStaticPaths, GetStaticPropsContext } from "next";
-import connectDB from "../utils/mongodb";
+import connectDB from "@/utils/mongodb";
 import Post from "../models/post";
 import styles from "./[title].module.css";
 import Header from "@/components/layout/header/header";

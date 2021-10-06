@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import connectDB from "../../../utils/mongodb";
+import connectDB from "@/utils/mongodb";
 import Post from "../../../models/post";
 import { unlink } from "fs";
 

@@ -7,7 +7,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { RiEdit2Fill } from "react-icons/ri";
 import styles from "./posts.module.css";
 import { useRouter } from "next/router";
-import { convertToKRDate } from "../../utils/time";
+import { convertToKRDate } from "@/utils/time";
 import Dropdown from "@/components/dropdown/dropdownMenu/dropdown";
 import DropdownItem from "@/components/dropdown/dropdownItem/dropdownItem";
 import Tabs from "@/components/tabs/tabMenu/tabs";
