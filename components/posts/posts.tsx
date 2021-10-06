@@ -89,7 +89,7 @@ const PostSection = () => {
                         src={post.thumbnail}
                         width={100}
                         height={100}
-                        alt="randomImage"
+                        alt="thumbnail"
                       />
                       <div className={styles.text}>
                         <h2 className={styles.title}>{post.title}</h2>

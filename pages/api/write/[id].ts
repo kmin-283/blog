@@ -23,12 +23,10 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
         }
         const { title, tags, description, file } = post;
         const markdown = readFileSync(file, "utf8");
-        return res
-          .status(200)
-          .json({
-            success: true,
-            data: { title, tags, description, markdown },
-          });
+        return res.status(200).json({
+          success: true,
+          data: { title, tags, description, markdown },
+        });
       } catch (error) {
         return res.status(400).json({ success: false, error });
       }
@@ -57,7 +55,7 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
             .status(400)
             .json({ success: false, error: "Post doesn't exist" });
         }
-        renameSync(`./mds/${prevTitle}.md`, file);
+        renameSync(`./mds/${prevTitle.replace(/\s/g, "-")}.md`, file);
         writeFileSync(file, markdown);
         return res.status(200).json({ success: true });
       } catch (error) {
