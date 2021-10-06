@@ -17,11 +17,11 @@ const Header = () => {
               <a>Blog</a>
             </Link>
           </li>
-          <li className={styles.page}>
-            <Link href={"/about"}>
-              <a>About</a>
-            </Link>
-          </li>
+          {/*<li className={styles.page}>*/}
+          {/*  <Link href={"/about"}>*/}
+          {/*    <a>About</a>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
         </ul>
       </nav>
     </header>

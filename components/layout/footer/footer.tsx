@@ -17,9 +17,9 @@ const Footer = () => {
         <Link href="/">
           <a>Blog</a>
         </Link>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
+        {/*<Link href="/about">*/}
+        {/*  <a>About</a>*/}
+        {/*</Link>*/}
       </div>
       <div>
         <small>Copyright &copy; 2021 kmin. All rights reserved.</small>
