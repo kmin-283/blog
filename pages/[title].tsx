@@ -4,12 +4,12 @@ import path from "path";
 import { GetStaticPaths, GetStaticPropsContext } from "next";
 import connectDB from "../utils/mongodb";
 import Post from "../models/post";
-import marked from "marked";
 import styles from "./[title].module.css";
 import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
 import { NextPageWithLayout } from "./_app";
 import Tags from "@/components/tags/tags";
+import markedString from "@/utils/markdown";
 
 interface PostPageProps {
   postName: string;
@@ -28,7 +28,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
       <Tags tags={tags} howMany={5} />
       <section
         className={styles.content}
-        dangerouslySetInnerHTML={{ __html: marked(markdown) }}
+        dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
       />
     </article>
   );
@@ -73,7 +73,7 @@ export const getStaticProps = async (
   connectDB().then();
   const { title } = context.params;
   const markdown = readFileSync(path.join("mds", `${title}.md`), "utf8");
-  const trimmedTitle = title.replace(/\-/g,' ');
+  const trimmedTitle = title.replace(/\-/g, " ");
   const { title: postName, tags } = await Post.findOne({ trimmedTitle });
 
   return {

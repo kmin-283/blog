@@ -2,7 +2,6 @@ import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./write.module.css";
-import marked from "marked";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/client";
 import { Session } from "next-auth";
@@ -10,6 +9,7 @@ import Login from "@/components/login/login";
 import { AiOutlineSave, AiOutlineUpload } from "react-icons/ai";
 import Toolbar from "@/components/toolbar/toolbar";
 import Tags from "@/components/tags/tags";
+import markedString from "@/utils/markdown";
 
 const Write = ({ session }: { session: Session }) => {
   const router = useRouter();
@@ -209,9 +209,15 @@ const Write = ({ session }: { session: Session }) => {
         </section>
       </section>
       <section className={styles.preview}>
-        <h2>{title ? title : "제목을 입력해주십시오"}</h2>
+        <h2 className={styles.previewTitle}>
+          {title ? title : "제목을 입력해주십시오"}
+        </h2>
+        <Tags tags={tags} howMany={5} />
         <strong>{description}</strong>
-        <section dangerouslySetInnerHTML={{ __html: marked(markdown) }} />
+        <main
+          className={styles.content}
+          dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
+        />
       </section>
     </main>
   );
