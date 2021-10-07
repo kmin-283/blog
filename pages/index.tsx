@@ -5,8 +5,9 @@ import { NextPageWithLayout } from "./_app";
 import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
 import PostCard from "@/components/PostCard/postCard";
-import { IPost } from "../models/post";
+import Post, { IPost } from "../models/post";
 import styles from "./index.module.css";
+import connectDB from "@/utils/mongodb";
 
 export interface HomeProps {
   posts: IPost[];
@@ -46,14 +47,13 @@ export default Home;
 export const getStaticProps = async (): Promise<
   GetStaticPropsResult<HomeProps>
 > => {
-  const response = await fetch("http://localhost:3000/api/posts", {
-    method: "GET",
-  });
-  if (response.ok) {
-    const posts = await response.json();
+  await connectDB();
+  const posts = JSON.stringify(await Post.find({}));
+
+  if (posts) {
     return {
       props: {
-        posts: posts.data,
+        posts: JSON.parse(posts),
       },
     };
   }
