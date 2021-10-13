@@ -2,12 +2,9 @@ version: "3.8"
 services:
   mongodb:
     image: mongo
-    # 아래의 환경변수가 설정되어있으면 mongodb auth 설정이 동작한다.
-    # 그런데 auth 설정이 너무 복잡함.
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=mongodb
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
     ports:
       - "27017:27017"
     container_name: mongo_container
-
