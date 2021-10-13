@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { mkdir, rename } from "fs";
+import { rename } from "fs";
 import { IncomingForm } from "formidable";
 import { v4 } from "uuid";
 
@@ -17,7 +17,7 @@ const ImageC = async (req: NextApiRequest, res: NextApiResponse) => {
       try {
         const data = new Promise((resolve, rejects) => {
           let path: string;
-          let uploadDir = "./public/images/";
+          let uploadDir = "./public/images";
           const form = new IncomingForm({
             uploadDir: ``,
             keepExtensions: true,
