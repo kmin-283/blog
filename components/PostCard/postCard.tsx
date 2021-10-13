@@ -20,7 +20,7 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
               <Image src={post.thumbnail} alt={"thumbnail"} layout={"fill"} />
             )}
           </div>
-          <div className={styles.about}>
+          <article className={styles.about}>
             <h2 className={styles.title} property={"title"}>
               {post.title}
             </h2>
@@ -33,7 +33,7 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
                 {time}
               </time>
             </div>
-          </div>
+          </article>
         </a>
       </Link>
     </div>
