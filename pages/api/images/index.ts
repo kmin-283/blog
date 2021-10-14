@@ -24,8 +24,9 @@ const ImageC = async (req: NextApiRequest, res: NextApiResponse) => {
           });
           form.on("file", (formName, file) => {
             const uuid = v4();
-            path = `/images/${uuid}.${file.name}`;
-            rename(file.path, `${uploadDir}/${uuid}.${file.name}`, (error) => {
+            const fileName = file.name?.replace(/\s/g, "-");
+            path = `/images/${uuid}.${fileName}`;
+            rename(file.path, `${uploadDir}/${uuid}.${fileName}`, (error) => {
               if (error) {
                 rejects("Can't rename file");
               }
