@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Head from "next/head";
 import { getSession } from "next-auth/client";
 import Login from "@/components/login/login";
 import Statistics from "@/components/statistics/statistics";
@@ -18,37 +19,43 @@ const Admin = ({ session }: { session: Session }) => {
   return (
     <>
       {session && (
-        <main className={styles.main} data-type="https://schema.org/WebPage">
-          <nav className={styles.navigation}>
-            <ul>
-              <li className={styles.navItem}>
-                <Link aria-label="go to main page" href="/">
-                  <a>블로그로 이동</a>
-                </Link>
-              </li>
-              <li
-                className={styles.navItem}
-                title="show stats"
-                onClick={() => setSection("stats")}
-              >
-                <div className={section === "stats" ? styles.current : ""}>
-                  통계
-                </div>
-              </li>
-              <li
-                className={styles.navItem}
-                title="show posts"
-                onClick={() => setSection("posts")}
-              >
-                <div className={section === "posts" ? styles.current : ""}>
-                  글
-                </div>
-              </li>
-            </ul>
-          </nav>
-          {section === "stats" && <Statistics />}
-          {section === "posts" && <PostSection />}
-        </main>
+        <>
+          <Head>
+            <title>admin</title>
+            <meta name="robots" content="noindex" />
+          </Head>
+          <main className={styles.main}>
+            <nav className={styles.navigation}>
+              <ul>
+                <li className={styles.navItem}>
+                  <Link aria-label="go to main page" href="/">
+                    <a>블로그로 이동</a>
+                  </Link>
+                </li>
+                <li
+                  className={styles.navItem}
+                  title="show stats"
+                  onClick={() => setSection("stats")}
+                >
+                  <div className={section === "stats" ? styles.current : ""}>
+                    통계
+                  </div>
+                </li>
+                <li
+                  className={styles.navItem}
+                  title="show posts"
+                  onClick={() => setSection("posts")}
+                >
+                  <div className={section === "posts" ? styles.current : ""}>
+                    글
+                  </div>
+                </li>
+              </ul>
+            </nav>
+            {section === "stats" && <Statistics />}
+            {section === "posts" && <PostSection />}
+          </main>
+        </>
       )}
     </>
   );

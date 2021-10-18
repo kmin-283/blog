@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Head from "next/head";
 import styles from "./write.module.css";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/client";
@@ -145,81 +146,87 @@ const Write = ({ session }: { session: Session }) => {
   }
 
   return (
-    <main className={styles.wrapper}>
-      <section className={styles.editor}>
-        <input
-          type="text"
-          className={styles.title}
-          value={title}
-          placeholder="제목을 입력하세요"
-          spellCheck={false}
-          onChange={handleTitle}
-        />
-        <input
-          type="text"
-          className={styles.tagInput}
-          placeholder="태그를 입력하세요"
-          spellCheck={false}
-          onKeyDown={handleTags}
-        />
-        <section>
-          <Tags tags={tags} howMany={5} deleteTag={deleteTag} />
-          {/* TODO 태그가 삭제됩니다 요거 화면 차지 안하도록 변경하기 */}
-          <span className={styles.description}>
-            태그를 누르면 해당 태그가 삭제됩니다
-          </span>
-        </section>
-        <Toolbar uploadImage={uploadImage} />
-        <input
-          type="text"
-          className={styles.description}
-          value={description}
-          placeholder="이번 포스트의 핵심 한 문장을 입력하세요"
-          onChange={handleDescription}
-        />
-        <textarea
-          className={styles.mainText}
-          value={markdown}
-          spellCheck={false}
-          placeholder="본문을 작성하세요..."
-          onChange={handleMarkdown}
-        />
-        <section className={styles.actions}>
-          <Link aria-label="leave the write page" href="/_blog-admin">
-            <a>나가기</a>
-          </Link>
-          <div className={styles.saveAction}>
-            <button className={styles.draft} onClick={draftPost}>
-              <AiOutlineSave />
-              <span>임시저장</span>
-            </button>
-            {_id && (
-              <button className={styles.save} onClick={modifyPost}>
+    <>
+      <Head>
+        <title>write</title>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <main className={styles.wrapper}>
+        <section className={styles.editor}>
+          <input
+            type="text"
+            className={styles.title}
+            value={title}
+            placeholder="제목을 입력하세요"
+            spellCheck={false}
+            onChange={handleTitle}
+          />
+          <input
+            type="text"
+            className={styles.tagInput}
+            placeholder="태그를 입력하세요"
+            spellCheck={false}
+            onKeyDown={handleTags}
+          />
+          <section>
+            <Tags tags={tags} howMany={5} deleteTag={deleteTag} />
+            {/* TODO 태그가 삭제됩니다 요거 화면 차지 안하도록 변경하기 */}
+            <span className={styles.description}>
+              태그를 누르면 해당 태그가 삭제됩니다
+            </span>
+          </section>
+          <Toolbar uploadImage={uploadImage} />
+          <input
+            type="text"
+            className={styles.description}
+            value={description}
+            placeholder="이번 포스트의 핵심 한 문장을 입력하세요"
+            onChange={handleDescription}
+          />
+          <textarea
+            className={styles.mainText}
+            value={markdown}
+            spellCheck={false}
+            placeholder="본문을 작성하세요..."
+            onChange={handleMarkdown}
+          />
+          <section className={styles.actions}>
+            <Link aria-label="leave the write page" href="/_blog-admin">
+              <a>나가기</a>
+            </Link>
+            <div className={styles.saveAction}>
+              <button className={styles.draft} onClick={draftPost}>
                 <AiOutlineSave />
-                <span>수정</span>
+                <span>임시저장</span>
               </button>
-            )}
-            {!_id && (
-              <button className={styles.save} onClick={writePost}>
-                <AiOutlineUpload />
-                <span>출간</span>
-              </button>
-            )}
-          </div>
+              {_id && (
+                <button className={styles.save} onClick={modifyPost}>
+                  <AiOutlineSave />
+                  <span>수정</span>
+                </button>
+              )}
+              {!_id && (
+                <button className={styles.save} onClick={writePost}>
+                  <AiOutlineUpload />
+                  <span>출간</span>
+                </button>
+              )}
+            </div>
+          </section>
         </section>
-      </section>
-      <section className={styles.preview}>
-        <h2 className={styles.previewTitle}>
-          {title ? title : "제목을 입력해주십시오"}
-        </h2>
-        <Tags tags={tags} howMany={5} />
-        <strong>{description}</strong>
-        <main
-          className={styles.content}
-          dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
-        />
-      </section>
-    </main>
+        <section className={styles.preview}>
+          <h2 className={styles.previewTitle}>
+            {title ? title : "제목을 입력해주십시오"}
+          </h2>
+          <Tags tags={tags} howMany={5} />
+          <strong>{description}</strong>
+          <main
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
+          />
+        </section>
+      </main>
+    </>
   );
 };
 
