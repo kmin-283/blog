@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from "fs";
 import path from "path";
 import { GetStaticPaths, GetStaticPropsContext } from "next";
 import connectDB from "@/utils/mongodb";
+import Head from "next/head";
 import Post from "../models/post";
 import styles from "./[title].module.css";
 import Header from "@/components/layout/header/header";
@@ -15,22 +16,32 @@ interface PostPageProps {
   postName: string;
   tags: string[];
   markdown: string;
+  thumbnail: string;
+  description: string;
 }
 
 const PostPage: NextPageWithLayout<PostPageProps> = ({
   postName,
   tags,
   markdown,
+  thumbnail,
+  description,
 }) => {
   return (
-    <article className={styles.post}>
-      <h1>{postName}</h1>
-      <Tags tags={tags} howMany={5} />
-      <section
-        className={styles.content}
-        dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
-      />
-    </article>
+    <div>
+      <Head>
+        <title>{postName}</title>
+        <meta name="description" content={description} />
+      </Head>
+      <article className={styles.post}>
+        <h1>{postName}</h1>
+        <Tags tags={tags} howMany={5} />
+        <section
+          className={styles.content}
+          dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
+        />
+      </article>
+    </div>
   );
 };
 
@@ -74,12 +85,19 @@ export const getStaticProps = async (
   const { title } = context.params;
   const markdown = readFileSync(path.join("mds", `${title}.md`), "utf8");
   const trimmedTitle = title.replace(/\-/g, " ");
-  const { title: postName, tags } = await Post.findOne({ trimmedTitle });
+  const {
+    title: postName,
+    tags,
+    thumbnail,
+    description,
+  } = await Post.findOne({ trimmedTitle });
 
   return {
     props: {
       postName,
       tags,
+      thumbnail,
+      description,
       markdown,
     },
   };
