@@ -31,7 +31,11 @@
 }
 
 .description {
+    padding: 1rem 0 0 0;
     font-size: 1.25rem;
+    border: none;
+    outline: none;
+    resize: none;
     margin: 0;
 }
 
