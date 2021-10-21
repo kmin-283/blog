@@ -11,6 +11,8 @@ import Footer from "../components/layout/footer/footer";
 import {NextPageWithLayout} from "./_app";
 import Tags from "../components/tags/tags";
 import markedString from "../utils/markdown";
+import generateJsonLD from "../utils/generateJsonLD";
+import {customSerialize} from "../utils/time";
 
 interface PostPageProps {
   postName: string;
@@ -18,6 +20,7 @@ interface PostPageProps {
   markdown: string;
   thumbnail: string;
   description: string;
+  updatedAt: Date;
 }
 
 const PostPage: NextPageWithLayout<PostPageProps> = ({
@@ -26,16 +29,30 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
                                                        markdown,
                                                        thumbnail,
                                                        description,
+                                                       updatedAt
                                                      }) => {
+  const jsonLD = generateJsonLD({
+    title: postName
+    , description
+    , thumbnail
+    , updatedAt
+    , tags
+  });
+  // TODO html에서 __NEXT_DATA__를 없앨 수 없나??
+  // TODO what __next_data__로 검색해보자.
   return (
     <div>
       <Head>
         <title>{postName}</title>
         <meta name="description" content={description}/>
+        <script type="application/ld+json"
+                dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLD)}}
+        />
       </Head>
       <article className={styles.post}>
         <h1>{postName}</h1>
         <Tags tags={tags} howMany={5}/>
+        <strong className={styles.description}>{description}</strong>
         <section
           className={styles.content}
           dangerouslySetInnerHTML={{__html: markedString(markdown)}}
@@ -90,14 +107,16 @@ export const getStaticProps = async (
     tags,
     thumbnail,
     description,
-  } = await Post.findOne({trimmedTitle});
-  
+    updatedAt
+  } = await Post.findOne({title: trimmedTitle});
+  const time = customSerialize(updatedAt);
   return {
     props: {
       postName,
       tags,
       thumbnail,
       description,
+      updatedAt: time,
       markdown,
     },
   };

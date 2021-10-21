@@ -4,4 +4,8 @@ const convertToKRDate = (isoDate: string) => {
   return `${year}년 ${month}월 ${day}일`;
 };
 
-export { convertToKRDate };
+const customSerialize = (isoDate: Date) => {
+  return JSON.parse(JSON.stringify(isoDate));
+};
+
+export {convertToKRDate, customSerialize};

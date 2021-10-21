@@ -17,6 +17,10 @@
     padding-right: 1rem;
 }
 
+.description {
+    font-size: 1.25rem;
+}
+
 .content {
     font-size: 1.25rem;
 }
