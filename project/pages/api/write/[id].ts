@@ -3,10 +3,23 @@ import connectDB from "../../../utils/mongodb";
 import Post, {IPost} from "../../../models/post";
 import {readFileSync, renameSync, writeFileSync} from "fs";
 import {getThumbnail} from "../../../utils/imageUpload";
+import {makeInternalLinks} from "../../../utils/markdown";
 
 connectDB().then();
 
-const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
+interface PostData {
+  prevTitle: string;
+  title: string,
+  tags: string,
+  description: string,
+  markdown: string
+}
+
+interface PostRequest<T> extends NextApiRequest {
+  body: T
+}
+
+const PostU = async (req: PostRequest<PostData>, res: NextApiResponse) => {
   const {
     query: {id},
     method,
@@ -15,7 +28,7 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
     case "GET":
       try {
         const post = (await Post.findById(id)) as IPost;
-        
+
         if (!post) {
           return res
             .status(400)
@@ -34,6 +47,8 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
       try {
         const {prevTitle, title, tags, description, markdown} = req.body;
         const thumbnail = getThumbnail(markdown);
+        const internalLinks = makeInternalLinks(markdown);
+        console.log(internalLinks);
         const file = `./mds/${title.replace(/\s/g, "-")}.md`;
         const post = await Post.findByIdAndUpdate(
           id,
@@ -43,13 +58,13 @@ const PostU = async (req: NextApiRequest, res: NextApiResponse) => {
             file,
             description,
             thumbnail,
+            internalLinks
           },
           {
             new: true,
             runValidators: true,
           }
         );
-        
         if (!post) {
           return res
             .status(400)

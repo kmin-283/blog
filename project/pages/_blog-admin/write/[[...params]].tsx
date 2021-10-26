@@ -10,7 +10,7 @@ import Login from "../../../components/login/login";
 import {AiOutlineSave, AiOutlineUpload} from "react-icons/ai";
 import Toolbar from "../../../components/toolbar/toolbar";
 import Tags from "../../../components/tags/tags";
-import markedString from "../../../utils/markdown";
+import {markedString} from "../../../utils/markdown";
 
 const Write = ({session}: { session: Session }) => {
   const router = useRouter();
@@ -21,7 +21,7 @@ const Write = ({session}: { session: Session }) => {
   const [tags, setTags] = useState<string[]>([]);
   const [description, setDescription] = useState<string>("");
   const [markdown, setMarkdown] = useState<string>("");
-  
+
   useEffect(() => {
     const getPost = async () => {
       const response = await fetch(`/api/write/${_id}`);
@@ -39,11 +39,11 @@ const Write = ({session}: { session: Session }) => {
       });
     }
   }, [_id]);
-  
+
   const handleTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value.slice(0, 65));
   };
-  
+
   const handleTags = (event: KeyboardEvent & ChangeEvent<HTMLInputElement>) => {
     // TODO tag validation check
     // TODO 비어있거나 중복이 있어선 안됨
@@ -53,15 +53,15 @@ const Write = ({session}: { session: Session }) => {
       event.target.value = "";
     }
   };
-  
+
   const handleDescription = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(event.target.value);
   };
-  
+
   const handleMarkdown = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMarkdown(event.target.value);
   };
-  
+
   const writePost = async () => {
     setLoading(true);
     const response = await fetch("/api/posts", {
@@ -71,7 +71,6 @@ const Write = ({session}: { session: Session }) => {
         "Content-Type": "application/json",
       },
     });
-    setLoading(false);
     if (response.ok) {
       await router.push("/_blog-admin");
     } else {
@@ -80,8 +79,9 @@ const Write = ({session}: { session: Session }) => {
       // 에러가 발생했다면 data에 에러 메시지가 담겨있을거임
       console.error(data);
     }
+    setLoading(false);
   };
-  
+
   const modifyPost = async () => {
     setLoading(true);
     const response = await fetch(`/api/write/${_id}`, {
@@ -91,7 +91,6 @@ const Write = ({session}: { session: Session }) => {
         "Content-Type": "application/json",
       },
     });
-    setLoading(false);
     if (response.ok) {
       await router.push("/_blog-admin");
     } else {
@@ -100,17 +99,18 @@ const Write = ({session}: { session: Session }) => {
       // 에러가 발생했다면 data에 에러 메시지가 담겨있을거임
       console.error(data);
     }
+    setLoading(false);
   };
-  
+
   const draftPost = async () => {
   };
-  
+
   const deleteTag = (index: number) => {
     const newTags = [...tags];
     newTags.splice(index, 1);
     setTags(newTags);
   };
-  
+
   const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const files = event.target.files;
@@ -136,16 +136,16 @@ const Write = ({session}: { session: Session }) => {
       }
     }
   };
-  
+
   if (!session) {
     return <Login/>;
   }
-  
+
   if (loading) {
     // TODO 로딩 중에 보여질 화면 구성하기
     return <h1>loadinnnng...</h1>;
   }
-  
+
   return (
     <>
       <Head>

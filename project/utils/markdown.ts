@@ -15,4 +15,22 @@ marked.setOptions({
 
 const markedString = (markdown: string) => marked(markdown);
 
-export default markedString;
+const makeInternalLinks = (markdown: string) => {
+  const internalLinks = markdown.match(/#.*\n/g);
+  return internalLinks ? internalLinks.map((internalLink) => {
+    let breakPos = 0;
+    for (let i = 0; i < internalLink.length; ++i) {
+      if (internalLink[i] === ' ') {
+        breakPos = i;
+        break;
+      } else if (i > 5) {
+        return '';
+      }
+    }
+    return internalLink.slice(breakPos + 1, -1)
+      .replace(/\s/g, '-')
+      .replace(/[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z0-9_\-:\.]/g, '');
+  }) : [];
+};
+
+export {markedString, makeInternalLinks};

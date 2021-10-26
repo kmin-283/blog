@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from "mongoose";
+import mongoose, {model, Schema} from "mongoose";
 
 export interface IPost {
   _id: string;
@@ -7,16 +7,18 @@ export interface IPost {
   file: string;
   thumbnail: string;
   description: string;
+  internalLinks?: string[];
   updatedAt: Date;
 }
 
 const postSchema = new Schema<IPost>(
   {
-    title: { type: String, required: true },
-    tags: [String],
-    file: { type: String, required: true },
-    thumbnail: { type: String, required: true },
-    description: { type: String, required: true },
+    title: {type: String, required: true},
+    tags: {type: [String]},
+    file: {type: String, required: true},
+    thumbnail: {type: String, required: true},
+    description: {type: String, required: true},
+    internalLinks: {type: [String]}
   },
   {
     timestamps: true,

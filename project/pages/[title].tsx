@@ -10,9 +10,10 @@ import Header from "../components/layout/header/header";
 import Footer from "../components/layout/footer/footer";
 import {NextPageWithLayout} from "./_app";
 import Tags from "../components/tags/tags";
-import markedString from "../utils/markdown";
+import {markedString} from "../utils/markdown";
 import generateJsonLD from "../utils/generateJsonLD";
 import {customSerialize} from "../utils/time";
+import ContentHeader from "../components/contentHeader/contentHeader";
 
 interface PostPageProps {
   postName: string;
@@ -20,6 +21,7 @@ interface PostPageProps {
   markdown: string;
   thumbnail: string;
   description: string;
+  internalLinks: string[];
   updatedAt: Date;
 }
 
@@ -29,6 +31,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
                                                        markdown,
                                                        thumbnail,
                                                        description,
+                                                       internalLinks,
                                                        updatedAt
                                                      }) => {
   const jsonLD = generateJsonLD({
@@ -52,6 +55,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
       <article className={styles.post}>
         <h1>{postName}</h1>
         <Tags tags={tags} howMany={5}/>
+        <ContentHeader internalLinks={internalLinks}/>
         <strong className={styles.description}>{description}</strong>
         <section
           className={styles.content}
@@ -81,7 +85,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       title: file.replace(".md", ""),
     },
   }));
-  
+
   return {
     paths,
     fallback: false,
@@ -107,6 +111,7 @@ export const getStaticProps = async (
     tags,
     thumbnail,
     description,
+    internalLinks,
     updatedAt
   } = await Post.findOne({title: trimmedTitle});
   const time = customSerialize(updatedAt);
@@ -116,6 +121,7 @@ export const getStaticProps = async (
       tags,
       thumbnail,
       description,
+      internalLinks,
       updatedAt: time,
       markdown,
     },
