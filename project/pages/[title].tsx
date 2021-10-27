@@ -53,7 +53,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
         />
       </Head>
       <article className={styles.post}>
-        <h1>{postName}</h1>
+        <h1 className={styles.title}>{postName}</h1>
         <Tags tags={tags} howMany={5}/>
         <ContentHeader internalLinks={internalLinks}/>
         <strong className={styles.description}>{description}</strong>

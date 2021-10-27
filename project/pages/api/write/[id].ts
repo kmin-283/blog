@@ -48,7 +48,6 @@ const PostU = async (req: PostRequest<PostData>, res: NextApiResponse) => {
         const {prevTitle, title, tags, description, markdown} = req.body;
         const thumbnail = getThumbnail(markdown);
         const internalLinks = makeInternalLinks(markdown);
-        console.log(internalLinks);
         const file = `./mds/${title.replace(/\s/g, "-")}.md`;
         const post = await Post.findByIdAndUpdate(
           id,

@@ -1,0 +1,23 @@
+.container {
+    background-color: var(--admin-background-color);
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.links {
+    padding: 0;
+    margin: 0.25rem 1rem;
+}
+
+.link p {
+    margin: 0.5rem;
+}
+
+.link p a {
+    color: var(--icon-inactive-color);
+}
+
+.link p a:hover {
+    color: black;
+    text-decoration: underline;
+}
