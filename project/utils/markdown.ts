@@ -29,7 +29,7 @@ const makeInternalLinks = (markdown: string) => {
     }
     return internalLink.slice(breakPos + 1, -1)
       .replace(/\s/g, '-')
-      .replace(/[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z0-9_\-:\.]/g, '');
+      .replace(/[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9_\-:\.]/g, '');
   }) : [];
 };
 
