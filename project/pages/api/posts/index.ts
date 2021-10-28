@@ -3,6 +3,7 @@ import {NextApiRequest, NextApiResponse} from "next";
 import Post from "../../../models/post";
 import fs from "fs";
 import {getThumbnail} from "../../../utils/imageUpload";
+import {makeInternalLinks} from "../../../utils/markdown";
 
 connectDB().then();
 
@@ -21,6 +22,7 @@ const PostCR = async (req: NextApiRequest, res: NextApiResponse) => {
       try {
         const {title, tags, description, markdown} = req.body;
         const thumbnail = getThumbnail(markdown);
+        const internalLinks = makeInternalLinks(markdown);
         const file = `./mds/${title.replace(/\s/g, "-")}.md`;
         await Post.create({
           title,
@@ -28,6 +30,7 @@ const PostCR = async (req: NextApiRequest, res: NextApiResponse) => {
           description,
           file,
           thumbnail,
+          internalLinks,
         });
         fs.writeFileSync(file, markdown, "utf8");
         return res.status(201).json({success: true});
