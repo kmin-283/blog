@@ -55,3 +55,9 @@
 .page a {
     color: white;
 }
+
+@media (max-width: 799px) {
+    .links {
+        flex-direction: column;
+    }
+}

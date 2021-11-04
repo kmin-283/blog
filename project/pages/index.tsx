@@ -1,11 +1,11 @@
-import {ReactElement} from "react";
+import { ReactElement } from "react";
 import Head from "next/head";
-import {GetStaticPropsResult} from "next";
-import {NextPageWithLayout} from "./_app";
+import { GetStaticPropsResult } from "next";
+import { NextPageWithLayout } from "./_app";
 import Header from "../components/layout/header/header";
 import Footer from "../components/layout/footer/footer";
 import PostCard from "../components/PostCard/postCard";
-import Post, {IPost} from "../models/post";
+import Post, { IPost } from "../models/post";
 import styles from "./index.module.css";
 import connectDB from "../utils/mongodb";
 
@@ -13,10 +13,11 @@ export interface HomeProps {
   posts: IPost[];
 }
 
-const Home: NextPageWithLayout<HomeProps> = ({posts}) => {
+const Home: NextPageWithLayout<HomeProps> = ({ posts }) => {
   return (
     <div>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>kmin</title>
         <meta
           name="description"
@@ -26,7 +27,7 @@ const Home: NextPageWithLayout<HomeProps> = ({posts}) => {
       <main>
         <div className={styles.posts}>
           {posts.map((post) => {
-            return <PostCard key={post._id} post={post}/>;
+            return <PostCard key={post._id} post={post} />;
           })}
         </div>
       </main>
@@ -37,19 +38,21 @@ const Home: NextPageWithLayout<HomeProps> = ({posts}) => {
 Home.getLayout = function getLayout(page: ReactElement) {
   return (
     <>
-      <Header/>
+      <Header />
       {page}
-      <Footer/>
+      <Footer />
     </>
   );
 };
 
 export default Home;
 
-export const getStaticProps = async (): Promise<GetStaticPropsResult<HomeProps>> => {
+export const getStaticProps = async (): Promise<
+  GetStaticPropsResult<HomeProps>
+> => {
   await connectDB();
   const posts = JSON.stringify(await Post.find({}));
-  
+
   if (posts) {
     return {
       props: {
