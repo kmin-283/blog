@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://localhost:3000/</loc>
+        <lastmod>2021-11-02</lastmod>
+    </url>
+    <url>
+        <loc>http://localhost:3000/about</loc>
+        <lastmod>2021-11-02</lastmod>
+    </url>
+
+    <url>
+        <loc>http://localhost:3000/asdgsdg</loc>
+        <lastmod>2021-11-02</lastmod>
+        <image:image>
+            <image:loc>http://example.com/images/e0906d26-7b4e-498f-8445-811b9952fb09.monitor.jpg
+            </image:loc>
+            <image:caption>bfbbc</image:caption>
+            <image:title>zzz</image:title>
+        </image:image>
+        <image:image>
+            <image:loc
+            >http://example.com/images/dca0fc61-6faa-4fc9-b28a-782a47bb153b.오페라1.jpg
+            </image:loc
+            >
+            <image:caption>vvc</image:caption>
+            <image:title>asd</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>http://localhost:3000/testst</loc>
+        <lastmod>2021-11-02</lastmod>
+        <image:image>
+            <image:loc
+            >http://example.com/images/e0906d26-7b4e-498f-8445-811b9952fb09.monitor.jpg
+            </image:loc
+            >
+            <image:caption>1112asd</image:caption>
+            <image:title>zzz</image:title>
+        </image:image>
+        <image:image>
+            <image:loc
+            >http://example.com/images/dca0fc61-6faa-4fc9-b28a-782a47bb153b.오페라1.jpg
+            </image:loc
+            >
+            <image:caption>bcxaa</image:caption>
+            <image:title>ldsfgmmb aaskdskfaas</image:title>
+        </image:image>
+    </url>
+</urlset>
