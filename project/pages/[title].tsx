@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { readdirSync, readFileSync } from "fs";
 import path from "path";
-import { GetStaticPaths, GetStaticPropsContext } from "next";
+import { GetServerSidePropsContext } from "next";
 import connectDB from "../utils/mongodb";
 import Head from "next/head";
 import Post from "../models/post";
@@ -80,28 +80,14 @@ PostPage.getLayout = function getLayout(page: ReactElement) {
 
 export default PostPage;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const files = readdirSync(path.join("mds"));
-  const paths = files.map((file) => ({
-    params: {
-      title: file.replace(".md", ""),
-    },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-interface GetStaticPropsContextWithTitle extends GetStaticPropsContext {
+interface GetServerSidePropsContextWithTitle extends GetServerSidePropsContext {
   params: {
     title: string;
   };
 }
 
-export const getStaticProps = async (
-  context: GetStaticPropsContextWithTitle
+export const getServerSideProps = async (
+  context: GetServerSidePropsContextWithTitle
 ) => {
   // TODO title로 DB를 조회하는게 좋은지 아니면 api로 조회하는게 좋은지..?
   connectDB().then();
