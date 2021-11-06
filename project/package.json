@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "pm2next": "yarn build && pm2 start ./scripts/pm2.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,6 +17,7 @@
     "mongoose": "^6.0.4",
     "next": "^12.0.1",
     "next-auth": "^3.29.0",
+    "pm2": "^5.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0"
