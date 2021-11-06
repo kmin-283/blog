@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "aws-sdk": "^2.1022.0",
     "formidable": "^1.2.2",
     "highlight.js": "^11.2.0",
     "marked": "^3.0.2",

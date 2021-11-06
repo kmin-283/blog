@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { rename } from "fs";
 import { IncomingForm } from "formidable";
-import { v4 } from "uuid";
+import { uploadToS3 } from "../../../utils/imageUpload";
 
 export const config = {
   api: {
@@ -12,39 +11,26 @@ export const config = {
 const ImageC = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req;
   switch (method) {
-    // TODO post 데이터베이스의 내용을 조작하는 것과 더불어 파일을 조작하는것을 병렬적으로 처리하자 Promise.all()
     case "POST":
       try {
-        const data = new Promise((resolve, rejects) => {
-          let path: string;
-          let uploadDir = "./public/images";
+        const data = new Promise((resolve, reject) => {
           const form = new IncomingForm({
             uploadDir: ``,
             keepExtensions: true,
           });
-          form.on("file", (formName, file) => {
-            const uuid = v4();
-            const fileName = file.name?.replace(/\s/g, "-");
-            path = `/images/${uuid}.${fileName}`;
-            rename(file.path, `${uploadDir}/${uuid}.${fileName}`, (error) => {
-              if (error) {
-                rejects("Can't rename file");
-              }
-            });
-          });
-          form.parse(req, (error, fields, files) => {
+          form.parse(req, async (error, fields, files) => {
             if (error) {
-              rejects("formidable parse fail");
+              reject(error);
             }
-            resolve(path);
+            resolve(await uploadToS3(files));
           });
         });
-        const ret = await data
-          .then((res) => res)
+        const uploadData = await data
+          .then((data) => data)
           .catch((error) => {
             throw new Error(error);
           });
-        return res.status(201).json({ success: true, path: ret });
+        return res.status(201).json({ success: true, uploadData });
       } catch (error) {
         return res.status(400).json({ success: false, error });
       }
