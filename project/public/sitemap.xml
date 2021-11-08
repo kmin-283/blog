@@ -1,50 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
-        <loc>http://localhost:3000/</loc>
-        <lastmod>2021-11-02</lastmod>
+        <loc>https://kmin283.com/</loc>
+        <lastmod>2021-11-07</lastmod>
     </url>
     <url>
-        <loc>http://localhost:3000/about</loc>
-        <lastmod>2021-11-02</lastmod>
+        <loc>https://kmin283.com/about</loc>
+        <lastmod>2021-11-07</lastmod>
     </url>
 
     <url>
-        <loc>http://localhost:3000/asdgsdg</loc>
-        <lastmod>2021-11-02</lastmod>
+        <loc>https://kmin283.com/블로그-제작하기</loc>
+        <lastmod>2021-11-07</lastmod>
         <image:image>
-            <image:loc>http://example.com/images/e0906d26-7b4e-498f-8445-811b9952fb09.monitor.jpg
+            <image:loc>https://kmin-blog.s3.ap-northeast-2.amazonaws.com/00296823-d7fe
+                -4c27-9926-23f1a034498f
             </image:loc>
-            <image:caption>bfbbc</image:caption>
-            <image:title>zzz</image:title>
+            <image:caption>thumbnail</image:caption>
+            <image:title>blog-start</image:title>
         </image:image>
         <image:image>
-            <image:loc
-            >http://example.com/images/dca0fc61-6faa-4fc9-b28a-782a47bb153b.오페라1.jpg
-            </image:loc
-            >
-            <image:caption>vvc</image:caption>
-            <image:title>asd</image:title>
-        </image:image>
-    </url>
-    <url>
-        <loc>http://localhost:3000/testst</loc>
-        <lastmod>2021-11-02</lastmod>
-        <image:image>
-            <image:loc
-            >http://example.com/images/e0906d26-7b4e-498f-8445-811b9952fb09.monitor.jpg
-            </image:loc
-            >
-            <image:caption>1112asd</image:caption>
-            <image:title>zzz</image:title>
+            <image:loc>https://kmin-blog.s3.ap-northeast-2.amazonaws.com/ad19e3ee-64bb
+                -4820-b26c-a7eaa1e433b4
+            </image:loc>
+            <image:caption>sequence-diagram</image:caption>
+            <image:title>sequence-diagram</image:title>
         </image:image>
         <image:image>
-            <image:loc
-            >http://example.com/images/dca0fc61-6faa-4fc9-b28a-782a47bb153b.오페라1.jpg
-            </image:loc
-            >
-            <image:caption>bcxaa</image:caption>
-            <image:title>ldsfgmmb aaskdskfaas</image:title>
+            <image:loc>https://kmin-blog.s3.ap-northeast-2.amazonaws.com/4963a42b-9a46
+                -4f57-bf30-e879ccadcc2b
+            </image:loc>
+            <image:caption>architecture</image:caption>
+            <image:title>blog-architecture</image:title>
         </image:image>
     </url>
 </urlset>
