@@ -12,7 +12,6 @@ import { NextPageWithLayout } from "./_app";
 import Tags from "@/components/tags/tags";
 import { markedString } from "@/utils/markdown";
 import generateJsonLD from "@/utils/generateJsonLD";
-import { customSerialize } from "@/utils/time";
 import ContentHeader from "@/components/contentHeader/contentHeader";
 
 interface PostPageProps {
@@ -102,7 +101,6 @@ export const getServerSideProps = async (
     internalLinks,
     updatedAt,
   } = await Post.findOne({ title: trimmedTitle });
-  const time = customSerialize(updatedAt);
   return {
     props: {
       postName,
@@ -110,7 +108,7 @@ export const getServerSideProps = async (
       thumbnail,
       description,
       internalLinks,
-      updatedAt: time,
+      updatedAt: (updatedAt as Date).toISOString(),
       markdown,
     },
   };
