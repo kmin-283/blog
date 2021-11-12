@@ -11,7 +11,7 @@
       "@/models/*": [
         "models/*"
       ],
-      "@styles/*":[
+      "@/styles/*":[
         "styles/*"
       ]
     },
