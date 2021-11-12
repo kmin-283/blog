@@ -1,9 +1,9 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import connectDB from "../../../utils/mongodb";
-import Post, {IPost} from "../../../models/post";
+import connectDB from "@/utils/mongodb";
+import Post, {IPost} from "@/models/post";
 import {readFileSync, renameSync, writeFileSync} from "fs";
-import {getThumbnail} from "../../../utils/imageUpload";
-import {makeInternalLinks} from "../../../utils/markdown";
+import {getThumbnail} from "@/utils/imageUpload";
+import {makeInternalLinks} from "@/utils/markdown";
 
 connectDB().then();
 

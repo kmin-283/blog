@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {markedString} from "../../utils/markdown";
+import {markedString} from "@/utils/markdown";
 import styles from './contentHeader.module.css';
 
 interface ContentHeaderProps {

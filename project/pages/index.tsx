@@ -2,12 +2,12 @@ import { ReactElement } from "react";
 import Head from "next/head";
 import { GetServerSidePropsResult } from "next";
 import { NextPageWithLayout } from "./_app";
-import Header from "../components/layout/header/header";
-import Footer from "../components/layout/footer/footer";
-import PostCard from "../components/PostCard/postCard";
-import Post, { IPost } from "../models/post";
+import Header from "@/components/layout/header/header";
+import Footer from "@/components/layout/footer/footer";
+import PostCard from "@/components/PostCard/postCard";
+import Post, { IPost } from "@/models/post";
 import styles from "./index.module.css";
-import connectDB from "../utils/mongodb";
+import connectDB from "@/utils/mongodb";
 
 export interface HomeProps {
   posts: IPost[];

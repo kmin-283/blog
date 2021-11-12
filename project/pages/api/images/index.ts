@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { IncomingForm } from "formidable";
-import { uploadToS3 } from "../../../utils/imageUpload";
+import { uploadToS3 } from "@/utils/imageUpload";
 
 export const config = {
   api: {

@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {IPost} from "../../models/post";
+import {IPost} from "@/models/post";
 import {BsTrash} from "react-icons/bs";
 import {AiOutlineClockCircle} from "react-icons/ai";
 import {RiEdit2Fill} from "react-icons/ri";
 import styles from "./posts.module.css";
 import {useRouter} from "next/router";
-import {convertToKRDate} from "../../utils/time";
+import {convertToKRDate} from "@/utils/time";
 import Dropdown from "../dropdown/dropdownMenu/dropdown";
 import DropdownItem from "../dropdown/dropdownItem/dropdownItem";
 import Tabs from "../tabs/tabMenu/tabs";

@@ -6,11 +6,11 @@ import styles from "./write.module.css";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/client";
 import { Session } from "next-auth";
-import Login from "../../../components/login/login";
+import Login from "@/components/login/login";
 import { AiOutlineSave, AiOutlineUpload } from "react-icons/ai";
-import Toolbar from "../../../components/toolbar/toolbar";
-import Tags from "../../../components/tags/tags";
-import { markedString } from "../../../utils/markdown";
+import Toolbar from "@/components/toolbar/toolbar";
+import Tags from "@/components/tags/tags";
+import {markedString} from "@/utils/markdown";
 
 const Write = ({ session }: { session: Session }) => {
   const router = useRouter();

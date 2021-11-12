@@ -1,7 +1,7 @@
 import React, {Dispatch, SetStateAction} from "react";
 import styles from "./tabs.module.css";
-import {TabType} from "../../posts/posts";
-import TabItem from "../tabItem/tabItem";
+import {TabType} from "@/components/posts/posts";
+import TabItem from "@/components/tabs/tabItem/tabItem";
 
 interface TabsProps {
   tab: TabType;

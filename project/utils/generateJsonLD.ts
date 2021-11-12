@@ -11,7 +11,7 @@ const generateJsonLD = ({
   updatedAt: Date;
   tags: string[];
 }) => {
-  const DOMANE_NAME = "https://kmin283.com";
+  const DOMAIN_NAME = "https://kmin283.com";
   return {
     "@context": "https://schema.org/",
     "@type": "BlogPosting",
@@ -19,21 +19,21 @@ const generateJsonLD = ({
     image: thumbnail,
     keywords: tags,
     description,
-    url: `${DOMANE_NAME}/${title}`,
+    url: `${DOMAIN_NAME}/${title}`,
     author: {
       "@type": "Person",
       name: "kmin",
-      url: DOMANE_NAME,
+      url: DOMAIN_NAME,
     },
     editor: {
       "@type": "Person",
       name: "kmin",
-      url: DOMANE_NAME,
+      url: DOMAIN_NAME,
     },
     publisher: {
       "@type": "Person",
       name: "kmin",
-      url: DOMANE_NAME,
+      url: DOMAIN_NAME,
     },
     dateCreated: updatedAt,
     datePublished: updatedAt,

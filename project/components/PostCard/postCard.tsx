@@ -1,8 +1,8 @@
 import React, {FC} from "react";
-import {IPost} from "../../models/post";
+import {IPost} from "@/models/post";
 import Link from "next/link";
 import Image from "next/image";
-import {convertToKRDate} from "../../utils/time";
+import {convertToKRDate} from "@/utils/time";
 import styles from "./postCard.module.css";
 
 interface PostCardProps {
