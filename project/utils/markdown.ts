@@ -16,7 +16,8 @@ marked.setOptions({
 const markedString = (markdown: string) => marked(markdown);
 
 const makeInternalLinks = (markdown: string) => {
-  const internalLinks = markdown.match(/#.*\n/g);
+  const internalLinks = markdown.match(/^#{1,6}\s{1}.*/gm);
+  
   return internalLinks ? internalLinks.map((internalLink) => {
     let breakPos = 0;
     for (let i = 0; i < internalLink.length; ++i) {
@@ -27,7 +28,8 @@ const makeInternalLinks = (markdown: string) => {
         return '';
       }
     }
-    return internalLink.slice(breakPos + 1, -1)
+
+    return internalLink.slice(breakPos + 1)
       .replace(/\s/g, '-')
       .replace(/[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9_\-:\.]/g, '');
   }) : [];

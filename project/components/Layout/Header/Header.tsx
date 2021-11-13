@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styles from "./header.module.css";
+import styles from "./Header.module.css";
 
 const Header = () => {
   return (
@@ -12,7 +12,7 @@ const Header = () => {
           </Link>
         </span>
         <ul className={styles.pages}>
-          <li className={styles.page}>
+          <li key="blog" className={styles.page}>
             <Link href="/">
               <a>Blog</a>
             </Link>

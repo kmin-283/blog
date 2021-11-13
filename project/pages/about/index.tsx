@@ -1,7 +1,7 @@
 import React, {ReactElement} from "react";
 import {NextPageWithLayout} from "../_app";
-import Header from "@/components/layout/header/header";
-import Footer from "@/components/layout/footer/footer";
+import Header from "@/components/Layout/Header/Header";
+import Footer from "@/components/Layout/Footer/Footer";
 
 interface AboutProps {
 }

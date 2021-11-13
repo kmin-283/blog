@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./footer.module.css";
+import styles from "./Footer.module.css";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 
@@ -13,7 +13,7 @@ const Footer = () => {
           </a>
         </Link>
       </div>
-      <div className={`${styles.sitemap} sitemap`}>
+      <div className={`${styles.sitemaps} sitemap`}>
         <Link href="/">
           <a>Blog</a>
         </Link>

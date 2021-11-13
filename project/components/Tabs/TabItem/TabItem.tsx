@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./tabItem.module.css";
+import styles from "./TabItem.module.css";
 
 interface TabItemProps {
   active: boolean;

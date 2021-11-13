@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, FC } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import styles from "./dropdown.module.css";
+import styles from "./Dropdown.module.css";
 
 const Dropdown: FC = ({ children }) => {
   const [show, setShow] = useState<boolean>(false);
