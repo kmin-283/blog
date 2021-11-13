@@ -12,7 +12,7 @@ const Header = () => {
           </Link>
         </span>
         <ul className={styles.pages}>
-          <li className={styles.page}>
+          <li key="blog" className={styles.page}>
             <Link href="/">
               <a>Blog</a>
             </Link>

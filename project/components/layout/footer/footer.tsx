@@ -13,7 +13,7 @@ const Footer = () => {
           </a>
         </Link>
       </div>
-      <div className={`${styles.sitemap} sitemap`}>
+      <div className={`${styles.sitemaps} sitemap`}>
         <Link href="/">
           <a>Blog</a>
         </Link>
