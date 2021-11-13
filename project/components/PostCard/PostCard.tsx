@@ -3,7 +3,7 @@ import {IPost} from "@/models/post";
 import Link from "next/link";
 import Image from "next/image";
 import {convertToKRDate} from "@/utils/time";
-import styles from "./postCard.module.css";
+import styles from "./PostCard.module.css";
 
 interface PostCardProps {
   post: IPost;

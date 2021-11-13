@@ -8,8 +8,8 @@ import { getSession } from "next-auth/client";
 import { Session } from "next-auth";
 import Login from "@/components/login/login";
 import { AiOutlineSave, AiOutlineUpload } from "react-icons/ai";
-import Toolbar from "@/components/toolbar/toolbar";
-import Tags from "@/components/tags/tags";
+import Toolbar from "@/components/Toolbar/Toolbar";
+import Tags from "@/components/Tags/Tags";
 import {markedString} from "@/utils/markdown";
 
 const Write = ({ session }: { session: Session }) => {

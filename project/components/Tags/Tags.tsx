@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "./tags.module.css";
+import styles from "./Tags.module.css";
 
 interface TagsProps {
   tags: string[];

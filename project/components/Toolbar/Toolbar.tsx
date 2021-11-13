@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { HiOutlinePhotograph } from "react-icons/hi";
-import styles from "./toolbar.module.css";
+import styles from "./Toolbar.module.css";
 
 interface ToolbarProps {
   uploadImage: (event: ChangeEvent<HTMLInputElement>) => Promise<void>;

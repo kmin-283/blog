@@ -1,5 +1,5 @@
 import React, { ReactChild } from "react";
-import styles from "./dropdownItem.module.css";
+import styles from "./DropdownItem.module.css";
 
 interface DropdownItemProps {
   onClick: () => void;

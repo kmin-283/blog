@@ -5,13 +5,13 @@ import {IPost} from "@/models/post";
 import {BsTrash} from "react-icons/bs";
 import {AiOutlineClockCircle} from "react-icons/ai";
 import {RiEdit2Fill} from "react-icons/ri";
-import styles from "./posts.module.css";
+import styles from "./Posts.module.css";
 import {useRouter} from "next/router";
 import {convertToKRDate} from "@/utils/time";
-import Dropdown from "../dropdown/dropdown/dropdown";
-import DropdownItem from "../dropdown/dropdownItem/dropdownItem";
-import Tabs from "../tabs/tabMenu/tabs";
-import Tags from "../tags/tags";
+import Dropdown from "../Dropdown/Dropdown";
+import DropdownItem from "../Dropdown/DropdownItem/DropdownItem";
+import Tabs from "../Tabs/Tabs";
+import Tags from "../Tags/Tags";
 
 export type TabType = "publish" | "draft";
 

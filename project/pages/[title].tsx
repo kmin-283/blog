@@ -6,13 +6,13 @@ import connectDB from "@/utils/mongodb";
 import Head from "next/head";
 import Post from "@/models/post";
 import styles from "./[title].module.css";
-import Header from "@/components/layout/header/header";
-import Footer from "@/components/layout/footer/footer";
+import Header from "@/components/Layout/Header/Header";
+import Footer from "@/components/Layout/Footer/Footer";
 import { NextPageWithLayout } from "./_app";
-import Tags from "@/components/tags/tags";
+import Tags from "@/components/Tags/Tags";
 import { markedString } from "@/utils/markdown";
 import generateJsonLD from "@/utils/generateJsonLD";
-import ContentHeader from "@/components/contentHeader/contentHeader";
+import ContentHeader from "@/components/ContentHeader/ContentHeader";
 
 interface PostPageProps {
   postName: string;

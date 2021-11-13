@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentHeader from "@/components/contentHeader/contentHeader";
+import ContentHeader from "@/components/ContentHeader/ContentHeader";
 import {render} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 

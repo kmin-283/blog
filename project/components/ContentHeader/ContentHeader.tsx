@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {markedString} from "@/utils/markdown";
-import styles from './contentHeader.module.css';
+import styles from './ContentHeader.module.css';
 
 interface ContentHeaderProps {
   internalLinks: string[];

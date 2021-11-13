@@ -1,6 +1,6 @@
 import React from 'react';
-import Dropdown from "@/components/dropdown/dropdown/dropdown";
-import DropdownItem from "@/components/dropdown/dropdownItem/dropdownItem";
+import Dropdown from "@/components/Dropdown/Dropdown";
+import DropdownItem from "@/components/Dropdown/DropdownItem/DropdownItem";
 import {fireEvent, render} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -27,7 +27,7 @@ describe('ContentHeader 컴포넌트', () => {
     fireEvent.click(dropdownIcon);
   });
   
-  test('dropdownItem 클릭시 함수 동작', () => {
+  test('DropdownItem 클릭시 함수 동작', () => {
     const {getByText, container} = render(<Dropdown>
       <DropdownItem onClick={click1st} role={'첫 번째 동작'} icon={<span>dummyIcon</span>} />
       <DropdownItem onClick={click2nd} role={'두 번째 동작'} icon={<span>dummyIcon</span>} />

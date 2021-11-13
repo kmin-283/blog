@@ -1,5 +1,5 @@
 import React from 'react';
-import PostCard from "@/components/PostCard/postCard";
+import PostCard from "@/components/PostCard/PostCard";
 import {render} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import {IPost} from "@/models/post";
