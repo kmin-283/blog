@@ -8,7 +8,7 @@ import {RiEdit2Fill} from "react-icons/ri";
 import styles from "./posts.module.css";
 import {useRouter} from "next/router";
 import {convertToKRDate} from "@/utils/time";
-import Dropdown from "../dropdown/dropdownMenu/dropdown";
+import Dropdown from "../dropdown/dropdown/dropdown";
 import DropdownItem from "../dropdown/dropdownItem/dropdownItem";
 import Tabs from "../tabs/tabMenu/tabs";
 import Tags from "../tags/tags";
