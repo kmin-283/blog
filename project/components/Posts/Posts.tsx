@@ -12,12 +12,15 @@ import Dropdown from "../Dropdown/Dropdown";
 import DropdownItem from "../Dropdown/DropdownItem/DropdownItem";
 import Tabs from "../Tabs/Tabs";
 import Tags from "../Tags/Tags";
+import TabPanel from "@/components/Tabs/TabPanel/TabPanel";
+import TabList from "@/components/Tabs/TabList/TabList";
+import Tab from "@/components/Tabs/Tab/Tab";
 
 export type TabType = "publish" | "draft";
 
 const PostSection = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
-  const [tab, setTab] = useState<TabType>("publish");
+  const [tabActive, setTabActive] = useState<TabType>("publish");
   const router = useRouter();
   
   useEffect(() => {
@@ -64,7 +67,18 @@ const PostSection = () => {
           <h1>글</h1>
           <p>블로그에 글을 발행하거나 관리합니다.</p>
         </header>
-        <Tabs tab={tab} onClick={setTab}/>
+        <Tabs>
+          <TabList>
+            <Tab tabId={"published"} active={tabActive === 'publish'}>게시된 글</Tab>
+            <Tab tabId={"draft"} active={tabActive === 'draft'}>임시 저장 글</Tab>
+          </TabList>
+          <TabPanel labelledBy={"published"}>
+            <p>asdfas</p>
+        </TabPanel>
+          <TabPanel labelledBy={"draft"}>
+            <p>aa</p>
+          </TabPanel>
+        </Tabs>
         <section className={styles.postSection}>
           <div className={styles.sectionHeader}>
             <div className={styles.sectionHeaderLabel}>
