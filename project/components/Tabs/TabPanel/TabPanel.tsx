@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
 
 interface TabPanelProps {
-  labelledBy: string;
+  isHidden: boolean;
+  tabId: string;
 }
 
-const TabPanel: FC<TabPanelProps> = ({labelledBy, children}) => {
+const TabPanel: FC<TabPanelProps> = ({isHidden, tabId, children}) => {
   return (
-    <div role="tabpanel" aria-labelledby={labelledBy} hidden>
+    <div role="tabpanel" aria-labelledby={tabId} hidden={isHidden}>
       {children}
     </div>
   );

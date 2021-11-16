@@ -1,3 +1,8 @@
+.tab {
+    list-style: none;
+    text-align: center;
+}
+
 .active {
     color: black;
     font-size: 1.25rem;

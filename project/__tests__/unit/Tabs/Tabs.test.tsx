@@ -1,25 +1,53 @@
 import React from 'react';
 import Tabs from '@/components/Tabs/Tabs';
-import {render} from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import TabItem from "@/components/Tabs/TabItem/TabItem";
+import Tab from '@/components/Tabs/Tab/Tab';
+import {render, cleanup} from '@testing-library/react';
 import TabPanel from "@/components/Tabs/TabPanel/TabPanel";
+import TabList from "@/components/Tabs/TabList/TabList";
+import '@testing-library/jest-dom/extend-expect';
 
 describe('Tabs 컴포넌트', () => {
-  test('tabs 테스트', () => {
-    const onClick1 = jest.fn();
-    const onClick2 = jest.fn();
-    const {getAllByRole} = render(<Tabs>
-      <TabItem active={true} onClick={onClick1}>
-        <TabPanel labelledBy="게시된 글"/>
-      </TabItem>
-      <TabItem active={false} onClick={onClick2}>
-        <TabPanel labelledBy="임시저장 글"/>
-      </TabItem>
+  afterAll(cleanup);
+  test('tabList를 가져야 한다', () => {
+    const {getByRole} = render(<Tabs>
+      <TabList>
+        <Tab tabId={"published"} active={true}>게시된 글</Tab>
+        <Tab tabId={"drafted"} active={false}>임시 저장 글</Tab>
+      </TabList>
+      <TabPanel tabId={"published"} isHidden={false}>
+        <p>게시된 글 입니다</p>
+      </TabPanel>
+      <TabPanel tabId={"drafted"} isHidden={true}>
+        <p>임시 저장 글 입니다</p>
+      </TabPanel>
     </Tabs>);
-    const items = getAllByRole('listitem');
-    
-    expect(items).toHaveLength(2);
-    expect(items[0]).toHaveClass('active');
+
+    const tabList = getByRole('tablist');
+    expect(tabList).toBeInTheDocument();
+  });
+
+  test('tabPanel을 가져야 한다', () => {
+    const {getAllByRole} = render(
+      <Tabs>
+        <TabList>
+          <Tab tabId={"published"} active={true}>게시된 글</Tab>
+          <Tab tabId={"drafted"} active={false}>임시 저장 글</Tab>
+          <Tab tabId={"tested"} active={false}>테스트 글</Tab>
+        </TabList>
+        <TabPanel tabId={"published"} isHidden={false}>
+          <p>게시된 글 내용입니다</p>
+        </TabPanel>
+        <TabPanel tabId={"drafted"} isHidden={true}>
+          <p>임시 저장 글 내용입니다</p>
+        </TabPanel>
+        <TabPanel tabId={"tested"} isHidden={true}>
+          <p>테스트 글 내용입니다</p>
+        </TabPanel>
+      </Tabs>);
+
+    // isHidden=true인 tabPanel은 보이지 않으므로 길이는 1이 된다.
+    const tabPanels = getAllByRole('tabpanel');
+    expect(tabPanels).toHaveLength(1);
+    expect(tabPanels[0]).toBeInTheDocument();
   });
 });

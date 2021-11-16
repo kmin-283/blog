@@ -1,7 +1,7 @@
 import React from 'react';
 import TabList from "@/components/Tabs/TabList/TabList";
 import Tab from '@/components/Tabs/Tab/Tab';
-import {render, cleanup, fireEvent} from '@testing-library/react';
+import {render, cleanup} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('TabList 컴포넌트', () => {

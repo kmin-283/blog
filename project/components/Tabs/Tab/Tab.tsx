@@ -1,14 +1,14 @@
 import React, {FC} from 'react';
-import styles from "@/components/Tabs/TabItem/TabItem.module.css";
+import styles from "./Tab.module.css";
 
-interface TabProps {
+export interface TabProps {
   tabId: string;
   active: boolean;
 }
 
 const Tab: FC<TabProps> = ({active, tabId, children}) => {
   return (
-    <li className={active ? styles.active : ""} role="tab" aria-selected={active} aria-controls={tabId}>
+    <li className={`${styles.tab} ${active ? styles.active : ""}`} role="tab" aria-selected={active} aria-controls={tabId}>
       {children}
     </li>
   );

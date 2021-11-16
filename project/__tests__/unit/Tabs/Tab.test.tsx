@@ -2,7 +2,6 @@ import React from 'react';
 import Tab from '@/components/Tabs/Tab/Tab';
 import {render, cleanup} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import TabPanel from "@/components/Tabs/TabPanel/TabPanel";
 
 describe('Tab 컴포넌트', () => {
   afterAll(cleanup);
