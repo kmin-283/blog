@@ -9,27 +9,69 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials"
   ],
-  webpackFinal: async (config, { configType }) => {
-    config.module.rules = config.module.rules.filter(
-      f => f.test.toString() !== '/\\.css$/'
-    );
-    config.module.rules.push({
-      test: /\.css$/,
-      use: ['style-loader', {
-        loader: 'css-loader',
-        options: {
-          modules: true, // Enable modules to help you using className
-        }
-      }],
-      include: path.resolve(__dirname, '../components'),
-    });
+  webpackFinal: async (baseConfig, options) => {
+    // Modify or replace config. Mutating the original reference object can cause unexpected bugs.
+    const { module = {} } = baseConfig;
 
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@/components': path.resolve(__dirname, "../components"),
+    const newConfig = {
+      ...baseConfig,
+      module: {
+        ...module,
+        rules: [...(module.rules || [])]
+      }
     };
 
+    newConfig.resolve.alias = {
+      ...baseConfig.resolve.alias,
+      '@/components': path.resolve(__dirname, "../components"),
+      '@/styles:': path.resolve(__dirname, "../styles")
+    };
 
-    return config;
+    // TypeScript with Next.js
+    newConfig.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      include: [
+        path.resolve(__dirname, '../components'),
+        path.resolve(__dirname, '../stories')
+      ],
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: ['next/babel'],
+            plugins: ['react-docgen']
+          }
+        }
+      ]
+    });
+    newConfig.resolve.extensions.push('.ts', '.tsx');
+
+    //
+    // CSS Modules
+    // Many thanks to https://github.com/storybookjs/storybook/issues/6055#issuecomment-521046352
+    //
+
+    // First we prevent webpack from using Storybook CSS rules to process CSS modules
+    newConfig.module.rules.find(
+      rule => rule.test.toString() === '/\\.css$/'
+    ).exclude = /\.module\.css$/;
+
+    // Then we tell webpack what to do with CSS modules
+    newConfig.module.rules.push({
+      test: /\.module\.css$/,
+      include: path.resolve(__dirname, '../components'),
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+            modules: true
+          }
+        }
+      ]
+    });
+
+    return newConfig;
   }
-}
+};
