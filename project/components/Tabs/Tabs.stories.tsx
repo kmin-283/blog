@@ -1,4 +1,4 @@
-import React, {ComponentProps, useState} from 'react';
+import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import Tabs  from '@/components/Tabs/Tabs';
 import TabList from "@/components/Tabs/TabList/TabList";
@@ -10,18 +10,25 @@ export default {
   component: Tabs,
 } as Meta;
 
-const Template: Story = (args) => {
-  const [tabActive, setTabActive] = useState<string>('publish');
-  return (<Tabs>
+const Template: Story = () => {
+  return (<Tabs tabIds={['published', 'drafted', 'tested']}>
     <TabList>
-      <Tab tabId={"published"} active={tabActive === 'publish'}>게시된 글</Tab>
-      <Tab tabId={"drafted"} active={tabActive === 'draft'}>임시 저장 글</Tab>
+      <Tab>게시된 글</Tab>
+      <Tab>임시 저장 글</Tab>
+      <Tab>테스트 글</Tab>
     </TabList>
-    <TabPanel tabId={"published"} isHidden={tabActive !== 'publish'}>
+    <TabPanel>
       <p>게시된 글 입니다</p>
     </TabPanel>
-    <TabPanel tabId={"drafted"} isHidden={tabActive !== 'draft'}>
-      <p>임시 저장 글 입니다</p>
+    <TabPanel>
+      <ul>
+        <li>임시 저장 글 1 입니다</li>
+        <li>임시 저장 글 2 입니다</li>
+        <li>임시 저장 글 3 입니다</li>
+      </ul>
+    </TabPanel>
+    <TabPanel>
+      <p>테스트 글 입니다</p>
     </TabPanel>
   </Tabs>);
 };

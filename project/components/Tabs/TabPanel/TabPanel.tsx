@@ -5,7 +5,8 @@ interface TabPanelProps {
   tabId: string;
 }
 
-const TabPanel: FC<TabPanelProps> = ({isHidden, tabId, children}) => {
+const TabPanel: FC = ({ children, ...props}) => {
+  const { isHidden, tabId } = props as TabPanelProps;
   return (
     <div role="tabpanel" aria-labelledby={tabId} hidden={isHidden}>
       {children}
