@@ -9,7 +9,7 @@ export interface TabProps {
 
 const Tab: FC = ({children, ...props}) => {
   const { active, tabId, onClick } = props as TabProps;
-
+  
   return (
     <li
       className={`${styles.tab} ${active ? styles.active : ""}`}

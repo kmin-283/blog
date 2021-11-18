@@ -11,16 +11,13 @@ import {convertToKRDate} from "@/utils/time";
 import Dropdown from "../Dropdown/Dropdown";
 import DropdownItem from "../Dropdown/DropdownItem/DropdownItem";
 import Tabs from "../Tabs/Tabs";
-import Tags from "../Tags/Tags";
+import Tags from '@/components/Tags/Tags';
 import TabPanel from "@/components/Tabs/TabPanel/TabPanel";
 import TabList from "@/components/Tabs/TabList/TabList";
 import Tab from "@/components/Tabs/Tab/Tab";
 
-export type TabType = "publish" | "draft";
-
 const PostSection = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
-  const [tabActive, setTabActive] = useState<TabType>("publish");
   const router = useRouter();
   
   useEffect(() => {
@@ -61,12 +58,14 @@ const PostSection = () => {
   };
   
   return (
-    <div className={styles.base}>
-      <section className={styles.contentContainer}>
-        <header>
-          <h1>글</h1>
-          <p>블로그에 글을 발행하거나 관리합니다.</p>
-          <div className={styles.sectionHeaderAction}>
+    <div className={styles.baseWrapper}>
+      <section className={styles.base}>
+        <header className={styles.header}>
+          <div>
+            <h1>글</h1>
+            <p>블로그에 글을 발행하거나 관리합니다.</p>
+          </div>
+          <div className={styles.headerAction}>
             <Link href={"/_blog-admin/write"}>
               <a>게시글 작성</a>
             </Link>

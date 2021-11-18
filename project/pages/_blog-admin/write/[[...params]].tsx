@@ -6,7 +6,7 @@ import styles from "./write.module.css";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/client";
 import { Session } from "next-auth";
-import Login from "@/components/login/login";
+import Login from "@/components/Login/Login";
 import { AiOutlineSave, AiOutlineUpload } from "react-icons/ai";
 import Toolbar from "@/components/Toolbar/Toolbar";
 import Tags from "@/components/Tags/Tags";

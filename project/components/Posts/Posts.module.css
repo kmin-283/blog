@@ -1,50 +1,33 @@
-.base {
+.baseWrapper {
     width: 80%;
     background-color: var(--admin-background-color);
-    overflow: auto;
 }
 
-.contentContainer {
+.base {
     margin: 0 4rem;
 }
 
-.postSection {
-    background-color: white;
-    border: 1px solid var(--border-line-color);
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-@supports (position: sticky) or (position: -webkit-sticky) {
-    .sectionHeader {
-        display: flex;
-        position: -webkit-sticky;
-        position: sticky;
-        top: -1px;
-        align-items: center;
-        background-color: white;
-        padding: 0.875rem;
-        border-bottom: 1px solid var(--border-line-color);
-        z-index: 9999;
-    }
-}
 
-.sectionHeaderLabel {
-    width: 90%;
-}
-
-.sectionHeaderAction {
+.headerAction {
     background-color: var(--main-theme-color);
+    text-align: center;
     padding: 0.4rem 0.5rem;
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
-.sectionHeaderAction a {
+.headerAction a {
     color: white;
     font-weight: 200;
 }
 
-.sectionHeaderAction:hover {
+.headerAction:hover {
     transform: scale(1.1);
-    font-weight: 200;
 }
 
 .postList {
