@@ -1,19 +1,18 @@
 import React, { ReactElement } from "react";
-import { readdirSync, readFileSync } from "fs";
+import { readFileSync } from "fs";
 import path from "path";
 import { GetServerSidePropsContext } from "next";
-import connectDB from "../utils/mongodb";
+import connectDB from "@/utils/mongodb";
 import Head from "next/head";
-import Post from "../models/post";
+import Post from "@/models/post";
 import styles from "./[title].module.css";
-import Header from "../components/layout/header/header";
-import Footer from "../components/layout/footer/footer";
+import Header from "@/components/Layout/Header/Header";
+import Footer from "@/components/Layout/Footer/Footer";
 import { NextPageWithLayout } from "./_app";
-import Tags from "../components/tags/tags";
-import { markedString } from "../utils/markdown";
-import generateJsonLD from "../utils/generateJsonLD";
-import { customSerialize } from "../utils/time";
-import ContentHeader from "../components/contentHeader/contentHeader";
+import Tags from "@/components/Tags/Tags";
+import { markedString } from "@/utils/markdown";
+import generateJsonLD from "@/utils/generateJsonLD";
+import ContentHeader from "@/components/ContentHeader/ContentHeader";
 
 interface PostPageProps {
   postName: string;
@@ -102,7 +101,6 @@ export const getServerSideProps = async (
     internalLinks,
     updatedAt,
   } = await Post.findOne({ title: trimmedTitle });
-  const time = customSerialize(updatedAt);
   return {
     props: {
       postName,
@@ -110,7 +108,7 @@ export const getServerSideProps = async (
       thumbnail,
       description,
       internalLinks,
-      updatedAt: time,
+      updatedAt: (updatedAt as Date).toISOString(),
       markdown,
     },
   };

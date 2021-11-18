@@ -2,12 +2,12 @@ import React, {useState} from "react";
 import Link from "next/link";
 import Head from "next/head";
 import {getSession} from "next-auth/client";
-import Login from "../../components/login/login";
-import Statistics from "../../components/statistics/statistics";
+import Login from "@/components/login/login";
+import Statistics from "@/components/Statistics/Statistics";
 import styles from "./_blog-admin.module.css";
 import {NextPageContext} from "next";
 import {Session} from "next-auth";
-import PostSection from "../../components/posts/posts";
+import PostSection from "@/components/Posts/Posts";
 
 const Admin = ({session}: { session: Session }) => {
   const [section, setSection] = useState("stats");
