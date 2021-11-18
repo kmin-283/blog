@@ -16,11 +16,8 @@ import TabPanel from "@/components/Tabs/TabPanel/TabPanel";
 import TabList from "@/components/Tabs/TabList/TabList";
 import Tab from "@/components/Tabs/Tab/Tab";
 
-export type TabType = "publish" | "draft";
-
 const PostSection = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
-  const [tabActive, setTabActive] = useState<TabType>("publish");
   const router = useRouter();
   
   useEffect(() => {
