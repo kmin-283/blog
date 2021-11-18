@@ -58,12 +58,14 @@ const PostSection = () => {
   };
   
   return (
-    <div className={styles.base}>
-      <section className={styles.contentContainer}>
-        <header>
-          <h1>글</h1>
-          <p>블로그에 글을 발행하거나 관리합니다.</p>
-          <div className={styles.sectionHeaderAction}>
+    <div className={styles.baseWrapper}>
+      <section className={styles.base}>
+        <header className={styles.header}>
+          <div>
+            <h1>글</h1>
+            <p>블로그에 글을 발행하거나 관리합니다.</p>
+          </div>
+          <div className={styles.headerAction}>
             <Link href={"/_blog-admin/write"}>
               <a>게시글 작성</a>
             </Link>
