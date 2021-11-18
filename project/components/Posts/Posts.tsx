@@ -66,72 +66,64 @@ const PostSection = () => {
         <header>
           <h1>글</h1>
           <p>블로그에 글을 발행하거나 관리합니다.</p>
+          <div className={styles.sectionHeaderAction}>
+            <Link href={"/_blog-admin/write"}>
+              <a>게시글 작성</a>
+            </Link>
+          </div>
         </header>
-        <Tabs>
+        <Tabs tabIds={['published', 'drafted']}>
           <TabList>
-            <Tab tabId={"published"} active={tabActive === 'publish'}>게시된 글</Tab>
-            <Tab tabId={"draft"} active={tabActive === 'draft'}>임시 저장 글</Tab>
+            <Tab>게시된 글</Tab>
+            <Tab>임시 저장 글</Tab>
           </TabList>
-          <TabPanel labelledBy={"published"}>
-            <p>asdfas</p>
+          <TabPanel>
+            <ul className={styles.postList}>
+              {posts.map((post) => {
+                const time = convertToKRDate(post.updatedAt.toString());
+                return (
+                  <li className={styles.post} key={post._id}>
+                    {/* TODO Link 태그로 감싸서 해당포스트의 새로운 창을 띄워주기 */}
+                    <section className={styles.detail}>
+                      <div className={styles.info}>
+                        <Image
+                          className={styles.thumbnail}
+                          src={post.thumbnail}
+                          width={100}
+                          height={100}
+                          alt="thumbnail"
+                        />
+                        <div className={styles.text}>
+                          <h2 className={styles.title}>{post.title}</h2>
+                          <Tags tags={post.tags} howMany={5}/>
+                        </div>
+                      </div>
+                      <time className={styles.time} dateTime={time}>
+                        <AiOutlineClockCircle/>
+                        <span>{time}</span>
+                      </time>
+                    </section>
+                    <Dropdown>
+                      <DropdownItem
+                        onClick={deletePost(post._id, post.title)}
+                        role={"삭제하기"}
+                        icon={<BsTrash size="1.2em"/>}
+                      />
+                      <DropdownItem
+                        onClick={modifyPost(post._id)}
+                        role={"수정하기"}
+                        icon={<RiEdit2Fill size="1.2em"/>}
+                      />
+                    </Dropdown>
+                  </li>
+                );
+              })}
+            </ul>
         </TabPanel>
-          <TabPanel labelledBy={"draft"}>
-            <p>aa</p>
+          <TabPanel>
+            <p>drafted posts</p>
           </TabPanel>
         </Tabs>
-        <section className={styles.postSection}>
-          <div className={styles.sectionHeader}>
-            <div className={styles.sectionHeaderLabel}>
-              <span>글</span>
-            </div>
-            <div className={styles.sectionHeaderAction}>
-              <Link href={"/_blog-admin/write"}>
-                <a>게시글 작성</a>
-              </Link>
-            </div>
-          </div>
-          <ul className={styles.postList}>
-            {posts.map((post) => {
-              const time = convertToKRDate(post.updatedAt.toString());
-              return (
-                <li className={styles.post} key={post._id}>
-                  {/* TODO Link 태그로 감싸서 해당포스트의 새로운 창을 띄워주기 */}
-                  <section className={styles.detail}>
-                    <div className={styles.info}>
-                      <Image
-                        className={styles.thumbnail}
-                        src={post.thumbnail}
-                        width={100}
-                        height={100}
-                        alt="thumbnail"
-                      />
-                      <div className={styles.text}>
-                        <h2 className={styles.title}>{post.title}</h2>
-                        <Tags tags={post.tags} howMany={5}/>
-                      </div>
-                    </div>
-                    <time className={styles.time} dateTime={time}>
-                      <AiOutlineClockCircle/>
-                      <span>{time}</span>
-                    </time>
-                  </section>
-                  <Dropdown>
-                    <DropdownItem
-                      onClick={deletePost(post._id, post.title)}
-                      role={"삭제하기"}
-                      icon={<BsTrash size="1.2em"/>}
-                    />
-                    <DropdownItem
-                      onClick={modifyPost(post._id)}
-                      role={"수정하기"}
-                      icon={<RiEdit2Fill size="1.2em"/>}
-                    />
-                  </Dropdown>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
       </section>
     </div>
   );

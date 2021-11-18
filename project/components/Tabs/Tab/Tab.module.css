@@ -40,7 +40,7 @@
 
 .active:before, .active:hover:before {
     transition-duration: .5s;
-    background-color: white;
+    background-color: var(--admin-background-color);
     -webkit-transform: translateY(0);
     transform: translateY(0);
 }
