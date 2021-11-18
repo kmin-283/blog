@@ -1,9 +1,9 @@
-import connectDB from "../../../utils/mongodb";
 import {NextApiRequest, NextApiResponse} from "next";
-import Post from "../../../models/post";
+import connectDB from "@/utils/mongodb";
+import Post from "@/models/post";
 import fs from "fs";
-import {getThumbnail} from "../../../utils/imageUpload";
-import {makeInternalLinks} from "../../../utils/markdown";
+import {getThumbnail} from "@/utils/imageUpload";
+import {makeInternalLinks} from "@/utils/markdown";
 
 connectDB().then();
 

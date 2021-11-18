@@ -6,7 +6,7 @@
 .pnp.js
 
 # testing
-/coverage
+project/coverage
 
 # next.js
 project/.next/
