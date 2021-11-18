@@ -34,4 +34,5 @@ jobs:
             git pull
             cd ./project
             npm install -g yarn
+            yarn
             yarn pm2restart
