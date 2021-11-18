@@ -2,7 +2,6 @@ import React, {FC, useState} from "react";
 import styles from "./Tabs.module.css";
 import TabList from "@/components/Tabs/TabList/TabList";
 
-
 interface TabsProps {
   tabIds: string[];
 }
