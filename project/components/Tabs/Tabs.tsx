@@ -1,30 +1,45 @@
-import React, {Dispatch, SetStateAction} from "react";
+import React, {FC, useState} from "react";
 import styles from "./Tabs.module.css";
-import {TabType} from "@/components/Posts/Posts";
-import TabItem from "@/components/Tabs/TabItem/TabItem";
+import TabList from "@/components/Tabs/TabList/TabList";
+
 
 interface TabsProps {
-  tab: TabType;
-  onClick: Dispatch<SetStateAction<TabType>>;
+  tabIds: string[];
 }
 
-const Tabs = ({tab, onClick}: TabsProps) => {
+const Tabs: FC<TabsProps> = ({children, tabIds}) => {
+  const [tabId, setTabId] = useState<string>(tabIds[0]);
+  const clickTab = (id: string) => () => {
+    setTabId(id);
+  };
+  let tabIndex = 0;
+  const childrenWithProps = React.Children.map(children, (child)=>{
+    if (Object.getOwnPropertyDescriptor(child,'type')?.value.name === 'TabList' && React.isValidElement(child)) {
+      const tabs = React.Children.map(child.props.children, (grandChild) => {
+        return React.cloneElement(grandChild, {
+          active: tabId === tabIds[tabIndex],
+          tabId: tabIds[tabIndex++],
+          onClick: clickTab});
+      });
+      return React.cloneElement(child, {}, tabs);
+    }
+
+    if (Object.getOwnPropertyDescriptor(child,'type')?.value.name === 'TabPanel' && React.isValidElement(child)) {
+      if (tabIndex === tabIds.length) {
+        tabIndex = 0;
+      }
+      return React.cloneElement(child, {
+        isHidden: tabId !== tabIds[tabIndex],
+        tabId: tabIds[tabIndex++],
+      });
+    }
+    return child;
+  });
+
   return (
-    <section className={styles.postTypeFilter}>
-      <ul className={styles.sectionNavigationList}>
-        {/* TODO 임시저장 포스트와 실제 게제된 포스트 구분해서 보여주기*/}
-        <TabItem
-          active={tab === "publish"}
-          role={"게시된 글"}
-          onClick={() => onClick("publish")}
-        />
-        <TabItem
-          active={tab === "draft"}
-          role={"임시 저장 글"}
-          onClick={() => onClick("draft")}
-        />
-      </ul>
-    </section>
+    <div className={styles.tabs}>
+      {childrenWithProps}
+    </div>
   );
 };
 
