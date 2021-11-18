@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Link from "next/link";
 import Head from "next/head";
 import {getSession} from "next-auth/client";
-import Login from "@/components/login/login";
+import Login from "@/components/Login/Login";
 import Statistics from "@/components/Statistics/Statistics";
 import styles from "./_blog-admin.module.css";
 import {NextPageContext} from "next";

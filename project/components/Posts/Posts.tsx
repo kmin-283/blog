@@ -11,7 +11,7 @@ import {convertToKRDate} from "@/utils/time";
 import Dropdown from "../Dropdown/Dropdown";
 import DropdownItem from "../Dropdown/DropdownItem/DropdownItem";
 import Tabs from "../Tabs/Tabs";
-import Tags from "../Tags/Tags";
+import Tags from '@/components/Tags/Tags';
 import TabPanel from "@/components/Tabs/TabPanel/TabPanel";
 import TabList from "@/components/Tabs/TabList/TabList";
 import Tab from "@/components/Tabs/Tab/Tab";
