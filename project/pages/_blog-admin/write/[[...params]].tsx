@@ -168,7 +168,7 @@ const Write = ({ session }: { session: Session }) => {
             onKeyDown={handleTags}
           />
           <section>
-            <Tags tags={tags} howMany={5} deleteTag={deleteTag} />
+            <Tags tags={tags} howMany={5} onClickHandler={deleteTag} />
             {/* TODO 태그가 삭제됩니다 요거 화면 차지 안하도록 변경하기 */}
             <span className={styles.description}>
               태그를 누르면 해당 태그가 삭제됩니다
