@@ -24,7 +24,8 @@ module.exports = {
     newConfig.resolve.alias = {
       ...baseConfig.resolve.alias,
       '@/components': path.resolve(__dirname, "../components"),
-      '@/styles:': path.resolve(__dirname, "../styles")
+      '@/styles:': path.resolve(__dirname, "../styles"),
+      '@/utils': path.resolve(__dirname, '../utils')
     };
 
     // TypeScript with Next.js
