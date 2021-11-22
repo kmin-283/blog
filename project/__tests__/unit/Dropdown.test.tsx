@@ -4,7 +4,7 @@ import DropdownItem from "@/components/Dropdown/DropdownItem/DropdownItem";
 import {fireEvent, render} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-describe('ContentHeader 컴포넌트', () => {
+describe('InpageNavigation 컴포넌트', () => {
 
   const playGround = document.createElement('div');
   const click1st = jest.fn(() => {

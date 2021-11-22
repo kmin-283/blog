@@ -1,14 +1,14 @@
 import React, {FC} from 'react';
 import {markedString} from "@/utils/markdown";
-import styles from './ContentHeader.module.css';
+import styles from './InpageNavigation.module.css';
 
 interface ContentHeaderProps {
   internalLinks: string[];
 }
 
-const ContentHeader: FC<ContentHeaderProps> = ({internalLinks}) => {
+const InpageNavigation: FC<ContentHeaderProps> = ({internalLinks}) => {
   return (
-    <section className={styles.container}>
+    <nav className={styles.container}>
       <ol className={styles.links}>
         {internalLinks.map((internalLink, index) =>
           (internalLink &&
@@ -21,8 +21,8 @@ const ContentHeader: FC<ContentHeaderProps> = ({internalLinks}) => {
               }}>
             </li>))}
       </ol>
-    </section>
+    </nav>
   );
 };
 
-export default ContentHeader;
+export default InpageNavigation;

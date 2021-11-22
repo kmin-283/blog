@@ -12,7 +12,7 @@ import { NextPageWithLayout } from "./_app";
 import Tags from "@/components/Tags/Tags";
 import { markedString } from "@/utils/markdown";
 import generateJsonLD from "@/utils/generateJsonLD";
-import ContentHeader from "@/components/ContentHeader/ContentHeader";
+import InpageNavigation from "@/components/InpageNavigation/InpageNavigation";
 
 interface PostPageProps {
   postName: string;
@@ -56,7 +56,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
       <article className={styles.post}>
         <h1 className={styles.title}>{postName}</h1>
         <Tags tags={tags} howMany={5} />
-        <ContentHeader internalLinks={internalLinks} />
+        <InpageNavigation internalLinks={internalLinks} />
         <strong className={styles.description}>{description}</strong>
         <section
           className={styles.content}
