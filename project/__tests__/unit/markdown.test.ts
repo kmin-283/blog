@@ -1,7 +1,7 @@
 import {markedString, makeInternalLinks} from '@/utils/markdown';
 
 test('마크다운 형식의 문자열 만들기', () => {
-  expect(markedString('# h1입니다')).toBe('<h1 id=\"h1입니다\">h1입니다</h1>\n');
+  expect(markedString('# h1입니다')).toBe('<h1 id=h1%EC%9E%85%EB%8B%88%EB%8B%A4>h1입니다</h1>');
   expect(markedString('![img](/__mocks__/fileMock.js "목업 이미지")'))
     .toBe("<p><img src=\"/__mocks__/fileMock.js\" alt=\"img\" title=\"목업 이미지\"></p>\n");
 });

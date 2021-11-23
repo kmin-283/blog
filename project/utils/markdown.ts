@@ -13,6 +13,13 @@ marked.setOptions({
   },
 });
 
+const renderer = {
+  heading(text: string, level: number) {
+    return `<h${level} id=${encodeURIComponent(text.replace(/\s/g, '-'))}>${text}</h${level}>`;
+  }
+};
+marked.use({renderer});
+
 const markedString = (markdown: string) => marked(markdown);
 
 const getHeadingLevel = (heading: string) => {
