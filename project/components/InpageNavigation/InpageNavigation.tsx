@@ -1,25 +1,39 @@
 import React, {FC} from 'react';
-import {markedString} from "@/utils/markdown";
+import Link from 'next/link';
+import {heading} from "@/utils/markdown";
 import styles from './InpageNavigation.module.css';
 
 interface ContentHeaderProps {
-  internalLinks: string[];
+  internalLinks: string;
 }
 
 const InpageNavigation: FC<ContentHeaderProps> = ({internalLinks}) => {
+  const headings: heading[] = JSON.parse(internalLinks);
+  const makeHierarchicalHeading = (heading: heading, key: number) => {
+    if (heading.child.length > 0) {
+      return (
+        <li key={`${heading.headingLevel}+-${key}`}>
+          <Link href={`#${heading.value.replace(/\s/g,'-')}`}>
+            {heading.value}
+          </Link>
+          <ol className={styles.links} key={`hierarchy#${key}${key}`}>
+            {heading.child.map((h, index) => makeHierarchicalHeading(h, index))}
+          </ol>
+        </li>
+      );
+    }
+    return (
+      <li key={`${heading.headingLevel}+-${key}`}>
+        <Link href={`#${heading.value.replace(/\s/g,'-')}`}>
+          {heading.value}
+        </Link>
+      </li>);
+  };
+
   return (
     <nav className={styles.container}>
       <ol className={styles.links}>
-        {internalLinks.map((internalLink, index) =>
-          (internalLink &&
-            <li
-              className={styles.link}
-              key={internalLink}
-              dangerouslySetInnerHTML={{
-                __html: markedString(`[${index + 1}. ${internalLink
-                  .replace(/-/g, ' ')}](#${internalLink})`)
-              }}>
-            </li>))}
+        {headings.map((heading, index) => makeHierarchicalHeading(heading, index))}
       </ol>
     </nav>
   );

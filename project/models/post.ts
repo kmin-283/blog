@@ -7,7 +7,7 @@ export interface IPost {
   file: string;
   thumbnail: string;
   description: string;
-  internalLinks?: string[];
+  internalLinks?: string;
   updatedAt: Date;
 }
 
@@ -18,7 +18,7 @@ const postSchema = new Schema<IPost>(
     file: {type: String, required: true},
     thumbnail: {type: String, required: true},
     description: {type: String, required: true},
-    internalLinks: {type: [String]}
+    internalLinks: {type: String}
   },
   {
     timestamps: true,

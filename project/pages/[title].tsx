@@ -20,7 +20,7 @@ interface PostPageProps {
   markdown: string;
   thumbnail: string;
   description: string;
-  internalLinks: string[];
+  internalLinks: string;
   updatedAt: Date;
 }
 
