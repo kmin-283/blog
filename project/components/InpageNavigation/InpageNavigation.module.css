@@ -1,7 +1,24 @@
+.wrapper {
+    width: 20%;
+    font-size: 0.875rem;
+}
+
 .container {
-    background-color: var(--admin-background-color);
-    width: 100%;
     margin: 0.5rem 0;
+    padding: 0.5rem 0;
+    border-right: 2px solid var(--main-theme-color);
+    border-left: 2px solid var(--main-theme-color);
+    background-color: var(--admin-background-color);
+    animation: popUp 0.3s;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20%;
+    transition-duration: 0.25s;
+    transform: translateY(50px);
 }
 
 .links {
@@ -9,15 +26,23 @@
     margin: 0.25rem 1rem;
 }
 
-.link p {
+.links a {
     margin: 0.5rem;
 }
 
-.link p a {
+.links a {
     color: var(--icon-inactive-color);
 }
 
-.link p a:hover {
+.links a:hover {
     color: black;
     text-decoration: underline;
+}
+
+@media (max-width: 799px) {
+    .links {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
 }
