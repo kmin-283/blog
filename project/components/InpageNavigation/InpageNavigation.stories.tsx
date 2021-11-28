@@ -9,7 +9,8 @@ export default {
 
 const Template: Story<InpageNavigationProps> = ({internalLinks}) => {
   return (
-    <div style={{width: 800}}>
+    <div style={{width: 1000}}>
+      브라우저의 화면이 800 이상이면 나타납니다
       <InpageNavigation internalLinks={internalLinks} />
     </div>);
 };
