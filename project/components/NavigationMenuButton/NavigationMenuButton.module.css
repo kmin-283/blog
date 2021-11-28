@@ -4,15 +4,22 @@
 
 @media (max-width: 799px) {
     .navMenuButton {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: block;
         position: fixed;
         bottom: 0;
         width: 100%;
+        padding: 1rem 0;
         border-right: 2px solid var(--main-theme-color);
         border-left: 2px solid var(--main-theme-color);
         background-color: var(--admin-background-color);
+    }
+
+    .navMenuButton div {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-height: 20vh;
+        overflow: auto;
     }
 
     .button {
@@ -24,6 +31,6 @@
     }
 
     .button p {
-        margin: 5px;
+        margin: 2px;
     }
 }

@@ -17,8 +17,8 @@ const Template: Story<NavigationMenuButtonProps> = ({internalLinks}) => {
     </div>);
 };
 
-export const BasicTags = Template.bind({});
-BasicTags.args = {
+export const BasicNavigationMenuButton = Template.bind({});
+BasicNavigationMenuButton.args = {
   internalLinks: "[" +
     "{\"headingLevel\":2,\"value\":\"1 헤딩\",\"child\":[]}," +
     "{\"headingLevel\":2,\"value\":\"2 헤딩\",\"child\":[" +

@@ -52,6 +52,7 @@ const makeInternalLinks = (markdown: string) => {
     
     if (headingLevel === 2) {
       ret.push(h);
+      prevHeadingLevel = 2;
     } else if (headingLevel > prevHeadingLevel) {
       h.parent = curr;
       curr.child.push(h);
