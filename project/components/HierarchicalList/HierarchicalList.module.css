@@ -1,0 +1,17 @@
+.links {
+    padding: 0;
+    margin: 0.25rem 0 0.25rem 0.5rem;
+}
+
+.links a {
+    margin: 0.25rem 0 0.25rem 0.5rem;
+}
+
+.links a {
+    color: var(--icon-inactive-color);
+}
+
+.links a:hover {
+    color: black;
+    text-decoration: underline;
+}

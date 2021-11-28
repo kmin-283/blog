@@ -1,5 +1,5 @@
 import React from 'react';
-import InpageNavigation from "@/components/InpageNavigation/InpageNavigation";
+import InpageNavigation from '@/components/InpageNavigation/InpageNavigation';
 import {render, cleanup} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -40,14 +40,14 @@ describe('InpageNavigation 컴포넌트', () => {
 
     if (h3Children) {
       // [
-      // <li><a href="/#2-1-1-%ED%97%A4%EB%94%A9">2-1-1 헤딩</a></li>,
+      // <li><a href='/#2-1-1-%ED%97%A4%EB%94%A9'>2-1-1 헤딩</a></li>,
       // <li>
-      //  <a href="/#2-1-2-%ED%97%A4%EB%94%A9">2-1-2 헤딩</a>
-      //  <ol class="links">
-      //    <li><a href="/#2-1-2-1-%ED%97%A4%EB%94%A9">2-1-2-1 헤딩</a></li>
+      //  <a href='/#2-1-2-%ED%97%A4%EB%94%A9'>2-1-2 헤딩</a>
+      //  <ol class='links'>
+      //    <li><a href='/#2-1-2-1-%ED%97%A4%EB%94%A9'>2-1-2-1 헤딩</a></li>
       //   </ol>
       //  </li>,
-      //  <li><a href="/#2-1-3-%ED%97%A4%EB%94%A9">2-1-3 헤딩</a></li>
+      //  <li><a href='/#2-1-3-%ED%97%A4%EB%94%A9'>2-1-3 헤딩</a></li>
       //  ]
       expect(h3Children.children).toHaveLength(3);
       

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import InpageNavigation, {InpageNavigationProps} from "@/components/InpageNavigation/InpageNavigation";
+import InpageNavigation, {InpageNavigationProps} from '@/components/InpageNavigation/InpageNavigation';
 
 export default {
   title: 'Components/InpageNavigation',
@@ -24,5 +24,5 @@ BasicInpageNavigation.args = {
     "{\"headingLevel\":4,\"value\":\"2-1-2 헤딩\",\"child\":[" +
     "{\"headingLevel\":5,\"value\":\"2-1-2-1 헤딩\",\"child\":[]}]}," +
     "{\"headingLevel\":4,\"value\":\"2-1-3 헤딩\",\"child\":[]}]}," +
-    "{\"headingLevel\":3,\"value\":\"2-2 헤딩\",\"child\":[]}]}]\n"
+    "{\"headingLevel\":3,\"value\":\"2-2 헤딩\",\"child\":[]}]}]\n",
 };
