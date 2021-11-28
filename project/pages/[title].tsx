@@ -12,7 +12,7 @@ import { NextPageWithLayout } from "./_app";
 import Tags from "@/components/Tags/Tags";
 import { markedString } from "@/utils/markdown";
 import generateJsonLD from "@/utils/generateJsonLD";
-import ContentHeader from "@/components/ContentHeader/ContentHeader";
+import InpageNavigation from "@/components/InpageNavigation/InpageNavigation";
 
 interface PostPageProps {
   postName: string;
@@ -20,7 +20,7 @@ interface PostPageProps {
   markdown: string;
   thumbnail: string;
   description: string;
-  internalLinks: string[];
+  internalLinks: string;
   updatedAt: Date;
 }
 
@@ -53,15 +53,17 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLD) }}
         />
       </Head>
-      <article className={styles.post}>
-        <h1 className={styles.title}>{postName}</h1>
-        <Tags tags={tags} howMany={5} />
-        <ContentHeader internalLinks={internalLinks} />
-        <strong className={styles.description}>{description}</strong>
-        <section
-          className={styles.content}
-          dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
-        />
+      <article className={styles.container}>
+        <section className={styles.post}>
+          <h1 className={styles.title}>{postName}</h1>
+          <Tags tags={tags} howMany={5} />
+          <strong className={styles.description}>{description}</strong>
+          <section
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
+          />
+        </section>
+        <InpageNavigation internalLinks={internalLinks} />
       </article>
     </div>
   );
