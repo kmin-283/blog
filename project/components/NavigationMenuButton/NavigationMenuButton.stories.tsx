@@ -1,21 +1,24 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import InpageNavigation, {InpageNavigationProps} from '@/components/InpageNavigation/InpageNavigation';
+import NavigationMenuButton, {NavigationMenuButtonProps} from '@/components/NavigationMenuButton/NavigationMenuButton';
 
 export default {
-  title: 'Components/InpageNavigation',
-  component: InpageNavigation,
+  title: 'Components/NavigationMenuButton',
+  component: NavigationMenuButton,
 } as Meta;
 
-const Template: Story<InpageNavigationProps> = ({internalLinks}) => {
+const Template: Story<NavigationMenuButtonProps> = ({internalLinks}) => {
+  
   return (
-    <div style={{width: 800}}>
-      <InpageNavigation internalLinks={internalLinks} />
+    <div style={{position:'relative', width: 500, height: 300}}>
+      <NavigationMenuButton internalLinks={internalLinks}>
+        버튼을 누르면 나옵니다
+      </NavigationMenuButton>
     </div>);
 };
 
-export const BasicInpageNavigation = Template.bind({});
-BasicInpageNavigation.args = {
+export const BasicTags = Template.bind({});
+BasicTags.args = {
   internalLinks: "[" +
     "{\"headingLevel\":2,\"value\":\"1 헤딩\",\"child\":[]}," +
     "{\"headingLevel\":2,\"value\":\"2 헤딩\",\"child\":[" +

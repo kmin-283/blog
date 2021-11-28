@@ -1,34 +1,12 @@
 import React, {FC, useEffect, useState} from 'react';
-import Link from 'next/link';
-import {heading} from "@/utils/markdown";
 import styles from './InpageNavigation.module.css';
+import HierarchicalList from '@/components/HierarchicalList/HierarchicalList';
 
 export interface InpageNavigationProps {
   internalLinks: string;
 }
 
 const InpageNavigation: FC<InpageNavigationProps> = ({internalLinks}) => {
-  const headings: heading[] = JSON.parse(internalLinks);
-  const makeHierarchicalHeading = (heading: heading, key: number) => {
-    if (heading.child.length > 0) {
-      return (
-        <li key={`${heading.headingLevel}+-${key}`}>
-          <Link href={`#${heading.value.replace(/\s/g,'-')}`}>
-            {heading.value}
-          </Link>
-          <ol className={styles.links} key={`hierarchy#${key}${key}`}>
-            {heading.child.map((h, index) => makeHierarchicalHeading(h, index))}
-          </ol>
-        </li>
-      );
-    }
-    return (
-      <li key={`${heading.headingLevel}+-${key}`}>
-        <Link href={`#${heading.value.replace(/\s/g,'-')}`}>
-          {heading.value}
-        </Link>
-      </li>);
-  };
   const [isFixed, setIsFixed] = useState<boolean>(false);
   
   useEffect(() => {
@@ -53,9 +31,7 @@ const InpageNavigation: FC<InpageNavigationProps> = ({internalLinks}) => {
   return (
     <section className={styles.wrapper}>
       <nav className={`${styles.container} ${isFixed ? styles.fixed : ''}`}>
-        <ol className={styles.links}>
-          {headings.map((heading, index) => makeHierarchicalHeading(heading, index))}
-        </ol>
+        <HierarchicalList internalLinks={internalLinks}/>
       </nav>
     </section>
   );

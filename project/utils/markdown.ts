@@ -15,7 +15,6 @@ marked.setOptions({
 
 const renderer = {
   heading(text: string, level: number) {
-    console.log(encodeURIComponent(text.replace(/\s/g, '-')));
     return `<h${level} id=${encodeURI(text.replace(/\s/g, '-'))}>${text}</h${level}>`;
   }
 };
