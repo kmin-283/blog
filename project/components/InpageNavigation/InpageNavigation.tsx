@@ -3,11 +3,11 @@ import Link from 'next/link';
 import {heading} from "@/utils/markdown";
 import styles from './InpageNavigation.module.css';
 
-interface ContentHeaderProps {
+export interface InpageNavigationProps {
   internalLinks: string;
 }
 
-const InpageNavigation: FC<ContentHeaderProps> = ({internalLinks}) => {
+const InpageNavigation: FC<InpageNavigationProps> = ({internalLinks}) => {
   const headings: heading[] = JSON.parse(internalLinks);
   const makeHierarchicalHeading = (heading: heading, key: number) => {
     if (heading.child.length > 0) {
