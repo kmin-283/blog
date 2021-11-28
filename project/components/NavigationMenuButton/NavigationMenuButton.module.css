@@ -1,0 +1,29 @@
+.navMenuButton {
+    display: none;
+}
+
+@media (max-width: 799px) {
+    .navMenuButton {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        border-right: 2px solid var(--main-theme-color);
+        border-left: 2px solid var(--main-theme-color);
+        background-color: var(--admin-background-color);
+    }
+
+    .button {
+        width: 100%;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .button p {
+        margin: 5px;
+    }
+}

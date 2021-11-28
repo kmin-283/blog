@@ -13,6 +13,7 @@ import Tags from "@/components/Tags/Tags";
 import { markedString } from "@/utils/markdown";
 import generateJsonLD from "@/utils/generateJsonLD";
 import InpageNavigation from "@/components/InpageNavigation/InpageNavigation";
+import NavigationMenuButton from "@/components/NavigationMenuButton/NavigationMenuButton";
 
 interface PostPageProps {
   postName: string;
@@ -63,7 +64,10 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
             dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
           />
         </section>
-        <InpageNavigation internalLinks={internalLinks} />
+        <InpageNavigation internalLinks={internalLinks}/>
+        <NavigationMenuButton internalLinks={internalLinks}>
+          컨텐츠 보기
+        </NavigationMenuButton>
       </article>
     </div>
   );

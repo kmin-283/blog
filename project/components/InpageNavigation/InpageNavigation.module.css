@@ -20,3 +20,9 @@
     transition-duration: 0.25s;
     transform: translateY(50px);
 }
+
+@media (max-width: 799px) {
+    .wrapper {
+        display: none;
+    }
+}
