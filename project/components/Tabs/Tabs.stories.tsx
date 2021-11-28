@@ -6,7 +6,7 @@ import Tab from "@/components/Tabs/Tab/Tab";
 import TabPanel from "@/components/Tabs/TabPanel/TabPanel";
 
 export default {
-  title: 'Components/Tabs/Tabs',
+  title: 'Components/Tabs',
   component: Tabs,
 } as Meta;
 
