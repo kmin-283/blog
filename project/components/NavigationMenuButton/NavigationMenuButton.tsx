@@ -16,7 +16,10 @@ const NavigationMenuButton: FC<NavigationMenuButtonProps> = ({internalLinks, chi
       <button className={styles.button} id='menubutton' aria-haspopup='true' aria-expanded={isOpen} onClick={openMenu}>
         <p>{children}</p>
       </button>
-      {isOpen && <HierarchicalList role='menu' labelledBy='menubutton' internalLinks={internalLinks}/>}
+      {isOpen &&
+      (<div>
+        <HierarchicalList role='menu' labelledBy='menubutton' internalLinks={internalLinks}/>
+      </div>)}
     </div>
   );
 };
