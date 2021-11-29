@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`postcard 컴포넌트 Header 렌더링 1`] = `
+<div
+  className="postCard"
+>
+  <a
+    href="/%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8-%EC%9E%85%EB%8B%88%EB%8B%A4"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+  >
+    <div
+      className="thumbnail"
+    >
+      <span
+        style={
+          Object {
+            "background": "none",
+            "border": 0,
+            "bottom": 0,
+            "boxSizing": "border-box",
+            "display": "block",
+            "height": "initial",
+            "left": 0,
+            "margin": 0,
+            "opacity": 1,
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": "initial",
+          }
+        }
+      >
+        <img
+          alt="thumbnail"
+          data-nimg="fill"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style={
+            Object {
+              "border": "none",
+              "bottom": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "height": 0,
+              "left": 0,
+              "margin": "auto",
+              "maxHeight": "100%",
+              "maxWidth": "100%",
+              "minHeight": "100%",
+              "minWidth": "100%",
+              "objectFit": undefined,
+              "objectPosition": undefined,
+              "padding": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 0,
+            }
+          }
+        />
+        <noscript>
+          <img
+            alt="thumbnail"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            sizes="100vw"
+            src="/_next/image?url=%2F__mocks__%2FthumbnailMock.js&w=3840&q=75"
+            srcSet="/_next/image?url=%2F__mocks__%2FthumbnailMock.js&w=640&q=75 640w, /_next/image?url=%2F__mocks__%2FthumbnailMock.js&w=750&q=75 750w, /_next/image?url=%2F__mocks__%2FthumbnailMock.js&w=828&q=75 828w, /_next/image?url=%2F__mocks__%2FthumbnailMock.js&w=1080&q=75 1080w, /_next/image?url=%2F__mocks__%2FthumbnailMock.js&w=1200&q=75 1200w, /_next/image?url=%2F__mocks__%2FthumbnailMock.js&w=1920&q=75 1920w, /_next/image?url=%2F__mocks__%2FthumbnailMock.js&w=2048&q=75 2048w, /_next/image?url=%2F__mocks__%2FthumbnailMock.js&w=3840&q=75 3840w"
+            style={
+              Object {
+                "border": "none",
+                "bottom": 0,
+                "boxSizing": "border-box",
+                "display": "block",
+                "height": 0,
+                "left": 0,
+                "margin": "auto",
+                "maxHeight": "100%",
+                "maxWidth": "100%",
+                "minHeight": "100%",
+                "minWidth": "100%",
+                "objectFit": undefined,
+                "objectPosition": undefined,
+                "padding": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "width": 0,
+              }
+            }
+          />
+        </noscript>
+      </span>
+    </div>
+    <article
+      className="about"
+    >
+      <h2
+        className="title"
+        property="title"
+      >
+        테스트 포스트 입니다
+      </h2>
+      <hr
+        className="divider"
+      />
+      <span
+        className="description"
+        property="description"
+      >
+        postcard 컴포넌트 테스트
+      </span>
+      <div
+        className="subInfo"
+      >
+        <time
+          className="time"
+          dateTime="1995년 12월 17일"
+        >
+          1995년 12월 17일
+        </time>
+      </div>
+    </article>
+  </a>
+</div>
+`;
