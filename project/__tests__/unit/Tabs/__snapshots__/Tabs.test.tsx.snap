@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs 컴포넌트 렌더링 1`] = `
+<div
+  className="tabs"
+>
+  <ul
+    aria-label="Entertainment"
+    className="tabList"
+    role="tablist"
+  >
+    <li
+      aria-controls="published-tab"
+      aria-selected={true}
+      className="tab active"
+      onClick={[Function]}
+      role="tab"
+    >
+      게시된 글
+    </li>
+    <li
+      aria-controls="drafted-tab"
+      aria-selected={false}
+      className="tab "
+      onClick={[Function]}
+      role="tab"
+    >
+      임시 저장 글
+    </li>
+  </ul>
+  <div
+    aria-labelledby="published"
+    className="tabPanel"
+    hidden={false}
+    role="tabpanel"
+  >
+    <p>
+      게시된 글 입니다
+    </p>
+  </div>
+  <div
+    aria-labelledby="drafted"
+    className="tabPanel"
+    hidden={true}
+    role="tabpanel"
+  >
+    <p>
+      임시 저장 글 입니다
+    </p>
+  </div>
+</div>
+`;
