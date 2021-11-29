@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationMenuButton 컴포넌트 렌더링 1`] = `
+<div
+  className="navMenuButton"
+>
+  <button
+    aria-expanded={false}
+    aria-haspopup="true"
+    className="button"
+    id="menubutton"
+    onClick={[Function]}
+  >
+    <p />
+  </button>
+</div>
+`;
