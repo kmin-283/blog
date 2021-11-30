@@ -11,8 +11,11 @@
       "@/models/*": [
         "models/*"
       ],
-      "@/styles/*":[
+      "@/styles/*": [
         "styles/*"
+      ],
+      "@/libs/*": [
+        "libs/*"
       ]
     },
     "target": "es5",
