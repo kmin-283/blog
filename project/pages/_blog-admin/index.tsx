@@ -1,28 +1,31 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import {getSession} from "next-auth/client";
+import { getSession } from "next-auth/client";
 import Login from "@/components/Login/Login";
 import Statistics from "@/components/Statistics/Statistics";
 import styles from "./_blog-admin.module.css";
-import {NextPageContext} from "next";
-import {Session} from "next-auth";
-import PostSection from "@/components/Posts/Posts";
+import { NextPageContext } from "next";
+import { Session } from "next-auth";
+import PostSection from "@/components/PostSection/PostSection";
+import DataFetcher from "@/libs/DataFetcher";
 
-const Admin = ({session}: { session: Session }) => {
+// TODO dataFetcher는 1번만 생성됐으면 좋겠다...
+const dataFetcher = new DataFetcher();
+
+const Admin = ({ session }: { session: Session }) => {
   const [section, setSection] = useState("stats");
-  
   if (!session) {
-    return <Login/>;
+    return <Login />;
   }
-  
+
   return (
     <>
       {session && (
         <>
           <Head>
             <title>admin</title>
-            <meta name="robots" content="noindex"/>
+            <meta name="robots" content="noindex" />
           </Head>
           <main className={styles.main}>
             <nav className={styles.navigation}>
@@ -52,8 +55,8 @@ const Admin = ({session}: { session: Session }) => {
                 </li>
               </ul>
             </nav>
-            {section === "stats" && <Statistics/>}
-            {section === "posts" && <PostSection/>}
+            {section === "stats" && <Statistics />}
+            {section === "posts" && <PostSection dataFetcher={dataFetcher} />}
           </main>
         </>
       )}
