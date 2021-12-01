@@ -4,7 +4,7 @@ import Head from "next/head";
 import { getSession } from "next-auth/client";
 import Login from "@/components/Login/Login";
 import Statistics from "@/components/Statistics/Statistics";
-import styles from "./_blog-admin.module.css";
+import styles from "./index.module.css";
 import { NextPageContext } from "next";
 import { Session } from "next-auth";
 import PostSection from "@/components/PostSection/PostSection";
