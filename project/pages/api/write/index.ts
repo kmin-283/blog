@@ -4,8 +4,9 @@ import Post from "@/models/post";
 import fs from "fs";
 import { getThumbnail } from "@/utils/imageUpload";
 import { makeInternalLinks } from "@/utils/markdown";
+import postSchema from "@/models/post";
 
-connectDB().then();
+const db = connectDB();
 
 const PostCR = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req;
@@ -17,6 +18,7 @@ const PostCR = async (req: NextApiRequest, res: NextApiResponse) => {
         const thumbnail = getThumbnail(markdown);
         const internalLinks = makeInternalLinks(markdown);
         const file = `./mds/${title.replace(/\s/g, "-")}.md`;
+        const Post = db.model("Post", postSchema);
         await Post.create({
           title,
           tags,

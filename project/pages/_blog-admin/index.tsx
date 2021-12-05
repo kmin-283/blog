@@ -13,7 +13,7 @@ import DataFetcher from "@/libs/DataFetcher";
 // TODO dataFetcher는 1번만 생성됐으면 좋겠다...
 const dataFetcher = new DataFetcher();
 
-const Admin = ({ session }: { session: Session }) => {
+const Admin = ({ session }: { session: Session | null }) => {
   const [section, setSection] = useState("stats");
   if (!session) {
     return <Login />;

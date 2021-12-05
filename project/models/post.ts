@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from "mongoose";
+import { Schema } from "mongoose";
 
 export interface IPost {
   _id: string;
@@ -29,4 +29,4 @@ const postSchema = new Schema<IPost>(
   }
 );
 
-export default mongoose.models.Post || model<IPost>("Post", postSchema);
+export default postSchema;

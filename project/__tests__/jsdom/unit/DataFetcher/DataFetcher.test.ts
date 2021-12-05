@@ -6,8 +6,8 @@ import {
   mockUpdatePost as updatePost,
   mockDeletePost as deletePost,
   mockUploadImage as uploadImage,
-} from "../../../__mocks__/postMock";
-import { setMockFiles } from "../../../__mocks__/fs";
+} from "../../../../__mocks__/postMock";
+import { setMockFiles } from "../../../../__mocks__/fs";
 
 jest.mock("@/libs/DataFetcher");
 
