@@ -4,7 +4,7 @@ import path from "path";
 import { GetServerSidePropsContext } from "next";
 import connectDB from "@/utils/mongodb";
 import Head from "next/head";
-import Post from "@/models/post";
+import Post, { IPost } from "@/models/post";
 import styles from "./[title].module.css";
 import Header from "@/components/Layout/Header/Header";
 import Footer from "@/components/Layout/Footer/Footer";
@@ -14,6 +14,7 @@ import { markedString } from "@/utils/markdown";
 import generateJsonLD from "@/utils/generateJsonLD";
 import InpageNavigation from "@/components/InpageNavigation/InpageNavigation";
 import NavigationMenuButton from "@/components/NavigationMenuButton/NavigationMenuButton";
+import postSchema from "@/models/post";
 
 interface PostPageProps {
   postName: string;
@@ -64,7 +65,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
             dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
           />
         </section>
-        <InpageNavigation internalLinks={internalLinks}/>
+        <InpageNavigation internalLinks={internalLinks} />
         <NavigationMenuButton internalLinks={internalLinks}>
           컨텐츠 보기
         </NavigationMenuButton>
@@ -95,7 +96,8 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContextWithTitle
 ) => {
   // TODO title로 DB를 조회하는게 좋은지 아니면 api로 조회하는게 좋은지..?
-  connectDB().then();
+  const db = connectDB();
+  const post = db.model<IPost>("Post", postSchema);
   const { title } = context.params;
   const markdown = readFileSync(path.join("mds", `${title}.md`), "utf8");
   const trimmedTitle = title.replace(/\-/g, " ");
@@ -106,7 +108,7 @@ export const getServerSideProps = async (
     description,
     internalLinks,
     updatedAt,
-  } = await Post.findOne({ title: trimmedTitle });
+  } = await post.findOne({ title: trimmedTitle });
   return {
     props: {
       postName,
