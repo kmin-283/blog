@@ -106,6 +106,7 @@ describe("Database 테스트", () => {
 
     test("하나의 document를 생성한다", async () => {
       let posts = await db.find({
+        filter: {},
         modelName: "Post",
         modelSchema,
       });
@@ -127,6 +128,7 @@ describe("Database 테스트", () => {
       });
 
       posts = await db.find({
+        filter: {},
         modelName: "Post",
         modelSchema,
       });
@@ -135,6 +137,7 @@ describe("Database 테스트", () => {
 
     test("하나의 document 생성 실패", async () => {
       let posts = await db.find({
+        filter: {},
         modelName: "Fail",
         modelSchema,
       });
@@ -157,6 +160,7 @@ describe("Database 테스트", () => {
       });
 
       posts = await db.find({
+        filter: {},
         modelName: "Post",
         modelSchema,
       });
@@ -165,6 +169,7 @@ describe("Database 테스트", () => {
 
     test("모든 document를 가져온다", async () => {
       let posts = await db.find({
+        filter: {},
         modelName: "Post",
         modelSchema,
       });
@@ -184,6 +189,7 @@ describe("Database 테스트", () => {
 
     test("모든 document를 가져오지 못한다", async () => {
       let posts = await db.find({
+        filter: {},
         modelName: "FailToFind",
         modelSchema,
       });
@@ -192,8 +198,42 @@ describe("Database 테스트", () => {
       expect(posts.data).toBe(undefined);
     });
 
+    test("특정 프로퍼티와 매칭되는 documents를 가져온다", async () => {
+      let post = await db.find({
+        filter: {
+          title: "test1",
+        },
+        modelName: "Post",
+        modelSchema,
+      });
+
+      expect((post.data as unknown as IPost[])[0]).toStrictEqual({
+        _id: "61ab94276a37b01a5c121ce1",
+        title: "test1",
+        tags: ["test1", "test2", "test3"],
+        file: "./mds/test1.md",
+        thumbnail: "/test1.jpg",
+        description: "test1 posting description",
+        internalLinks: "[]",
+        updatedAt: new Date("2021-12-04T16:15:35.981Z"),
+      });
+    });
+
+    test("특정 프로퍼티에 매칭되는 documents를 가져오지 못한다", async () => {
+      let post = await db.find({
+        filter: {
+          title: "test1",
+        },
+        modelName: "FailToFind",
+        modelSchema,
+      });
+      expect(post.success).toBe(false);
+      expect(post.data).toBe(undefined);
+    });
+
     test("하나의 document를 삭제한다", async () => {
       let posts = await db.find({
+        filter: {},
         modelName: "Post",
         modelSchema,
       });
@@ -205,6 +245,7 @@ describe("Database 테스트", () => {
         modelSchema,
       });
       posts = await db.find({
+        filter: {},
         modelName: "Post",
         modelSchema,
       });
@@ -214,6 +255,7 @@ describe("Database 테스트", () => {
 
     test("하나의 document를 삭제하지 못한다", async () => {
       let posts = await db.find({
+        filter: {},
         modelName: "Post",
         modelSchema,
       });
@@ -229,6 +271,7 @@ describe("Database 테스트", () => {
       expect(posts.success).toBe(false);
 
       posts = await db.find({
+        filter: {},
         modelName: "Post",
         modelSchema,
       });

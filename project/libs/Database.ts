@@ -47,9 +47,11 @@ export default class Database implements IDatabase {
   }
 
   async find<T>({
+    filter,
     modelName,
     modelSchema,
   }: {
+    filter: { [P in keyof T]?: T[P] };
     modelName: string;
     modelSchema: Schema;
   }): Promise<ReturnState<T>> {
@@ -58,7 +60,7 @@ export default class Database implements IDatabase {
     }
     try {
       const model = this.connection.model(modelName, modelSchema);
-      const data = await model.find({});
+      const data = await model.find(filter);
       return { success: true, data: data as unknown as T[] };
     } catch (error) {
       return { success: true };
@@ -146,9 +148,11 @@ export interface IDatabase {
     modelSchema: Schema;
   }) => Promise<ReturnState<T>>;
   find: <T>({
+    filter,
     modelName,
     modelSchema,
   }: {
+    filter: { [P in keyof T]?: T[P] };
     modelName: string;
     modelSchema: Schema;
   }) => Promise<ReturnState<T>>;

@@ -2,7 +2,6 @@ import React, { ReactElement } from "react";
 import { readFileSync } from "fs";
 import path from "path";
 import { GetServerSidePropsContext } from "next";
-import connectDB from "@/utils/mongodb";
 import Head from "next/head";
 import Post, { IPost } from "@/models/post";
 import styles from "./[title].module.css";
@@ -15,6 +14,7 @@ import generateJsonLD from "@/utils/generateJsonLD";
 import InpageNavigation from "@/components/InpageNavigation/InpageNavigation";
 import NavigationMenuButton from "@/components/NavigationMenuButton/NavigationMenuButton";
 import postSchema from "@/models/post";
+import Database from "@/libs/Database";
 
 interface PostPageProps {
   postName: string;
@@ -65,10 +65,12 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
             dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
           />
         </section>
-        <InpageNavigation internalLinks={internalLinks} />
-        <NavigationMenuButton internalLinks={internalLinks}>
-          컨텐츠 보기
-        </NavigationMenuButton>
+        {internalLinks && <InpageNavigation internalLinks={internalLinks} />}
+        {internalLinks && (
+          <NavigationMenuButton internalLinks={internalLinks}>
+            컨텐츠 보기
+          </NavigationMenuButton>
+        )}
       </article>
     </div>
   );
@@ -96,11 +98,24 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContextWithTitle
 ) => {
   // TODO title로 DB를 조회하는게 좋은지 아니면 api로 조회하는게 좋은지..?
-  const db = connectDB();
-  const post = db.model<IPost>("Post", postSchema);
+  const db = new Database();
+  db.connect(process.env.MONGO_URL!, "posts");
   const { title } = context.params;
   const markdown = readFileSync(path.join("mds", `${title}.md`), "utf8");
   const trimmedTitle = title.replace(/\-/g, " ");
+  const ret = await db.find({
+    filter: { title: trimmedTitle },
+    modelName: "Post",
+    modelSchema: postSchema,
+  });
+
+  if (!ret.success) {
+    // TODO 404페이지를 보여줘야 함
+    return {
+      props: {},
+    };
+  }
+
   const {
     title: postName,
     tags,
@@ -108,7 +123,8 @@ export const getServerSideProps = async (
     description,
     internalLinks,
     updatedAt,
-  } = await post.findOne({ title: trimmedTitle });
+  } = (ret.data as IPost[])[0];
+
   return {
     props: {
       postName,
