@@ -23,16 +23,12 @@ describe("InpageNavigation 컴포넌트", () => {
   beforeEach(() => {
     component = render(
       <Dropdown>
-        <DropdownItem
-          onClick={click1st}
-          role={"첫 번째 동작"}
-          icon={<span>dummyIcon</span>}
-        />
-        <DropdownItem
-          onClick={click2nd}
-          role={"두 번째 동작"}
-          icon={<span>dummyIcon</span>}
-        />
+        <DropdownItem onClick={click1st} icon={<span>dummyIcon</span>}>
+          첫 번째 동작
+        </DropdownItem>
+        <DropdownItem onClick={click2nd} icon={<span>dummyIcon</span>}>
+          두 번째 동작
+        </DropdownItem>
       </Dropdown>
     );
   });
@@ -41,16 +37,12 @@ describe("InpageNavigation 컴포넌트", () => {
     const dropdown = renderer
       .create(
         <Dropdown>
-          <DropdownItem
-            onClick={click1st}
-            role={"첫 번째 동작"}
-            icon={<span>dummyIcon</span>}
-          />
-          <DropdownItem
-            onClick={click2nd}
-            role={"두 번째 동작"}
-            icon={<span>dummyIcon</span>}
-          />
+          <DropdownItem onClick={click1st} icon={<span>dummyIcon</span>}>
+            첫 번째 동작
+          </DropdownItem>
+          <DropdownItem onClick={click2nd} icon={<span>dummyIcon</span>}>
+            두 번째 동작
+          </DropdownItem>
         </Dropdown>
       )
       .toJSON();
