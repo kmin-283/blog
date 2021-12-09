@@ -41,10 +41,10 @@ describe("DataFetcher 테스트", () => {
     uploadImage.mockClear();
   });
   test("정상적인 getPosts 테스트", async () => {
-    const posts = await dataFetcher.getPosts("/posts");
+    const posts = await dataFetcher.getPosts("/api/posts");
 
     expect(getPosts).toHaveBeenCalledTimes(1);
-    expect(getPosts).toHaveBeenLastCalledWith("/posts");
+    expect(getPosts).toHaveBeenLastCalledWith("/api/posts");
     expect(posts).toStrictEqual([
       {
         _id: "mock1",
@@ -95,10 +95,10 @@ describe("DataFetcher 테스트", () => {
   });
 
   test("정상적인 getPost 테스트", async () => {
-    const post = await dataFetcher.getPost("/posts/mock1");
+    const post = await dataFetcher.getPost("/api/posts/mock1");
 
     expect(getPost).toHaveBeenCalledTimes(1);
-    expect(getPost).toHaveBeenLastCalledWith("/posts/mock1");
+    expect(getPost).toHaveBeenLastCalledWith("/api/posts/mock1");
     expect(post).toStrictEqual({
       _id: "mock1",
       title: "test post1",
@@ -222,17 +222,20 @@ describe("DataFetcher 테스트", () => {
   });
 
   test("정상적인 deletePost 테스트", async () => {
-    const posts = await dataFetcher.getPosts("/posts");
+    const posts = await dataFetcher.getPosts("/api/posts");
 
     expect(posts).toHaveLength(2);
     const afterDeletePost = await dataFetcher.deletePost(
-      "/posts/mock2",
+      "/api/posts/mock2",
       "test post2"
     );
 
     expect(afterDeletePost).toHaveLength(1);
     expect(deletePost).toHaveBeenCalledTimes(1);
-    expect(deletePost).toHaveBeenLastCalledWith("/posts/mock2", "test post2");
+    expect(deletePost).toHaveBeenLastCalledWith(
+      "/api/posts/mock2",
+      "test post2"
+    );
   });
 
   test("에러 발생 시 deletePost 테스트", async () => {

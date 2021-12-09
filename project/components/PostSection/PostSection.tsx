@@ -26,6 +26,7 @@ const PostSection = ({ dataFetcher }: { dataFetcher: IDataFetcher }) => {
       await dataFetcher
         .getPosts("/api/posts")
         .then((newPosts) => setPosts(newPosts));
+
     getPosts();
   }, [dataFetcher]);
 
@@ -69,7 +70,6 @@ const PostSection = ({ dataFetcher }: { dataFetcher: IDataFetcher }) => {
                 const time = convertToKRDate(post.updatedAt.toString());
                 return (
                   <li className={styles.post} key={post._id}>
-                    {/* TODO Link 태그로 감싸서 해당포스트의 새로운 창을 띄워주기 */}
                     <section className={styles.detail}>
                       <div className={styles.info}>
                         <Image
@@ -92,14 +92,16 @@ const PostSection = ({ dataFetcher }: { dataFetcher: IDataFetcher }) => {
                     <Dropdown>
                       <DropdownItem
                         onClick={deletePost(post._id, post.title)}
-                        role={"삭제하기"}
                         icon={<BsTrash size="1.2em" />}
-                      />
+                      >
+                        삭제하기
+                      </DropdownItem>
                       <DropdownItem
                         onClick={modifyPost(post._id)}
-                        role={"수정하기"}
                         icon={<RiEdit2Fill size="1.2em" />}
-                      />
+                      >
+                        수정하기
+                      </DropdownItem>
                     </Dropdown>
                   </li>
                 );

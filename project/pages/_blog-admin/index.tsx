@@ -10,10 +10,10 @@ import { Session } from "next-auth";
 import PostSection from "@/components/PostSection/PostSection";
 import DataFetcher from "@/libs/DataFetcher";
 
-// TODO dataFetcher는 1번만 생성됐으면 좋겠다...
-const dataFetcher = new DataFetcher();
-
 const Admin = ({ session }: { session: Session | null }) => {
+  // TODO dataFetcher는 1번만 생성됐으면 좋겠다...
+  // 테스트코드에서 Admin이 rerendering 되면 dataFetcher의 mocking의 결과가 undefined가 됨....왜지???
+  const dataFetcher = new DataFetcher();
   const [section, setSection] = useState("stats");
   if (!session) {
     return <Login />;

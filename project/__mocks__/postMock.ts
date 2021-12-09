@@ -1,7 +1,7 @@
 import { IPost, IPostWithMarkdown } from "@/models/post";
 
 const mockGetPosts = jest.fn(async (url: string): Promise<IPost[]> => {
-  if (url === "/posts") {
+  if (url === "/api/posts") {
     return [
       {
         _id: "mock1",
@@ -47,7 +47,7 @@ const mockGetPosts = jest.fn(async (url: string): Promise<IPost[]> => {
 });
 
 const mockGetPost = jest.fn(async (url: string): Promise<IPostWithMarkdown> => {
-  if (url === "/posts/mock1") {
+  if (url === "/api/posts/mock1") {
     return {
       _id: "mock1",
       title: "test post1",
@@ -126,7 +126,7 @@ const mockUpdatePost = jest.fn(
 );
 
 const mockDeletePost = jest.fn(async (url: string, title: string) => {
-  if (url === "/posts/mock2") {
+  if (url === "/api/posts/mock2") {
     return [
       {
         _id: "mock1",
