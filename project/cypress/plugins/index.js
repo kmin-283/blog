@@ -4,8 +4,7 @@ require("dotenv").config();
 /**
  * @type {Cypress.PluginConfig}
  */
-// eslint-disable-next-line no-unused-vars
-const { GoogleSocialLogin } = require("../tmp/src").plugins;
+const { GoogleSocialLogin } = require("cypress-social-logins").plugins;
 
 module.exports = (on, config) => {
   on("task", {

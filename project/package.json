@@ -14,7 +14,7 @@
     "test-jest": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "cypress:open": "./node_modules/.bin/cypress open"
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "aws-sdk": "^2.1022.0",
