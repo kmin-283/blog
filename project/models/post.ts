@@ -1,4 +1,4 @@
-import mongoose, {model, Schema} from "mongoose";
+import { Schema } from "mongoose";
 
 export interface IPost {
   _id: string;
@@ -11,18 +11,22 @@ export interface IPost {
   updatedAt: Date;
 }
 
+export interface IPostWithMarkdown extends IPost {
+  markdown: string;
+}
+
 const postSchema = new Schema<IPost>(
   {
-    title: {type: String, required: true},
-    tags: {type: [String]},
-    file: {type: String, required: true},
-    thumbnail: {type: String, required: true},
-    description: {type: String, required: true},
-    internalLinks: {type: String}
+    title: { type: String, required: true },
+    tags: { type: [String] },
+    file: { type: String, required: true },
+    thumbnail: { type: String, required: true },
+    description: { type: String, required: true },
+    internalLinks: { type: String },
   },
   {
     timestamps: true,
   }
 );
 
-export default mongoose.models.Post || model<IPost>("Post", postSchema);
+export default postSchema;

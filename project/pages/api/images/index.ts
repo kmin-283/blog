@@ -30,9 +30,9 @@ const ImageC = async (req: NextApiRequest, res: NextApiResponse) => {
           .catch((error) => {
             throw new Error(error);
           });
-        return res.status(201).json({ success: true, uploadData });
+        return res.status(201).json({ success: true, data: uploadData });
       } catch (error) {
-        return res.status(400).json({ success: false, error });
+        return res.status(400).json({ success: false, data: error });
       }
   }
 };

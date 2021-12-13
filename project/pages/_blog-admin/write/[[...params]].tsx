@@ -10,7 +10,10 @@ import Login from "@/components/Login/Login";
 import { AiOutlineSave, AiOutlineUpload } from "react-icons/ai";
 import Toolbar from "@/components/Toolbar/Toolbar";
 import Tags from "@/components/Tags/Tags";
-import {markedString} from "@/utils/markdown";
+import { markedString } from "@/utils/markdown";
+import DataFetcher from "@/libs/DataFetcher";
+
+const dataFetcher = new DataFetcher();
 
 const Write = ({ session }: { session: Session }) => {
   const router = useRouter();
@@ -23,14 +26,9 @@ const Write = ({ session }: { session: Session }) => {
   const [markdown, setMarkdown] = useState<string>("");
 
   useEffect(() => {
-    const getPost = async () => {
-      const response = await fetch(`/api/write/${_id}`);
-      if (response.ok) {
-        return await response.json();
-      }
-    };
+    const getPost = async () => dataFetcher.getPost(`/api/write/${_id}`);
     if (_id) {
-      getPost().then(({ data: { title, tags, description, markdown } }) => {
+      getPost().then(({ title, tags, description, markdown }) => {
         setTitle(title);
         setPrevTitle(title);
         setTags(tags);
@@ -64,41 +62,34 @@ const Write = ({ session }: { session: Session }) => {
 
   const writePost = async () => {
     setLoading(true);
-    const response = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({ title, tags, description, markdown }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const res = await dataFetcher.writePost({
+      url: "/api/write",
+      title,
+      tags,
+      description,
+      markdown,
     });
-    if (response.ok) {
+    if (res.success) {
       await router.push("/_blog-admin");
-    } else {
-      const data = response.json();
-      // logger가 에러가 발생한 로그를 수집할 수 있도록 하자
-      // 에러가 발생했다면 data에 에러 메시지가 담겨있을거임
-      console.error(data);
     }
+    // TODO 실패 로그 남기기
     setLoading(false);
   };
 
   const modifyPost = async () => {
     setLoading(true);
-    const response = await fetch(`/api/write/${_id}`, {
-      method: "PUT",
-      body: JSON.stringify({ prevTitle, title, tags, description, markdown }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const res = await dataFetcher.updatePost({
+      url: `/api/write/${_id}`,
+      prevTitle,
+      title,
+      tags,
+      description,
+      markdown,
     });
-    if (response.ok) {
+    if (res.success) {
       await router.push("/_blog-admin");
-    } else {
-      const data = response.json();
-      // logger가 에러가 발생한 로그를 수집할 수 있도록 하자
-      // 에러가 발생했다면 data에 에러 메시지가 담겨있을거임
-      console.error(data);
     }
+    // TODO 실패 로그 남기기
     setLoading(false);
   };
 
@@ -112,26 +103,15 @@ const Write = ({ session }: { session: Session }) => {
 
   const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      const formData = new FormData();
-      formData.append("file", files[0], files[0].name);
-      const response = await fetch("/api/images", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
-      if (response.ok) {
-        const {
-          uploadData: { Location },
-        } = data;
-        setMarkdown((prevState) => prevState + `![](${Location})`);
-      } else {
-        {
-          /*TODO log를 남길 수 있게 추가하기*/
-        }
-        console.log(data);
-      }
+    const res = await dataFetcher.uploadImage(
+      "/api/images",
+      event.target.files
+    );
+    if (res.success) {
+      setMarkdown((prevState) => prevState + `![](${res.data})`);
+    } else if (!res.success && res.data === "") {
+      // TODO log남기기
+      console.error("뭔가 오류가 발생했습니다");
     }
   };
 
@@ -213,9 +193,9 @@ const Write = ({ session }: { session: Session }) => {
           </section>
         </section>
         <section className={styles.preview}>
-          <h2 className={styles.previewTitle}>
+          <h1 className={styles.previewTitle}>
             {title ? title : "제목을 입력해주십시오"}
-          </h2>
+          </h1>
           <Tags tags={tags} howMany={5} />
           <strong>{description}</strong>
           <main
@@ -227,7 +207,6 @@ const Write = ({ session }: { session: Session }) => {
     </>
   );
 };
-
 export default Write;
 
 export const getServerSideProps = async (context: NextPageContext) => {

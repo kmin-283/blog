@@ -7,7 +7,8 @@ import Footer from "@/components/Layout/Footer/Footer";
 import PostCard from "@/components/PostCard/PostCard";
 import Post, { IPost } from "@/models/post";
 import styles from "./index.module.css";
-import connectDB from "@/utils/mongodb";
+import Database from "@/libs/Database";
+import postSchema from "@/models/post";
 
 export interface HomeProps {
   posts: IPost[];
@@ -50,19 +51,25 @@ export default Home;
 export const getServerSideProps = async (): Promise<
   GetServerSidePropsResult<HomeProps>
 > => {
-  await connectDB();
-  const posts = JSON.stringify(await Post.find({}));
+  const db = new Database();
+  db.connect(process.env.MONGO_URL!, "posts");
+  const posts = await db.find<IPost>({
+    filter: {},
+    modelName: "Post",
+    modelSchema: postSchema,
+  });
 
-  if (posts) {
+  if (!posts.success) {
     return {
       props: {
-        posts: JSON.parse(posts),
+        posts: [],
       },
     };
   }
+
   return {
     props: {
-      posts: [],
+      posts: JSON.parse(JSON.stringify(posts.data)) as IPost[],
     },
   };
 };

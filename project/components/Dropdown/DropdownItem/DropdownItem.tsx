@@ -1,17 +1,16 @@
-import React, { ReactChild } from "react";
+import React, { ReactChild, FC } from "react";
 import styles from "./DropdownItem.module.css";
 
 interface DropdownItemProps {
   onClick: () => void;
-  role: string;
   icon: ReactChild;
 }
 
-const DropdownItem = ({ onClick, role, icon }: DropdownItemProps) => {
+const DropdownItem: FC<DropdownItemProps> = ({ children, onClick, icon }) => {
   return (
     <button className={styles.dropdownBtn} onClick={onClick}>
       <div className={styles.icon}>{icon}</div>
-      <div className={styles.role}>{role}</div>
+      <div className={styles.role}>{children}</div>
     </button>
   );
 };
