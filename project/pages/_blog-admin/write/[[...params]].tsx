@@ -193,9 +193,9 @@ const Write = ({ session }: { session: Session }) => {
           </section>
         </section>
         <section className={styles.preview}>
-          <h2 className={styles.previewTitle}>
+          <h1 className={styles.previewTitle}>
             {title ? title : "제목을 입력해주십시오"}
-          </h2>
+          </h1>
           <Tags tags={tags} howMany={5} />
           <strong>{description}</strong>
           <main
