@@ -24,6 +24,7 @@ const Home: NextPageWithLayout<HomeProps> = ({ posts }) => {
           name="description"
           content="kmin의 블로그입니다. 개발을 진행하며 학습한 내용들을 작성하려고 합니다."
         />
+        <link rel="canonical" href="https://www.kmin-283.com" />
       </Head>
       <main>
         <div className={styles.posts}>
