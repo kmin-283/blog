@@ -44,6 +44,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
   });
   // TODO html에서 __NEXT_DATA__를 없앨 수 없나??
   // TODO what __next_data__로 검색해보자.
+
   return (
     <div>
       <Head>
@@ -74,8 +75,10 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
             dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
           />
         </section>
-        {internalLinks && <InpageNavigation internalLinks={internalLinks} />}
-        {internalLinks && (
+        {internalLinks.length > 2 && (
+          <InpageNavigation internalLinks={internalLinks} />
+        )}
+        {internalLinks.length > 2 && (
           <NavigationMenuButton internalLinks={internalLinks}>
             컨텐츠 보기
           </NavigationMenuButton>

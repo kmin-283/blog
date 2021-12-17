@@ -3,6 +3,7 @@
     display: flex;
     width: 100%;
 }
+
 .post {
     display: flex;
     flex-direction: column;
@@ -35,6 +36,11 @@
 }
 
 @media (max-width: 600px) {
+    .post {
+        width: 100%;
+        margin: 0 5%;
+    }
+
     .title {
         font-size: 2rem;
     }
