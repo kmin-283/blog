@@ -72,7 +72,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
           <strong className={styles.description}>{description}</strong>
           <section
             className={styles.content}
-            dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
+            dangerouslySetInnerHTML={{ __html: markedString("read", markdown) }}
           />
         </section>
         {internalLinks.length > 2 && (
