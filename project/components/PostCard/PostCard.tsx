@@ -1,30 +1,30 @@
-import React, {FC} from "react";
-import {IPost} from "@/models/post";
+import React, { FC } from "react";
+import { IPost } from "@/models/post";
 import Link from "next/link";
 import Image from "next/image";
-import {convertToKRDate} from "@/utils/time";
+import { convertToKRDate } from "@/utils/time";
 import styles from "./PostCard.module.css";
 
 interface PostCardProps {
   post: IPost;
 }
 
-const PostCard: FC<PostCardProps> = ({post}) => {
+const PostCard: FC<PostCardProps> = ({ post }) => {
   const time = convertToKRDate(post.updatedAt.toString());
   return (
-    <div className={styles.postCard}>
-      <Link href={`/${post.title.replace(/\s/g, "-")}`}>
-        <a>
+    <Link href={`/${post.title.replace(/\s/g, "-")}`}>
+      <a>
+        <div className={styles.postCard}>
           <div className={styles.thumbnail}>
             {post.thumbnail && (
-              <Image src={post.thumbnail} alt={"thumbnail"} layout={"fill"}/>
+              <Image src={post.thumbnail} alt={"thumbnail"} layout={"fill"} />
             )}
           </div>
           <article className={styles.about}>
             <h2 className={styles.title} property={"title"}>
               {post.title}
             </h2>
-            <hr className={styles.divider}/>
+            <hr className={styles.divider} />
             <span className={styles.description} property={"description"}>
               {post.description}
             </span>
@@ -34,9 +34,9 @@ const PostCard: FC<PostCardProps> = ({post}) => {
               </time>
             </div>
           </article>
-        </a>
-      </Link>
-    </div>
+        </div>
+      </a>
+    </Link>
   );
 };
 
