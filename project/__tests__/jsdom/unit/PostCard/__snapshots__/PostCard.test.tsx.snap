@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`postcard 컴포넌트 Header 렌더링 1`] = `
-<div
-  className="postCard"
+<a
+  href="/%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8-%EC%9E%85%EB%8B%88%EB%8B%A4"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
 >
-  <a
-    href="/%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%8F%AC%EC%8A%A4%ED%8A%B8-%EC%9E%85%EB%8B%88%EB%8B%A4"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
+  <div
+    className="postCard"
   >
     <div
       className="thumbnail"
@@ -119,12 +119,12 @@ exports[`postcard 컴포넌트 Header 렌더링 1`] = `
       >
         <time
           className="time"
-          dateTime="1995년 12월 17일"
+          dateTime="Sun Dec 17 1995 12:24:00 GMT+0900 (대한민국 표준시)"
         >
           1995년 12월 17일
         </time>
       </div>
     </article>
-  </a>
-</div>
+  </div>
+</a>
 `;

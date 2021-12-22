@@ -10,7 +10,7 @@ interface PostCardProps {
 }
 
 const PostCard: FC<PostCardProps> = ({ post }) => {
-  const time = convertToKRDate(post.updatedAt.toString());
+  const createdTime = convertToKRDate(post.createdAt.toString());
   return (
     <Link href={`/${post.title.replace(/\s/g, "-")}`}>
       <a>
@@ -29,8 +29,11 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
               {post.description}
             </span>
             <div className={styles.subInfo}>
-              <time className={styles.time} dateTime={time}>
-                {time}
+              <time
+                className={styles.time}
+                dateTime={post.createdAt.toString()}
+              >
+                {createdTime}
               </time>
             </div>
           </article>

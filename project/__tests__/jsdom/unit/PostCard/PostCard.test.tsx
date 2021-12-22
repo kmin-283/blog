@@ -14,6 +14,7 @@ describe("postcard 컴포넌트", () => {
     thumbnail: "/__mocks__/thumbnailMock.js",
     description: "postcard 컴포넌트 테스트",
     updatedAt: new Date("1995-12-17T03:24:00Z"),
+    createdAt: new Date("1995-12-17T03:24:00Z"),
   };
   afterAll(cleanup);
 

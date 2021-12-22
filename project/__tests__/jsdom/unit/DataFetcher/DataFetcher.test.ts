@@ -64,6 +64,7 @@ describe("DataFetcher 테스트", () => {
           '      "{\\"headingLevel\\":3,\\"value\\":\\"2-2 헤딩\\",\\"child\\":[" +\n' +
           '      "{\\"headingLevel\\":4,\\"value\\":\\"2-2-1 헤딩\\",\\"child\\":[]}]}]}]"',
         updatedAt: new Date("2020-11-30"),
+        createdAt: new Date("2020-11-30"),
       },
       {
         _id: "mock2",
@@ -83,6 +84,7 @@ describe("DataFetcher 테스트", () => {
           '      "{\\"headingLevel\\":3,\\"value\\":\\"2-2 헤딩\\",\\"child\\":[" +\n' +
           '      "{\\"headingLevel\\":4,\\"value\\":\\"2-2-1 헤딩\\",\\"child\\":[]}]}]}]"',
         updatedAt: new Date("2020-11-30"),
+        createdAt: new Date("2020-11-30"),
       },
     ]);
   });
@@ -118,6 +120,7 @@ describe("DataFetcher 테스트", () => {
         '      "{\\"headingLevel\\":3,\\"value\\":\\"2-2 헤딩\\",\\"child\\":[" +\n' +
         '      "{\\"headingLevel\\":4,\\"value\\":\\"2-2-1 헤딩\\",\\"child\\":[]}]}]}]"',
       updatedAt: new Date("2020-11-30"),
+      createdAt: new Date("2020-11-30"),
     });
   });
   test("에러 발생 시 getPost 테스트", async () => {
@@ -134,6 +137,7 @@ describe("DataFetcher 테스트", () => {
       thumbnail: "",
       description: "",
       updatedAt: new Date("2020-11-30"),
+      createdAt: new Date("2020-11-30"),
     });
   });
 

@@ -15,6 +15,7 @@ import InpageNavigation from "@/components/InpageNavigation/InpageNavigation";
 import NavigationMenuButton from "@/components/NavigationMenuButton/NavigationMenuButton";
 import postSchema from "@/models/post";
 import Database from "@/libs/Database";
+import { convertToKRDate } from "@/utils/time";
 
 interface PostPageProps {
   postName: string;
@@ -24,6 +25,7 @@ interface PostPageProps {
   description: string;
   internalLinks: string;
   updatedAt: Date;
+  createdAt: Date;
 }
 
 const PostPage: NextPageWithLayout<PostPageProps> = ({
@@ -34,14 +36,18 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
   description,
   internalLinks,
   updatedAt,
+  createdAt,
 }) => {
   const jsonLD = generateJsonLD({
     title: postName,
     description,
     thumbnail,
     updatedAt,
+    createdAt,
     tags,
   });
+
+  const createdTime = convertToKRDate(createdAt.toString());
   // TODO html에서 __NEXT_DATA__를 없앨 수 없나??
   // TODO what __next_data__로 검색해보자.
 
@@ -68,6 +74,9 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({
       <article className={styles.container}>
         <section className={styles.post}>
           <h1 className={styles.title}>{postName}</h1>
+          <time className={styles.time} dateTime={createdAt.toString()}>
+            {createdTime} 작성
+          </time>
           <Tags tags={tags} howMany={5} />
           <strong className={styles.description}>{description}</strong>
           <section
@@ -135,6 +144,7 @@ export const getServerSideProps = async (
     description,
     internalLinks,
     updatedAt,
+    createdAt,
   } = (ret.data as IPost[])[0];
 
   return {
@@ -145,6 +155,7 @@ export const getServerSideProps = async (
       description,
       internalLinks,
       updatedAt: (updatedAt as Date).toISOString(),
+      createdAt: (createdAt as Date).toISOString(),
       markdown,
     },
   };
