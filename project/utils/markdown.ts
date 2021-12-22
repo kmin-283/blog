@@ -13,16 +13,40 @@ marked.setOptions({
   },
 });
 
-const renderer = {
+const rendererInWriteMode = {
   heading(text: string, level: number) {
     return `<h${level} id=${encodeURI(
       text.replace(/\s/g, "-")
     )}>${text}</h${level}>`;
   },
 };
-marked.use({ renderer });
 
-const markedString = (markdown: string) => marked(markdown);
+const rendererInReadMode = {
+  heading(text: string, level: number) {
+    return `<h${level} id=${encodeURI(
+      text.replace(/\s/g, "-")
+    )}>${text}</h${level}>`;
+  },
+  image(href: string, title: string, text: string) {
+    const imageUrl = href.slice(0, href.lastIndexOf("."));
+    return `<picture>
+<source srcset=${imageUrl}.avif type="image/avif">
+<source srcset=${imageUrl}.webp type="image/webp">
+<img src=${href} alt=${text ?? "empty"} title=${
+      title ?? "empty"
+    } loading="lazy">
+</picture>`;
+  },
+};
+
+const markedString = (type: string, markdown: string) => {
+  if (type === "read") {
+    marked.use({ renderer: rendererInReadMode });
+  } else {
+    marked.use({ renderer: rendererInWriteMode });
+  }
+  return marked(markdown);
+};
 
 const getHeadingLevel = (heading: string) => {
   return heading.indexOf(" ");

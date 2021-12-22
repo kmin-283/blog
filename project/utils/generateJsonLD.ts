@@ -3,12 +3,14 @@ const generateJsonLD = ({
   description,
   thumbnail,
   updatedAt,
+  createdAt,
   tags,
 }: {
   title: string;
   description: string;
   thumbnail: string;
   updatedAt: Date;
+  createdAt: Date;
   tags: string[];
 }) => {
   const DOMAIN_NAME = "https://kmin283.com";
@@ -35,8 +37,8 @@ const generateJsonLD = ({
       name: "kmin",
       url: DOMAIN_NAME,
     },
-    dateCreated: updatedAt,
-    datePublished: updatedAt,
+    dateCreated: createdAt,
+    datePublished: createdAt,
     dateModified: updatedAt,
   };
 };

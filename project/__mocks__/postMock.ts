@@ -21,6 +21,7 @@ const mockGetPosts = jest.fn(async (url: string): Promise<IPost[]> => {
           '      "{\\"headingLevel\\":3,\\"value\\":\\"2-2 헤딩\\",\\"child\\":[" +\n' +
           '      "{\\"headingLevel\\":4,\\"value\\":\\"2-2-1 헤딩\\",\\"child\\":[]}]}]}]"',
         updatedAt: new Date("2020-11-30"),
+        createdAt: new Date("2020-11-30"),
       },
       {
         _id: "mock2",
@@ -40,6 +41,7 @@ const mockGetPosts = jest.fn(async (url: string): Promise<IPost[]> => {
           '      "{\\"headingLevel\\":3,\\"value\\":\\"2-2 헤딩\\",\\"child\\":[" +\n' +
           '      "{\\"headingLevel\\":4,\\"value\\":\\"2-2-1 헤딩\\",\\"child\\":[]}]}]}]"',
         updatedAt: new Date("2020-11-30"),
+        createdAt: new Date("2020-11-30"),
       },
     ];
   }
@@ -67,6 +69,7 @@ const mockGetPost = jest.fn(async (url: string): Promise<IPostWithMarkdown> => {
         '      "{\\"headingLevel\\":3,\\"value\\":\\"2-2 헤딩\\",\\"child\\":[" +\n' +
         '      "{\\"headingLevel\\":4,\\"value\\":\\"2-2-1 헤딩\\",\\"child\\":[]}]}]}]"',
       updatedAt: new Date("2020-11-30"),
+      createdAt: new Date("2020-11-30"),
     };
   }
   return {
@@ -78,6 +81,7 @@ const mockGetPost = jest.fn(async (url: string): Promise<IPostWithMarkdown> => {
     thumbnail: "",
     description: "",
     updatedAt: new Date("2020-11-30"),
+    createdAt: new Date("2020-11-30"),
   };
 });
 
@@ -146,6 +150,7 @@ const mockDeletePost = jest.fn(async (url: string, title: string) => {
           '      "{\\"headingLevel\\":3,\\"value\\":\\"2-2 헤딩\\",\\"child\\":[" +\n' +
           '      "{\\"headingLevel\\":4,\\"value\\":\\"2-2-1 헤딩\\",\\"child\\":[]}]}]}]"',
         updatedAt: new Date("2020-11-30"),
+        createdAt: new Date("2020-11-30"),
       },
     ];
   }

@@ -67,7 +67,7 @@ const PostSection = ({ dataFetcher }: { dataFetcher: IDataFetcher }) => {
           <TabPanel>
             <ul className={styles.postList}>
               {posts.map((post) => {
-                const time = convertToKRDate(post.updatedAt.toString());
+                const time = convertToKRDate(post.createdAt.toString());
                 return (
                   <li className={styles.post} key={post._id}>
                     <section className={styles.detail}>
@@ -84,7 +84,10 @@ const PostSection = ({ dataFetcher }: { dataFetcher: IDataFetcher }) => {
                           <Tags tags={post.tags} howMany={5} />
                         </div>
                       </div>
-                      <time className={styles.time} dateTime={time}>
+                      <time
+                        className={styles.time}
+                        dateTime={post.createdAt.toString()}
+                      >
                         <AiOutlineClockCircle />
                         <span>{time}</span>
                       </time>

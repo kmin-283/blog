@@ -9,6 +9,7 @@ export interface IPost {
   description: string;
   internalLinks?: string;
   updatedAt: Date;
+  createdAt: Date;
 }
 
 export interface IPostWithMarkdown extends IPost {

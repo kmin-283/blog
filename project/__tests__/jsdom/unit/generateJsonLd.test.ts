@@ -1,19 +1,22 @@
 import generateJsonLD from "@/utils/generateJsonLD";
 
-test('JSONLd 만들기', () => {
+test("JSONLd 만들기", () => {
   const now = new Date();
-  const DOMAIN_NAME = 'https://kmin283.com';
+  const DOMAIN_NAME = "https://kmin283.com";
   const title = "JsonLD를 만들어주는 함수";
   const description = "JsonLD를 자동으로 만들어주는 함수입니다";
   const thumbnail = "/__mocks__/fileMock.js";
-  const tags = ['JsonLD', '어떻게 만드나요'];
-  expect(generateJsonLD({
-    title,
-    description,
-    thumbnail,
-    updatedAt: now,
-    tags,
-  })).toStrictEqual({
+  const tags = ["JsonLD", "어떻게 만드나요"];
+  expect(
+    generateJsonLD({
+      title,
+      description,
+      thumbnail,
+      updatedAt: now,
+      createdAt: now,
+      tags,
+    })
+  ).toStrictEqual({
     "@context": "https://schema.org/",
     "@type": "BlogPosting",
     headline: title,

@@ -22,7 +22,7 @@ const ImageC = async (req: NextApiRequest, res: NextApiResponse) => {
             if (error) {
               reject(error);
             }
-            resolve(await uploadToS3(files));
+            resolve(await uploadToS3("images", files));
           });
         });
         const uploadData = await data

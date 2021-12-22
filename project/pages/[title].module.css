@@ -3,6 +3,7 @@
     display: flex;
     width: 100%;
 }
+
 .post {
     display: flex;
     flex-direction: column;
@@ -22,6 +23,11 @@
     margin: 0;
 }
 
+.time {
+    color: var(--icon-inactive-color);
+    padding-bottom: 1rem;
+}
+
 .tags li {
     padding-right: 1rem;
 }
@@ -34,7 +40,12 @@
     font-size: 1.25rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 799px) {
+    .post {
+        width: 100%;
+        margin: 0 5%;
+    }
+
     .title {
         font-size: 2rem;
     }
@@ -45,5 +56,10 @@
 
     .content {
         font-size: 1rem;
+    }
+
+    .time {
+        font-size: 0.75rem;
+        padding-bottom: 0.5rem;
     }
 }

@@ -200,7 +200,9 @@ const Write = ({ session }: { session: Session }) => {
           <strong>{description}</strong>
           <main
             className={styles.content}
-            dangerouslySetInnerHTML={{ __html: markedString(markdown) }}
+            dangerouslySetInnerHTML={{
+              __html: markedString("wrtie", markdown),
+            }}
           />
         </section>
       </main>
