@@ -30,6 +30,7 @@ export default class DataFetcher implements IDataFetcher {
       thumbnail: "",
       description: "",
       updatedAt: new Date(),
+      createdAt: new Date(),
     };
     try {
       const res = await fetch(url, {
