@@ -39,7 +39,7 @@ const Write = ({ session }: { session: Session }) => {
   }, [_id]);
 
   const handleTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value.slice(0, 65));
+    setTitle(event.target.value.slice(0, 32));
   };
 
   const handleTags = (event: KeyboardEvent & ChangeEvent<HTMLInputElement>) => {

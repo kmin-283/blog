@@ -5,7 +5,7 @@ import Image from "next/image";
 import { convertToKRDate } from "@/utils/time";
 import styles from "./PostCard.module.css";
 
-interface PostCardProps {
+export interface PostCardProps {
   post: IPost;
 }
 
@@ -28,14 +28,9 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
             <span className={styles.description} property={"description"}>
               {post.description}
             </span>
-            <div className={styles.subInfo}>
-              <time
-                className={styles.time}
-                dateTime={post.createdAt.toString()}
-              >
-                {createdTime}
-              </time>
-            </div>
+            <time className={styles.time} dateTime={post.createdAt.toString()}>
+              {createdTime}
+            </time>
           </article>
         </div>
       </a>
