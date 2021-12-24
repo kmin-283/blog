@@ -16,6 +16,12 @@
       ],
       "@/libs/*": [
         "libs/*"
+      ],
+      "@/context/*": [
+        "context/*"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
       ]
     },
     "target": "es5",
@@ -42,6 +48,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "cypress"
   ]
 }

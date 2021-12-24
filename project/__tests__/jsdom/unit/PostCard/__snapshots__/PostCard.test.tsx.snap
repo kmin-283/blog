@@ -114,16 +114,12 @@ exports[`postcard 컴포넌트 Header 렌더링 1`] = `
       >
         postcard 컴포넌트 테스트
       </span>
-      <div
-        className="subInfo"
+      <time
+        className="time"
+        dateTime="Sun Dec 17 1995 12:24:00 GMT+0900 (대한민국 표준시)"
       >
-        <time
-          className="time"
-          dateTime="Sun Dec 17 1995 12:24:00 GMT+0900 (대한민국 표준시)"
-        >
-          1995년 12월 17일
-        </time>
-      </div>
+        1995년 12월 17일
+      </time>
     </article>
   </div>
 </a>

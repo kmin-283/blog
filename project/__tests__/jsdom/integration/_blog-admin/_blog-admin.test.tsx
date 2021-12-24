@@ -72,6 +72,9 @@ describe("_blog-admin 페이지", () => {
     fireEvent.click(firstDeleteButton);
     await waitFor(() => {});
 
+    fireEvent.click(screen.queryByText("예")!);
+    await waitFor(() => {});
+
     expect(element).toHaveTextContent("test post1");
     expect(element).not.toHaveTextContent("test post2");
   });

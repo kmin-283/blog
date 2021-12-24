@@ -22,6 +22,8 @@ module.exports = {
     "^@/models/(.*)$": "<rootDir>/../../models/$1",
     "^@/styles/(.*)$": "<rootDir>/../../styles/$1",
     "^@/libs/(.*)$": "<rootDir>/../../libs/$1",
+    "^@/context/(.*)$": "<rootDir>/../../context/$1",
+    "^@/hooks/(.*)$": "<rootDir>/../../hooks/$1",
   },
   testPathIgnorePatterns: [
     "<rootDir>/node_modules/",
