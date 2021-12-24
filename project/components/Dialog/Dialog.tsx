@@ -1,4 +1,4 @@
-import React, { isValidElement, useContext } from "react";
+import React, { isValidElement, MouseEvent, useContext } from "react";
 import { createPortal } from "react-dom";
 import styles from "./Dialog.module.css";
 import { DialogContext } from "@/context/dialogContext";
@@ -8,9 +8,19 @@ const Dialog = () => {
   const { dialog, handleDialog, dialogContent } =
     useContext<DialogReturn>(DialogContext);
 
+  const backdropHandle = (event?: MouseEvent<HTMLDivElement>) => {
+    if (
+      (event?.target as HTMLDivElement).classList.contains(
+        `${styles.dialogBackdrop}`
+      )
+    ) {
+      handleDialog();
+    }
+  };
+
   if (dialog) {
     return createPortal(
-      <div className={styles.dialogBackdrop} onClick={() => handleDialog()}>
+      <div className={styles.dialogBackdrop} onClick={backdropHandle}>
         <div
           role="alertdialog"
           aria-modal="true"
