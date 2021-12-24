@@ -1,19 +1,21 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import AlertDialog from "@/components/AlertDialog/AlertDialog";
+import Dialog from "@/components/Dialog/Dialog";
 
 export default {
-  title: "Components/AlertDialog",
-  component: AlertDialog,
+  title: "Components/Dialog",
+  component: Dialog,
 } as Meta;
 
-const Template = () => {
+const Template: Story = () => {
   return (
     <div style={{ position: "relative", width: 500, height: 300 }}>
-      <AlertDialog />
+      {/*<Dialog />*/}
     </div>
   );
 };
 
 export const BasicAlertDialog = Template.bind({});
-// BasicAlertDialog.args = {};
+BasicAlertDialog.args = {
+  isOpen: false,
+};
