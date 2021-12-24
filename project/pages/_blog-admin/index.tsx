@@ -9,6 +9,7 @@ import { NextPageContext } from "next";
 import { Session } from "next-auth";
 import PostSection from "@/components/PostSection/PostSection";
 import DataFetcher from "@/libs/DataFetcher";
+import { DialogProvider } from "@/context/dialogContext";
 
 const Admin = ({ session }: { session: Session | null }) => {
   // TODO dataFetcher는 1번만 생성됐으면 좋겠다...
@@ -57,8 +58,14 @@ const Admin = ({ session }: { session: Session | null }) => {
               </ul>
             </nav>
             {section === "stats" && <Statistics />}
-            {section === "posts" && <PostSection dataFetcher={dataFetcher} />}
+            {section === "posts" && (
+              // Provider도 새로 생성되서 발생하는 문제?
+              <DialogProvider>
+                <PostSection dataFetcher={dataFetcher} />
+              </DialogProvider>
+            )}
           </main>
+          <div id="dialog-root" />
         </>
       )}
     </>

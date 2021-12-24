@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog 컴포넌트 dialog는 react portal로 생성되므로 #dialog-root 아래에서 렌더링되어야 한다. 1`] = `
+<body>
+  <div
+    id="dialog-root"
+  >
+    <div
+      class="dialogBackdrop"
+    >
+      <div
+        aria-describedby="dialog-desc"
+        aria-labelledby="dialog-label"
+        aria-modal="true"
+        role="alertdialog"
+      >
+        <div>
+          <button>
+            Close dialog
+          </button>
+          <button>
+            기능 실행
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="not-dialog-root"
+  />
+  <div>
+    <div>
+      <button>
+        dialog toggle
+      </button>
+    </div>
+  </div>
+</body>
+`;

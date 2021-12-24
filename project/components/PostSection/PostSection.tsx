@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { IPost } from "@/models/post";
@@ -16,9 +16,13 @@ import TabPanel from "@/components/Tabs/TabPanel/TabPanel";
 import TabList from "@/components/Tabs/TabList/TabList";
 import Tab from "@/components/Tabs/Tab/Tab";
 import { IDataFetcher } from "@/libs/DataFetcher";
+import { DialogContext } from "@/context/dialogContext";
+import { DialogReturn } from "@/hooks/useDialog";
+import AlertDialog from "@/components/Dialog/AlertDialog/AlertDialog";
 
 const PostSection = ({ dataFetcher }: { dataFetcher: IDataFetcher }) => {
   const [posts, setPosts] = useState<IPost[]>([]);
+  const { handleDialog } = useContext<DialogReturn>(DialogContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -94,7 +98,13 @@ const PostSection = ({ dataFetcher }: { dataFetcher: IDataFetcher }) => {
                     </section>
                     <Dropdown>
                       <DropdownItem
-                        onClick={deletePost(post._id, post.title)}
+                        onClick={() =>
+                          handleDialog(
+                            <AlertDialog
+                              callback={deletePost(post._id, post.title)}
+                            />
+                          )
+                        }
                         icon={<BsTrash size="1.2em" />}
                       >
                         삭제하기

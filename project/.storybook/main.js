@@ -24,6 +24,8 @@ module.exports = {
       "@/styles:": path.resolve(__dirname, "../styles"),
       "@/utils": path.resolve(__dirname, "../utils"),
       "@/libs": path.resolve(__dirname, "../libs"),
+      "@/context": path.resolve(__dirname, "../context"),
+      "@/hooks": path.resolve(__dirname, "../hooks"),
     };
 
     // TypeScript with Next.js
