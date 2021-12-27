@@ -59,7 +59,6 @@ const Admin = ({ session }: { session: Session | null }) => {
             </nav>
             {section === "stats" && <Statistics />}
             {section === "posts" && (
-              // Provider도 새로 생성되서 발생하는 문제?
               <DialogProvider>
                 <PostSection dataFetcher={dataFetcher} />
               </DialogProvider>

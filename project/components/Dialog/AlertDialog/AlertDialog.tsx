@@ -20,9 +20,9 @@ const AlertDialog: FC<AlertDialogProps> = ({ callback }) => {
     <div className={styles.alertDialog}>
       <div className={styles.dialogHeader}>
         <BiTrash size="3em" />
-        <h2 className={styles.dialogLabel}>게시글 삭제</h2>
+        <h2 className={`${styles.dialogLabel} dialog-label`}>게시글 삭제</h2>
       </div>
-      <div className={styles.dialogDesc}>
+      <div className={`${styles.dialogDesc} dialog-desc`}>
         <p>해당 게시글을 삭제하시겠습니까?</p>
         <p>삭제 이후에는 복구할 수 없습니다.</p>
       </div>

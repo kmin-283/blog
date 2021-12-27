@@ -12,8 +12,10 @@ import Toolbar from "@/components/Toolbar/Toolbar";
 import Tags from "@/components/Tags/Tags";
 import { markedString } from "@/utils/markdown";
 import DataFetcher from "@/libs/DataFetcher";
+import AutoSaver from "@/libs/AutoSaver";
 
 const dataFetcher = new DataFetcher();
+const autoSaver = new AutoSaver(dataFetcher);
 
 const Write = ({ session }: { session: Session }) => {
   const router = useRouter();
@@ -58,7 +60,14 @@ const Write = ({ session }: { session: Session }) => {
 
   const handleMarkdown = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMarkdown(event.target.value);
+    autoSaver.setTimer();
   };
+
+  useEffect(() => {
+    return () => {
+      autoSaver.clear();
+    };
+  }, []);
 
   const writePost = async () => {
     setLoading(true);
